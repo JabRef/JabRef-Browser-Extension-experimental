@@ -8,6 +8,30 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Access Engineering.js",
+    "label": "Access Engineering",
+    "type": "zotero-legacy",
+    "translatorID": "d120a8a7-9d45-446e-8c18-ad9ef0a6bf47",
+    "target": "^https?://www\\.accessengineeringlibrary\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Access Medicine.js",
+    "label": "Access Medicine",
+    "type": "zotero-legacy",
+    "translatorID": "60e55b65-08cb-4a8f-8a61-c36338ec8754",
+    "target": "^https?://(0-)?(access(anesthesiology|cardiology|emergencymedicine|medicine|pediatrics|surgery)|neurology)\\.mhmedical\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Access Science.js",
+    "label": "Access Science",
+    "type": "zotero-legacy",
+    "translatorID": "558330ca-3531-467a-8003-86cd9602cc48",
+    "target": "^https?://www\\.accessscience\\.com/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/ACLS Humanities EBook.js",
     "label": "ACLS Humanities EBook",
     "type": "zotero-legacy",
@@ -48,6 +72,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Adam Matthew Digital.js",
+    "label": "Adam Matthew Digital",
+    "type": "zotero-legacy",
+    "translatorID": "0701696c-3523-47ba-9617-b04eee03b6ba",
+    "target": "^https?://www\\.([^.]+)\\.amdigital\\.co\\.uk/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/ADS Bibcode.js",
     "label": "ADS Bibcode",
     "type": "zotero-legacy",
@@ -64,166 +96,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/AGRIS.js",
-    "label": "AGRIS",
-    "type": "zotero-legacy",
-    "translatorID": "48a67d12-1bcf-44ac-a4f4-11457ebfc0bb",
-    "target": "^https?://agris\\.fao\\.org/agris-search/search",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/AIP.js",
-    "label": "AIP",
-    "type": "zotero-legacy",
-    "translatorID": "48d3b115-7e09-4134-ad5d-0beda6296761",
-    "target": "^https?://scitation\\.aip\\.org/(search\\?|content/)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/AMS Journals.js",
-    "label": "AMS Journals",
-    "type": "zotero-legacy",
-    "translatorID": "bdaac15c-b0ee-453f-9f1d-f35d00c7a994",
-    "target": "^https?://www\\.ams\\.org/journals/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/AMS MathSciNet (Legacy).js",
-    "label": "AMS MathSciNet (Legacy)",
-    "type": "zotero-legacy",
-    "translatorID": "a354331-981b-43de-a61-bc26dd1be3a9",
-    "target": "^https?://(mathscinet\\.)?ams\\.[^/]*/(mathscinet/2006/)?mathscinet(\\-getitem\\?|/search/(publications\\.html|publdoc\\.html))",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/AMS MathSciNet.js",
-    "label": "AMS MathSciNet",
-    "type": "zotero-legacy",
-    "translatorID": "16f2936d-a059-40e8-a48e-f0acbb1e93e0",
-    "target": "^https?://mathscinet\\.ams\\.[^/]*/mathscinet/(article\\?|publications-search\\?|author\\?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/APA PsycNET.js",
-    "label": "APA PsycNet",
-    "type": "zotero-legacy",
-    "translatorID": "1e1e35be-6264-45a0-ad2e-7212040eb984",
-    "target": "^https?://(psycnet|doi)\\.apa\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/APN.ru.js",
-    "label": "APN.ru",
-    "type": "zotero-legacy",
-    "translatorID": "737216af-fc48-4aa5-bfae-560c9cfc5df5",
-    "target": "^https?://www\\.apn\\.ru/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/APS-Physics.js",
-    "label": "APS-Physics",
-    "type": "zotero-legacy",
-    "translatorID": "f318ab1e-71c6-4f67-8ac3-4b1144e5bf4e",
-    "target": "^https?://(www\\.)?(physics)\\.aps\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/APS.js",
-    "label": "APS",
-    "type": "zotero-legacy",
-    "translatorID": "2c310a37-a4dd-48d2-82c9-bd29c53c1c76",
-    "target": "^https?://journals\\.aps\\.org/([^/]+/(abstract|supplemental|references|cited-by|issues)/|search(\\?|/))",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ARTFL Encyclopedie.js",
-    "label": "ARTFL Encyclopedie",
-    "type": "zotero-legacy",
-    "translatorID": "72cb2536-3211-41e0-ae8b-974c0385e085",
-    "target": "^https?://artflsrv\\d+\\.uchicago\\.edu/philologic4/encyclopedie\\d+/(navigate/|query)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ARTnews.js",
-    "label": "ARTnews",
-    "type": "zotero-legacy",
-    "translatorID": "e765263c-c211-46a8-892b-d0b0237836a7",
-    "target": "^https?://(www\\.)?artnews\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ARTstor.js",
-    "label": "ARTstor",
-    "type": "zotero-legacy",
-    "translatorID": "5278b20c-7c2c-4599-a785-12198ea648bf",
-    "target": "^https?://library\\.artstor\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ASCE.js",
-    "label": "ASCE",
-    "type": "zotero-legacy",
-    "translatorID": "303bdfc5-11b8-4107-bca1-63ca97701a0f",
-    "target": "^https?://(www\\.)?ascelibrary\\.org/(toc|doi|action)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ASCO Meeting Library.js",
-    "label": "ASCO Meeting Library",
-    "type": "zotero-legacy",
-    "translatorID": "03d1aac2-bee2-43f4-8d9c-b96ef31e8c61",
-    "target": "^https?://meetinglibrary\\.asco\\.org/(content|search)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ASTIS.js",
-    "label": "ASTIS",
-    "type": "zotero-legacy",
-    "translatorID": "d4e227c0-cebb-425a-ac8d-a6625c4bfdd2",
-    "target": "^https?://(www\\.)?aina\\.ucalgary\\.ca/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ATS International Journal.js",
-    "label": "ATS International Journal",
-    "type": "zotero-legacy",
-    "translatorID": "ec0628ad-e508-444e-9e4c-e1819766a1ae",
-    "target": "^https?://(www\\.)?atsinternationaljournal\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Access Engineering.js",
-    "label": "Access Engineering",
-    "type": "zotero-legacy",
-    "translatorID": "d120a8a7-9d45-446e-8c18-ad9ef0a6bf47",
-    "target": "^https?://www\\.accessengineeringlibrary\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Access Medicine.js",
-    "label": "Access Medicine",
-    "type": "zotero-legacy",
-    "translatorID": "60e55b65-08cb-4a8f-8a61-c36338ec8754",
-    "target": "^https?://(0-)?(access(anesthesiology|cardiology|emergencymedicine|medicine|pediatrics|surgery)|neurology)\\.mhmedical\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Access Science.js",
-    "label": "Access Science",
-    "type": "zotero-legacy",
-    "translatorID": "558330ca-3531-467a-8003-86cd9602cc48",
-    "target": "^https?://www\\.accessscience\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Adam Matthew Digital.js",
-    "label": "Adam Matthew Digital",
-    "type": "zotero-legacy",
-    "translatorID": "0701696c-3523-47ba-9617-b04eee03b6ba",
-    "target": "^https?://www\\.([^.]+)\\.amdigital\\.co\\.uk/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Agencia del ISBN.js",
     "label": "Agencia del ISBN",
     "type": "zotero-legacy",
@@ -232,11 +104,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/AGRIS.js",
+    "label": "AGRIS",
+    "type": "zotero-legacy",
+    "translatorID": "48a67d12-1bcf-44ac-a4f4-11457ebfc0bb",
+    "target": "^https?://agris\\.fao\\.org/agris-search/search",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Ahval News.js",
     "label": "Ahval News",
     "type": "zotero-legacy",
     "translatorID": "64f4a2b8-33d8-4303-834a-3b71065cf6c6",
     "target": "^https?://ahvalnews\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/AIP.js",
+    "label": "AIP",
+    "type": "zotero-legacy",
+    "translatorID": "48d3b115-7e09-4134-ad5d-0beda6296761",
+    "target": "^https?://scitation\\.aip\\.org/(search\\?|content/)",
     "translatorType": 4
   },
   {
@@ -328,6 +216,30 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/AMS Journals.js",
+    "label": "AMS Journals",
+    "type": "zotero-legacy",
+    "translatorID": "bdaac15c-b0ee-453f-9f1d-f35d00c7a994",
+    "target": "^https?://www\\.ams\\.org/journals/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/AMS MathSciNet (Legacy).js",
+    "label": "AMS MathSciNet (Legacy)",
+    "type": "zotero-legacy",
+    "translatorID": "a354331-981b-43de-a61-bc26dd1be3a9",
+    "target": "^https?://(mathscinet\\.)?ams\\.[^/]*/(mathscinet/2006/)?mathscinet(\\-getitem\\?|/search/(publications\\.html|publdoc\\.html))",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/AMS MathSciNet.js",
+    "label": "AMS MathSciNet",
+    "type": "zotero-legacy",
+    "translatorID": "16f2936d-a059-40e8-a48e-f0acbb1e93e0",
+    "target": "^https?://mathscinet\\.ams\\.[^/]*/mathscinet/(article\\?|publications-search\\?|author\\?)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Anarchist Library.js",
     "label": "Anarchist Library",
     "type": "zotero-legacy",
@@ -344,6 +256,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Anne Frank Knowledge Base.js",
+    "label": "Anne Frank Knowledge Base",
+    "type": "zotero-legacy",
+    "translatorID": "cd29a8b7-1b52-4c8c-b2af-7cfc5cbbecb9",
+    "target": "^https?://research\\.annefrank\\.org/(?:en|nl|api)/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Annual Reviews.js",
     "label": "Annual Reviews",
     "type": "zotero-legacy",
@@ -357,6 +277,38 @@
     "type": "zotero-legacy",
     "translatorID": "68a54283-67e0-4e1c-ad3d-5b699868b194",
     "target": "^https?://(www\\.)?antikvarium\\.hu/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/APA PsycNET.js",
+    "label": "APA PsycNet",
+    "type": "zotero-legacy",
+    "translatorID": "1e1e35be-6264-45a0-ad2e-7212040eb984",
+    "target": "^https?://(psycnet|doi)\\.apa\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/APN.ru.js",
+    "label": "APN.ru",
+    "type": "zotero-legacy",
+    "translatorID": "737216af-fc48-4aa5-bfae-560c9cfc5df5",
+    "target": "^https?://www\\.apn\\.ru/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/APS-Physics.js",
+    "label": "APS-Physics",
+    "type": "zotero-legacy",
+    "translatorID": "f318ab1e-71c6-4f67-8ac3-4b1144e5bf4e",
+    "target": "^https?://(www\\.)?(physics)\\.aps\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/APS.js",
+    "label": "APS",
+    "type": "zotero-legacy",
+    "translatorID": "2c310a37-a4dd-48d2-82c9-bd29c53c1c76",
+    "target": "^https?://journals\\.aps\\.org/([^/]+/(abstract|supplemental|references|cited-by|issues)/|search(\\?|/))",
     "translatorType": 4
   },
   {
@@ -424,6 +376,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/ARTFL Encyclopedie.js",
+    "label": "ARTFL Encyclopedie",
+    "type": "zotero-legacy",
+    "translatorID": "72cb2536-3211-41e0-ae8b-974c0385e085",
+    "target": "^https?://artflsrv\\d+\\.uchicago\\.edu/philologic4/encyclopedie\\d+/(navigate/|query)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Artforum.js",
     "label": "Artforum",
     "type": "zotero-legacy",
@@ -432,11 +392,75 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/artnet.js",
+    "label": "artnet",
+    "type": "zotero-legacy",
+    "translatorID": "a6bfb69f-5dd3-4d60-b9ad-d68ef9eb9a26",
+    "target": "https?://(www\\.)?artnet\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ARTnews.js",
+    "label": "ARTnews",
+    "type": "zotero-legacy",
+    "translatorID": "e765263c-c211-46a8-892b-d0b0237836a7",
+    "target": "^https?://(www\\.)?artnews\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ARTstor.js",
+    "label": "ARTstor",
+    "type": "zotero-legacy",
+    "translatorID": "5278b20c-7c2c-4599-a785-12198ea648bf",
+    "target": "^https?://library\\.artstor\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/arXiv.org.js",
+    "label": "arXiv.org",
+    "type": "zotero-legacy",
+    "translatorID": "ecddda2e-4fc6-4aea-9f17-ef3b56d7377a",
+    "target": "^https?://([^\\.]+\\.)?(arxiv\\.org|xxx\\.lanl\\.gov)/(search|find|catchup|list/\\w|abs/|pdf/)",
+    "translatorType": 12
+  },
+  {
+    "path": "translators/zotero/ASCE.js",
+    "label": "ASCE",
+    "type": "zotero-legacy",
+    "translatorID": "303bdfc5-11b8-4107-bca1-63ca97701a0f",
+    "target": "^https?://(www\\.)?ascelibrary\\.org/(toc|doi|action)/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ASCO Meeting Library.js",
+    "label": "ASCO Meeting Library",
+    "type": "zotero-legacy",
+    "translatorID": "03d1aac2-bee2-43f4-8d9c-b96ef31e8c61",
+    "target": "^https?://meetinglibrary\\.asco\\.org/(content|search)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ASTIS.js",
+    "label": "ASTIS",
+    "type": "zotero-legacy",
+    "translatorID": "d4e227c0-cebb-425a-ac8d-a6625c4bfdd2",
+    "target": "^https?://(www\\.)?aina\\.ucalgary\\.ca/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Atlanta Journal-Constitution.js",
     "label": "Atlanta Journal-Constitution",
     "type": "zotero-legacy",
     "translatorID": "01322929-5782-4612-81f7-d861fb46d9f2",
     "target": "^https?://(www\\.)?ajc\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ATS International Journal.js",
+    "label": "ATS International Journal",
+    "type": "zotero-legacy",
+    "translatorID": "ec0628ad-e508-444e-9e4c-e1819766a1ae",
+    "target": "^https?://(www\\.)?atsinternationaljournal\\.com/",
     "translatorType": 4
   },
   {
@@ -464,11 +488,35 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Baidu Scholar.js",
+    "label": "Baidu Scholar",
+    "type": "zotero-legacy",
+    "translatorID": "e034d9be-c420-42cf-8311-23bca5735a32",
+    "target": "^https?://(www\\.)?xueshu\\.baidu\\.com/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/BAILII.js",
     "label": "BAILII",
     "type": "zotero-legacy",
     "translatorID": "5ae63913-669a-4792-9f45-e089a37de9ab",
     "target": "^https?://www\\.bailii\\.org(/cgi\\-bin/markup\\.cgi\\?doc\\=)?/\\w+/cases/.+",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Bangkok Post.js",
+    "label": "Bangkok Post",
+    "type": "zotero-legacy",
+    "translatorID": "7f74d823-d2ba-481c-b717-8b12c90ed874",
+    "target": "^https://www\\.bangkokpost\\.com/[a-z0-9-]+/([a-z0-9-]+/)?[0-9]+",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Baruch Foundation.js",
+    "label": "Baruch Foundation",
+    "type": "zotero-legacy",
+    "translatorID": "283d6b78-d3d7-48d4-8fc0-0bdabef7c4ee",
+    "target": "^https?://baruchfoundation\\.org/",
     "translatorType": 4
   },
   {
@@ -488,59 +536,11 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/BIBSYS.js",
-    "label": "BIBSYS",
+    "path": "translators/zotero/beck-online.js",
+    "label": "beck-online",
     "type": "zotero-legacy",
-    "translatorID": "ab961e61-2a8a-4be1-b8a3-044f20d52d78",
-    "target": "^https?://ask\\.bibsys\\.no/ask/action",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/BOCC.js",
-    "label": "BOCC",
-    "type": "zotero-legacy",
-    "translatorID": "ecd1b7c6-8d31-4056-8c15-1807b2489254",
-    "target": "^https?://[^/]*bocc[^/]*/(_listas|_esp)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/BOE.js",
-    "label": "BOE",
-    "type": "zotero-legacy",
-    "translatorID": "3f1b68b1-8ee7-4ab7-a514-185d72b2f80d",
-    "target": "^https?://([a-z]+\\.)?boe\\.es/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/BOFiP-Impots.js",
-    "label": "BOFiP-Imp\u00f4ts",
-    "type": "zotero-legacy",
-    "translatorID": "7d03e952-04ad-4d1d-845a-50b9eb545b10",
-    "target": "^https?://bofip\\.impots\\.gouv\\.fr/bofip/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Baidu Scholar.js",
-    "label": "Baidu Scholar",
-    "type": "zotero-legacy",
-    "translatorID": "e034d9be-c420-42cf-8311-23bca5735a32",
-    "target": "^https?://(www\\.)?xueshu\\.baidu\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Bangkok Post.js",
-    "label": "Bangkok Post",
-    "type": "zotero-legacy",
-    "translatorID": "7f74d823-d2ba-481c-b717-8b12c90ed874",
-    "target": "^https://www\\.bangkokpost\\.com/[a-z0-9-]+/([a-z0-9-]+/)?[0-9]+",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Baruch Foundation.js",
-    "label": "Baruch Foundation",
-    "type": "zotero-legacy",
-    "translatorID": "283d6b78-d3d7-48d4-8fc0-0bdabef7c4ee",
-    "target": "^https?://baruchfoundation\\.org/",
+    "translatorID": "e8544423-1515-4daf-bb5d-3202bf422b58",
+    "target": "^https?://beck[-.]online\\.beck\\.de/",
     "translatorType": 4
   },
   {
@@ -566,14 +566,6 @@
     "translatorID": "b6e39b57-8942-4d11-8259-342c46ce395f",
     "target": "bib",
     "translatorType": 2
-  },
-  {
-    "path": "translators/zotero/BibTeX.js",
-    "label": "BibTeX",
-    "type": "zotero-legacy",
-    "translatorID": "9cb70025-a888-4a29-a210-93ec52da40d4",
-    "target": "bib",
-    "translatorType": 3
   },
   {
     "path": "translators/zotero/Biblio.com.js",
@@ -624,6 +616,30 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/BIBSYS.js",
+    "label": "BIBSYS",
+    "type": "zotero-legacy",
+    "translatorID": "ab961e61-2a8a-4be1-b8a3-044f20d52d78",
+    "target": "^https?://ask\\.bibsys\\.no/ask/action",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/BibTeX.js",
+    "label": "BibTeX",
+    "type": "zotero-legacy",
+    "translatorID": "9cb70025-a888-4a29-a210-93ec52da40d4",
+    "target": "bib",
+    "translatorType": 3
+  },
+  {
+    "path": "translators/zotero/Bioconductor.js",
+    "label": "Bioconductor",
+    "type": "zotero-legacy",
+    "translatorID": "21f62926-4343-4518-b6f2-a284e650e64a",
+    "target": "https?://(www\\.)?bioconductor\\.org/(packages/.*/bioc/html|help/search)/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/BioMed Central.js",
     "label": "BioMed Central",
     "type": "zotero-legacy",
@@ -637,14 +653,6 @@
     "type": "zotero-legacy",
     "translatorID": "7cb0089b-9551-44b2-abca-eb03cbf586d9",
     "target": "^https?://[^/]*www\\.bioone\\.org[^/]*/s",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Bioconductor.js",
-    "label": "Bioconductor",
-    "type": "zotero-legacy",
-    "translatorID": "21f62926-4343-4518-b6f2-a284e650e64a",
-    "target": "https?://(www\\.)?bioconductor\\.org/(packages/.*/bioc/html|help/search)/",
     "translatorType": 4
   },
   {
@@ -694,6 +702,30 @@
     "translatorID": "f349954c-9957-4b5f-be24-1a8bb52f7fbd",
     "target": "",
     "translatorType": 8
+  },
+  {
+    "path": "translators/zotero/BOCC.js",
+    "label": "BOCC",
+    "type": "zotero-legacy",
+    "translatorID": "ecd1b7c6-8d31-4056-8c15-1807b2489254",
+    "target": "^https?://[^/]*bocc[^/]*/(_listas|_esp)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/BOE.js",
+    "label": "BOE",
+    "type": "zotero-legacy",
+    "translatorID": "3f1b68b1-8ee7-4ab7-a514-185d72b2f80d",
+    "target": "^https?://([a-z]+\\.)?boe\\.es/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/BOFiP-Impots.js",
+    "label": "BOFiP-Imp\u00f4ts",
+    "type": "zotero-legacy",
+    "translatorID": "7d03e952-04ad-4d1d-845a-50b9eb545b10",
+    "target": "^https?://bofip\\.impots\\.gouv\\.fr/bofip/",
+    "translatorType": 4
   },
   {
     "path": "translators/zotero/Bookmarks.js",
@@ -784,11 +816,99 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Cairn.info.js",
+    "label": "Cairn.info",
+    "type": "zotero-legacy",
+    "translatorID": "f46cc903-c447-47d6-a2cf-c75ed22dc96b",
+    "target": "^https?://www\\.cairn\\.info/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Calisphere.js",
+    "label": "Calisphere",
+    "type": "zotero-legacy",
+    "translatorID": "80505478-d42e-4920-8c33-4f863d4ce513",
+    "target": "^https://calisphere\\.org/(item/|search/)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CalMatters.js",
+    "label": "CalMatters",
+    "type": "zotero-legacy",
+    "translatorID": "64b634ce-3957-4c89-bcce-7603fe552780",
+    "target": "^https?://calmatters\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Camara Brasileira do Livro ISBN.js",
+    "label": "C\u00e2mara Brasileira do Livro ISBN",
+    "type": "zotero-legacy",
+    "translatorID": "cdb5c893-ab69-4e96-9b5c-f4456d49ddd8",
+    "target": "",
+    "translatorType": 8
+  },
+  {
+    "path": "translators/zotero/Cambridge Core.js",
+    "label": "Cambridge Core",
+    "type": "zotero-legacy",
+    "translatorID": "850f4c5f-71fb-4669-b7da-7fb7a95500ef",
+    "target": "^https?://www\\.cambridge\\.org/core/(search\\?|journals/|books/|.+/listing?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Cambridge Engage Preprints.js",
+    "label": "Cambridge Engage Preprints",
+    "type": "zotero-legacy",
+    "translatorID": "4338eead-a8b7-431f-8533-ea53062c9f89",
+    "target": "/engage/[^/]+/(article-details/|search-dashboard\\?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Canada.com.js",
+    "label": "Canada.com",
+    "type": "zotero-legacy",
+    "translatorID": "4da40f07-904b-4472-93b6-9bea1fe7d4df",
+    "target": "^https?://www\\.canada\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Canadian Letters and Images.js",
+    "label": "Canadian Letters and Images",
+    "type": "zotero-legacy",
+    "translatorID": "a7c8b759-6f8a-4875-9d6e-cc0a99fe8f43",
+    "target": "^https?://(www\\.)?canadianletters\\.ca/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Canadiana.ca.js",
+    "label": "Canadiana.ca",
+    "type": "zotero-legacy",
+    "translatorID": "2d174277-7651-458f-86dd-20e168d2f1f3",
+    "target": "^https?://eco\\.canadiana\\.ca",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CanLII.js",
+    "label": "CanLII",
+    "type": "zotero-legacy",
+    "translatorID": "84799379-7bc5-4e55-9817-baf297d129fe",
+    "target": "^https?://(www\\.)?canlii\\.org/(en|fr)/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/CAOD.js",
     "label": "CAOD",
     "type": "zotero-legacy",
     "translatorID": "d2a9e388-5b79-403a-b4ec-e7099ca1bb7f",
     "target": "^https?://caod\\.oriprobe\\.com/articles/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Cascadilla Proceedings Project.js",
+    "label": "Cascadilla Proceedings Project",
+    "type": "zotero-legacy",
+    "translatorID": "cbed2134-f963-43a0-a8ad-9813e94de9a7",
+    "target": "^https?://(www\\.)?lingref\\.com/",
     "translatorType": 4
   },
   {
@@ -805,6 +925,22 @@
     "type": "zotero-legacy",
     "translatorID": "899d10f5-3f35-40e6-8dfb-f8ee2dfb1849",
     "target": "^https?://ccfr\\.bnf\\.fr/portailccfr/.*\\b(action=search|menu=menu_view_grappage|search\\.jsp)\\b",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Cell Press.js",
+    "label": "Cell Press",
+    "type": "zotero-legacy",
+    "translatorID": "f26cfb71-efd7-47ae-a28c-d4d8852096bd",
+    "target": "^https?://([^/]*\\.)?cell\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Central and Eastern European Online Library Journals.js",
+    "label": "Central and Eastern European Online Library Journals",
+    "type": "zotero-legacy",
+    "translatorID": "19cef926-c5b6-42e2-a91c-6f2722f8b36d",
+    "target": "^https?://www\\.ceeol\\.com/search",
     "translatorType": 4
   },
   {
@@ -838,198 +974,6 @@
     "translatorID": "e782b521-99ed-47c7-b021-62351a0a4f91",
     "target": "cff",
     "translatorType": 2
-  },
-  {
-    "path": "translators/zotero/CIA World Factbook.js",
-    "label": "CIA World Factbook",
-    "type": "zotero-legacy",
-    "translatorID": "d9d4822f-f69e-4f31-b094-5324b2a04761",
-    "target": "^https?://www\\.cia\\.gov/the-world-factbook/countries/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CLACSO.js",
-    "label": "CLACSO",
-    "type": "zotero-legacy",
-    "translatorID": "a6f95213-468c-4558-94a3-59b2436cbcdd",
-    "target": "^https?://biblioteca\\.clacso\\.edu\\.ar/gsdl/cgi-bin/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CLASE.js",
-    "label": "CLASE",
-    "type": "zotero-legacy",
-    "translatorID": "1dd21245-29cf-434d-b5b8-49eae0a6912a",
-    "target": "^https?://132\\.248\\.9\\.1\\:",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CNKI.js",
-    "label": "CNKI",
-    "type": "zotero-legacy",
-    "translatorID": "5c95b67b-41c5-4f55-b71a-48d5d7183063",
-    "target": "^https?://([^/]+\\.)?cnki\\.net",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/COBISS.js",
-    "label": "COBISS",
-    "type": "zotero-legacy",
-    "translatorID": "ceace65b-4daf-4200-a617-a6bf24c75607",
-    "target": "^https?://plus\\.cobiss\\.net/cobiss",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/COinS.js",
-    "label": "COinS",
-    "type": "zotero-legacy",
-    "translatorID": "05d07af9-105a-4572-99f6-a8e231c0daef",
-    "target": "",
-    "translatorType": 6
-  },
-  {
-    "path": "translators/zotero/CQ Press.js",
-    "label": "CQ Press",
-    "type": "zotero-legacy",
-    "translatorID": "0de4cddf-be9d-4e1e-9b51-891b7a4bb136",
-    "target": "^https?://library\\.cqpress\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CROSBI.js",
-    "label": "CROSBI",
-    "type": "zotero-legacy",
-    "translatorID": "fcabdbd7-e3e8-4f4a-9d78-25296417bdc5",
-    "target": "^https?://www\\.bib\\.irb\\.hr/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CSIRO Publishing.js",
-    "label": "CSIRO Publishing",
-    "type": "zotero-legacy",
-    "translatorID": "303c2744-ea37-4806-853d-e1ca67be6818",
-    "target": "^https?://(www\\.)?publish\\.csiro\\.au/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CSL JSON.js",
-    "label": "CSL JSON",
-    "type": "zotero-legacy",
-    "translatorID": "bc03b4fe-436d-4a1f-ba59-de4d2d7a63f7",
-    "target": "json",
-    "translatorType": 3
-  },
-  {
-    "path": "translators/zotero/CSV.js",
-    "label": "CSV",
-    "type": "zotero-legacy",
-    "translatorID": "25f4c5e2-d790-4daa-a667-797619c7e2f2",
-    "target": "csv",
-    "translatorType": 2
-  },
-  {
-    "path": "translators/zotero/Cairn.info.js",
-    "label": "Cairn.info",
-    "type": "zotero-legacy",
-    "translatorID": "f46cc903-c447-47d6-a2cf-c75ed22dc96b",
-    "target": "^https?://www\\.cairn\\.info/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CalMatters.js",
-    "label": "CalMatters",
-    "type": "zotero-legacy",
-    "translatorID": "64b634ce-3957-4c89-bcce-7603fe552780",
-    "target": "^https?://calmatters\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Calisphere.js",
-    "label": "Calisphere",
-    "type": "zotero-legacy",
-    "translatorID": "80505478-d42e-4920-8c33-4f863d4ce513",
-    "target": "^https://calisphere\\.org/(item/|search/)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Camara Brasileira do Livro ISBN.js",
-    "label": "C\u00e2mara Brasileira do Livro ISBN",
-    "type": "zotero-legacy",
-    "translatorID": "cdb5c893-ab69-4e96-9b5c-f4456d49ddd8",
-    "target": "",
-    "translatorType": 8
-  },
-  {
-    "path": "translators/zotero/Cambridge Core.js",
-    "label": "Cambridge Core",
-    "type": "zotero-legacy",
-    "translatorID": "850f4c5f-71fb-4669-b7da-7fb7a95500ef",
-    "target": "^https?://www\\.cambridge\\.org/core/(search\\?|journals/|books/|.+/listing?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Cambridge Engage Preprints.js",
-    "label": "Cambridge Engage Preprints",
-    "type": "zotero-legacy",
-    "translatorID": "4338eead-a8b7-431f-8533-ea53062c9f89",
-    "target": "/engage/[^/]+/(article-details/|search-dashboard\\?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/CanLII.js",
-    "label": "CanLII",
-    "type": "zotero-legacy",
-    "translatorID": "84799379-7bc5-4e55-9817-baf297d129fe",
-    "target": "^https?://(www\\.)?canlii\\.org/(en|fr)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Canada.com.js",
-    "label": "Canada.com",
-    "type": "zotero-legacy",
-    "translatorID": "4da40f07-904b-4472-93b6-9bea1fe7d4df",
-    "target": "^https?://www\\.canada\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Canadian Letters and Images.js",
-    "label": "Canadian Letters and Images",
-    "type": "zotero-legacy",
-    "translatorID": "a7c8b759-6f8a-4875-9d6e-cc0a99fe8f43",
-    "target": "^https?://(www\\.)?canadianletters\\.ca/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Canadiana.ca.js",
-    "label": "Canadiana.ca",
-    "type": "zotero-legacy",
-    "translatorID": "2d174277-7651-458f-86dd-20e168d2f1f3",
-    "target": "^https?://eco\\.canadiana\\.ca",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Cascadilla Proceedings Project.js",
-    "label": "Cascadilla Proceedings Project",
-    "type": "zotero-legacy",
-    "translatorID": "cbed2134-f963-43a0-a8ad-9813e94de9a7",
-    "target": "^https?://(www\\.)?lingref\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Cell Press.js",
-    "label": "Cell Press",
-    "type": "zotero-legacy",
-    "translatorID": "f26cfb71-efd7-47ae-a28c-d4d8852096bd",
-    "target": "^https?://([^/]*\\.)?cell\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Central and Eastern European Online Library Journals.js",
-    "label": "Central and Eastern European Online Library Journals",
-    "type": "zotero-legacy",
-    "translatorID": "19cef926-c5b6-42e2-a91c-6f2722f8b36d",
-    "target": "^https?://www\\.ceeol\\.com/search",
-    "translatorType": 4
   },
   {
     "path": "translators/zotero/Champlain Society - Collection.js",
@@ -1069,6 +1013,14 @@
     "type": "zotero-legacy",
     "translatorID": "fa8f8274-ada5-415a-96dd-a5c19fce7046",
     "target": "^https?://chroniclingamerica\\.loc\\.gov",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CIA World Factbook.js",
+    "label": "CIA World Factbook",
+    "type": "zotero-legacy",
+    "translatorID": "d9d4822f-f69e-4f31-b094-5324b2a04761",
+    "target": "^https?://www\\.cia\\.gov/the-world-factbook/countries/",
     "translatorType": 4
   },
   {
@@ -1112,6 +1064,22 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/CLACSO.js",
+    "label": "CLACSO",
+    "type": "zotero-legacy",
+    "translatorID": "a6f95213-468c-4558-94a3-59b2436cbcdd",
+    "target": "^https?://biblioteca\\.clacso\\.edu\\.ar/gsdl/cgi-bin/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CLASE.js",
+    "label": "CLASE",
+    "type": "zotero-legacy",
+    "translatorID": "1dd21245-29cf-434d-b5b8-49eae0a6912a",
+    "target": "^https?://132\\.248\\.9\\.1\\:",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Climate Change and Human Health Literature Portal.js",
     "label": "Climate Change and Human Health Literature Portal",
     "type": "zotero-legacy",
@@ -1128,12 +1096,44 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/clinicaltrials.gov.js",
+    "label": "clinicaltrials.gov",
+    "type": "zotero-legacy",
+    "translatorID": "874d70a0-6b95-4391-a681-c56dabaa1411",
+    "target": "^https://(classic\\.clinicaltrials\\.gov/ct2/(show|results)|(www\\.)?clinicaltrials\\.gov/(study|search))\\b",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CNKI.js",
+    "label": "CNKI",
+    "type": "zotero-legacy",
+    "translatorID": "5c95b67b-41c5-4f55-b71a-48d5d7183063",
+    "target": "^https?://([^/]+\\.)?cnki\\.net",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/COBISS.js",
+    "label": "COBISS",
+    "type": "zotero-legacy",
+    "translatorID": "ceace65b-4daf-4200-a617-a6bf24c75607",
+    "target": "^https?://plus\\.cobiss\\.net/cobiss",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Code4Lib Journal.js",
     "label": "Code4Lib Journal",
     "type": "zotero-legacy",
     "translatorID": "a326fc49-60c2-405b-8f44-607e5d18b9ad",
     "target": "^https?://journal\\.code4lib\\.org/",
     "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/COinS.js",
+    "label": "COinS",
+    "type": "zotero-legacy",
+    "translatorID": "05d07af9-105a-4572-99f6-a8e231c0daef",
+    "target": "",
+    "translatorType": 6
   },
   {
     "path": "translators/zotero/Colorado State Legislature.js",
@@ -1200,6 +1200,22 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/CQ Press.js",
+    "label": "CQ Press",
+    "type": "zotero-legacy",
+    "translatorID": "0de4cddf-be9d-4e1e-9b51-891b7a4bb136",
+    "target": "^https?://library\\.cqpress\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CROSBI.js",
+    "label": "CROSBI",
+    "type": "zotero-legacy",
+    "translatorID": "fcabdbd7-e3e8-4f4a-9d78-25296417bdc5",
+    "target": "^https?://www\\.bib\\.irb\\.hr/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Crossref REST.js",
     "label": "Crossref REST",
     "type": "zotero-legacy",
@@ -1214,6 +1230,30 @@
     "translatorID": "93514073-b541-4e02-9180-c36d2f3bb401",
     "target": "xml",
     "translatorType": 1
+  },
+  {
+    "path": "translators/zotero/CSIRO Publishing.js",
+    "label": "CSIRO Publishing",
+    "type": "zotero-legacy",
+    "translatorID": "303c2744-ea37-4806-853d-e1ca67be6818",
+    "target": "^https?://(www\\.)?publish\\.csiro\\.au/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/CSL JSON.js",
+    "label": "CSL JSON",
+    "type": "zotero-legacy",
+    "translatorID": "bc03b4fe-436d-4a1f-ba59-de4d2d7a63f7",
+    "target": "json",
+    "translatorType": 3
+  },
+  {
+    "path": "translators/zotero/CSV.js",
+    "label": "CSV",
+    "type": "zotero-legacy",
+    "translatorID": "25f4c5e2-d790-4daa-a667-797619c7e2f2",
+    "target": "csv",
+    "translatorType": 2
   },
   {
     "path": "translators/zotero/Current Affairs.js",
@@ -1232,86 +1272,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/DAI-Zenon.js",
-    "label": "DAI-Zenon",
-    "type": "zotero-legacy",
-    "translatorID": "16199bf0-a365-4aad-baeb-225019ae32dc",
-    "target": "^https?://zenon\\.dainst\\.org/(Record/|Search/)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DART-Europe.js",
-    "label": "DART-Europe",
-    "type": "zotero-legacy",
-    "translatorID": "658f2707-bb46-44eb-af0a-e73a5387fc90",
-    "target": "^https?://www\\.dart-europe\\.org",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DBLP Computer Science Bibliography.js",
-    "label": "DBLP Computer Science Bibliography",
-    "type": "zotero-legacy",
-    "translatorID": "625c6435-e235-4402-a48f-3095a9c1a09c",
-    "target": "^https?://(www\\.)?(dblp\\d?(\\.org|\\.uni-trier\\.de/|\\.dagstuhl\\.de/))",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DBpia.js",
-    "label": "DBpia",
-    "type": "zotero-legacy",
-    "translatorID": "0c31f371-e012-4b1c-b793-f89ab1ae2610",
-    "target": "^https?://[^/]+\\.dbpia\\.co\\.kr/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DEPATISnet.js",
-    "label": "DEPATISnet",
-    "type": "zotero-legacy",
-    "translatorID": "d76fea32-fe20-4c00-b5b9-bea8c688c2b0",
-    "target": "^https?://depatisnet\\.dpma\\.de/DepatisNet/depatisnet",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DOAJ.js",
-    "label": "DOAJ",
-    "type": "zotero-legacy",
-    "translatorID": "53734210-2284-437f-9896-8ad65917c343",
-    "target": "^https?://(www\\.)?doaj\\.org/(article|search)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DOI Content Negotiation.js",
-    "label": "DOI Content Negotiation",
-    "type": "zotero-legacy",
-    "translatorID": "b28d0d42-8549-4c6d-83fc-8382874a5cb9",
-    "target": "",
-    "translatorType": 8
-  },
-  {
-    "path": "translators/zotero/DOI.js",
-    "label": "DOI",
-    "type": "zotero-legacy",
-    "translatorID": "c159dcfe-8a53-4301-a499-30f6549c340d",
-    "target": "",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DPLA.js",
-    "label": "DPLA",
-    "type": "zotero-legacy",
-    "translatorID": "117feb72-21bb-4424-a47b-c9ca6b71f979",
-    "target": "^https?://dp\\.la/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/DSpace Intermediate Metadata.js",
-    "label": "DSpace Intermediate Metadata",
-    "type": "zotero-legacy",
-    "translatorID": "2c05e2d1-a533-448f-aa20-e919584864cb",
-    "target": "xml",
-    "translatorType": 1
-  },
-  {
     "path": "translators/zotero/Dagens Nyheter.js",
     "label": "Dagens Nyheter",
     "type": "zotero-legacy",
@@ -1328,11 +1288,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/DAI-Zenon.js",
+    "label": "DAI-Zenon",
+    "type": "zotero-legacy",
+    "translatorID": "16199bf0-a365-4aad-baeb-225019ae32dc",
+    "target": "^https?://zenon\\.dainst\\.org/(Record/|Search/)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Dar Almandumah.js",
     "label": "Dar Almandumah",
     "type": "zotero-legacy",
     "translatorID": "721a6b6e-d584-4252-b319-7ea46a8b02a7",
     "target": "^https?://search\\.mandumah\\.com/(Search|Record)/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/DART-Europe.js",
+    "label": "DART-Europe",
+    "type": "zotero-legacy",
+    "translatorID": "658f2707-bb46-44eb-af0a-e73a5387fc90",
+    "target": "^https?://www\\.dart-europe\\.org",
     "translatorType": 4
   },
   {
@@ -1376,6 +1352,22 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/DBLP Computer Science Bibliography.js",
+    "label": "DBLP Computer Science Bibliography",
+    "type": "zotero-legacy",
+    "translatorID": "625c6435-e235-4402-a48f-3095a9c1a09c",
+    "target": "^https?://(www\\.)?(dblp\\d?(\\.org|\\.uni-trier\\.de/|\\.dagstuhl\\.de/))",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/DBpia.js",
+    "label": "DBpia",
+    "type": "zotero-legacy",
+    "translatorID": "0c31f371-e012-4b1c-b793-f89ab1ae2610",
+    "target": "^https?://[^/]+\\.dbpia\\.co\\.kr/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/De Gruyter Brill.js",
     "label": "De Gruyter Brill",
     "type": "zotero-legacy",
@@ -1389,6 +1381,14 @@
     "type": "zotero-legacy",
     "translatorID": "99be9976-2ff9-40df-96e8-82edfa79d9f3",
     "target": "^https?://oai\\.dtic\\.mil/oai/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/dejure.org.js",
+    "label": "dejure.org",
+    "type": "zotero-legacy",
+    "translatorID": "16c7d938-5f77-4fb5-99a1-bcec6fdafe84",
+    "target": "^https?://dejure\\.org/",
     "translatorType": 4
   },
   {
@@ -1413,6 +1413,14 @@
     "type": "zotero-legacy",
     "translatorID": "4ed446ca-b480-43ee-a8fb-5f9730915edc",
     "target": "^https?://[^/]*denik\\.cz",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/DEPATISnet.js",
+    "label": "DEPATISnet",
+    "type": "zotero-legacy",
+    "translatorID": "d76fea32-fe20-4c00-b5b9-bea8c688c2b0",
+    "target": "^https?://depatisnet\\.dpma\\.de/DepatisNet/depatisnet",
     "translatorType": 4
   },
   {
@@ -1456,6 +1464,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/dhistory.js",
+    "label": "dhistory",
+    "type": "zotero-legacy",
+    "translatorID": "946ddf3a-74ca-4309-9917-85aa30297f4c",
+    "target": "^https?://(www\\.)?dhistory\\.org/archives/naa/items/\\d+",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Dialnet.js",
     "label": "Dialnet",
     "type": "zotero-legacy",
@@ -1472,11 +1488,11 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/DigiZeitschriften.js",
-    "label": "DigiZeitschriften",
+    "path": "translators/zotero/digibib.net.js",
+    "label": "digibib.net",
     "type": "zotero-legacy",
-    "translatorID": "e46830a2-1b19-4b6b-9f1a-e5e9760a0f80",
-    "target": "^https?://www\\.digizeitschriften\\.de/((en/)?dms/|index\\.php\\?id=27[24])",
+    "translatorID": "e99bd723-39e6-418c-9524-390dbc583e08",
+    "target": "^https?://.*\\.digibib\\.net/(Digibib|jumpto|metasearch|opensearch|template)",
     "translatorType": 4
   },
   {
@@ -1496,6 +1512,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/DigiZeitschriften.js",
+    "label": "DigiZeitschriften",
+    "type": "zotero-legacy",
+    "translatorID": "e46830a2-1b19-4b6b-9f1a-e5e9760a0f80",
+    "target": "^https?://www\\.digizeitschriften\\.de/((en/)?dms/|index\\.php\\?id=27[24])",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Dimensions.js",
     "label": "Dimensions",
     "type": "zotero-legacy",
@@ -1504,11 +1528,51 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/dLibra.js",
+    "label": "dLibra",
+    "type": "zotero-legacy",
+    "translatorID": "915e3ae2-afa9-4b1d-9780-28ed3defe0ab",
+    "target": "/.*dlibra/(doccontent|docmetadata|collectiondescription|results)|/dlibra/?",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/DOAJ.js",
+    "label": "DOAJ",
+    "type": "zotero-legacy",
+    "translatorID": "53734210-2284-437f-9896-8ad65917c343",
+    "target": "^https?://(www\\.)?doaj\\.org/(article|search)/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/DOI Content Negotiation.js",
+    "label": "DOI Content Negotiation",
+    "type": "zotero-legacy",
+    "translatorID": "b28d0d42-8549-4c6d-83fc-8382874a5cb9",
+    "target": "",
+    "translatorType": 8
+  },
+  {
+    "path": "translators/zotero/DOI.js",
+    "label": "DOI",
+    "type": "zotero-legacy",
+    "translatorID": "c159dcfe-8a53-4301-a499-30f6549c340d",
+    "target": "",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Douban.js",
     "label": "Douban",
     "type": "zotero-legacy",
     "translatorID": "fc353b26-8911-4c34-9196-f6f567c93901",
     "target": "^https?://(www|book)\\.douban\\.com/(subject|doulist|people/[a-zA-Z0-9._]*/(do|wish|collect)|.*?status=(do|wish|collect)|group/[0-9]*?/collection|tag)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/DPLA.js",
+    "label": "DPLA",
+    "type": "zotero-legacy",
+    "translatorID": "117feb72-21bb-4424-a47b-c9ca6b71f979",
+    "target": "^https?://dp\\.la/",
     "translatorType": 4
   },
   {
@@ -1536,6 +1600,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/DSpace Intermediate Metadata.js",
+    "label": "DSpace Intermediate Metadata",
+    "type": "zotero-legacy",
+    "translatorID": "2c05e2d1-a533-448f-aa20-e919584864cb",
+    "target": "xml",
+    "translatorType": 1
+  },
+  {
     "path": "translators/zotero/Duke University Press Books.js",
     "label": "Duke University Press Books",
     "type": "zotero-legacy",
@@ -1549,6 +1621,22 @@
     "type": "zotero-legacy",
     "translatorID": "dbfd99e3-6925-4b71-92b8-12b02aa875fc",
     "target": "^https?://(www|news?)\\.e-periodica\\.ch",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Eastview.js",
+    "label": "Eastview",
+    "type": "zotero-legacy",
+    "translatorID": "c59896bc-4beb-43ed-8109-a73a13251828",
+    "target": "^https?://dlib\\.eastview\\.com/(search/(advanced|simple)/|browse/(doc|favorites|issue))",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ebrary.js",
+    "label": "ebrary",
+    "type": "zotero-legacy",
+    "translatorID": "2abe2519-2f0a-48c0-ad3a-b87b9c059459",
+    "target": "^https?://site\\.ebrary\\.com/.+(docDetail|search|detail)\\.action\\?",
     "translatorType": 4
   },
   {
@@ -1568,68 +1656,20 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/EIDR.js",
-    "label": "EIDR",
-    "type": "zotero-legacy",
-    "translatorID": "79c3d292-0afc-42a1-bd86-7e706fc35aa5",
-    "target": "",
-    "translatorType": 8
-  },
-  {
-    "path": "translators/zotero/EPA National Library Catalog.js",
-    "label": "EPA National Library Catalog",
-    "type": "zotero-legacy",
-    "translatorID": "99f11c5d-4413-4f96-9fc7-72fbd40372ef",
-    "target": "^https?://cfpub\\.epa\\.gov/ols",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ERIC.js",
-    "label": "ERIC",
-    "type": "zotero-legacy",
-    "translatorID": "e4660e05-a935-43ec-8eec-df0347362e4c",
-    "target": "^https?://(www\\.)?eric\\.ed\\.gov/",
-    "translatorType": 12
-  },
-  {
-    "path": "translators/zotero/ESpacenet.js",
-    "label": "ESpacenet",
-    "type": "zotero-legacy",
-    "translatorID": "176948f7-9df8-4afc-ace7-4c1c7318d426",
-    "target": "^https?://(worldwide|[a-z][a-z])\\.espacenet\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/EUR-Lex.js",
-    "label": "EUR-Lex",
-    "type": "zotero-legacy",
-    "translatorID": "bf053edc-a8c3-458c-93db-6d04ead2e636",
-    "target": "^https://eur-lex\\.europa\\.eu/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Eastview.js",
-    "label": "Eastview",
-    "type": "zotero-legacy",
-    "translatorID": "c59896bc-4beb-43ed-8109-a73a13251828",
-    "target": "^https?://dlib\\.eastview\\.com/(search/(advanced|simple)/|browse/(doc|favorites|issue))",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Edinburgh University Press Journals.js",
-    "label": "Edinburgh University Press Journals",
-    "type": "zotero-legacy",
-    "translatorID": "b7bd798d-e518-46d1-aa13-a69f2864fa91",
-    "target": "^https?://www\\.euppublishing\\.com/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Education Week.js",
     "label": "Education Week",
     "type": "zotero-legacy",
     "translatorID": "7e51d3fb-082e-4063-8601-cda08f6004a3",
     "target": "^https?://(www2?\\.|blogs\\.)?edweek\\.org/",
     "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/EIDR.js",
+    "label": "EIDR",
+    "type": "zotero-legacy",
+    "translatorID": "79c3d292-0afc-42a1-bd86-7e706fc35aa5",
+    "target": "",
+    "translatorType": 8
   },
   {
     "path": "translators/zotero/El Comercio (Peru).js",
@@ -1656,11 +1696,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/eLibrary.ru.js",
+    "label": "eLibrary.ru",
+    "type": "zotero-legacy",
+    "translatorID": "587709d3-80c5-467d-9fc8-ed41c31e20cf",
+    "target": "^https?://(www\\.)?elibrary\\.ru/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Elicit.js",
     "label": "Elicit",
     "type": "zotero-legacy",
     "translatorID": "e1c104ef-9f4d-44fb-bf84-59b99ead7329",
     "target": "^https://elicit\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/eLife.js",
+    "label": "eLife",
+    "type": "zotero-legacy",
+    "translatorID": "98ad3ad1-9d43-4b2e-bc36-172cbf00ba1d",
+    "target": "^https?://(elife\\.)?elifesciences\\.org/(articles|search|subjects|archive)",
     "translatorType": 4
   },
   {
@@ -1688,11 +1744,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/eMedicine.js",
+    "label": "eMedicine",
+    "type": "zotero-legacy",
+    "translatorID": "ab88d517-d88c-4a73-a0ad-c94c76cca849",
+    "target": "^https?://emedicine\\.medscape\\.com/article/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Emerald Insight.js",
     "label": "Emerald Insight",
     "type": "zotero-legacy",
     "translatorID": "a14301dc-be1c-4f34-bcaa-1b53b08ce80d",
     "target": "^https?://www\\.emerald\\.com/insight/(publication/|content/|search\\?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/eMJA.js",
+    "label": "eMJA",
+    "type": "zotero-legacy",
+    "translatorID": "966a7612-900c-42d9-8780-2a3247548588",
+    "target": "^https?://www\\.mja\\.com\\.au/",
     "translatorType": 4
   },
   {
@@ -1736,12 +1808,36 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/EPA National Library Catalog.js",
+    "label": "EPA National Library Catalog",
+    "type": "zotero-legacy",
+    "translatorID": "99f11c5d-4413-4f96-9fc7-72fbd40372ef",
+    "target": "^https?://cfpub\\.epa\\.gov/ols",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Epicurious.js",
     "label": "Epicurious",
     "type": "zotero-legacy",
     "translatorID": "aee2323e-ce00-4fcc-a949-06eb1becc98f",
     "target": "^https?://www\\.epicurious\\.com/(tools/searchresults|recipes/food/views)",
     "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ePrint IACR.js",
+    "label": "ePrint IACR",
+    "type": "zotero-legacy",
+    "translatorID": "04a23cbe-5f8b-d6cd-8eb1-2e23bcc8ae8f",
+    "target": "^https://eprint\\.iacr\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ERIC.js",
+    "label": "ERIC",
+    "type": "zotero-legacy",
+    "translatorID": "e4660e05-a935-43ec-8eec-df0347362e4c",
+    "target": "^https?://(www\\.)?eric\\.ed\\.gov/",
+    "translatorType": 12
   },
   {
     "path": "translators/zotero/Erudit.js",
@@ -1752,11 +1848,35 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/ESpacenet.js",
+    "label": "ESpacenet",
+    "type": "zotero-legacy",
+    "translatorID": "176948f7-9df8-4afc-ace7-4c1c7318d426",
+    "target": "^https?://(worldwide|[a-z][a-z])\\.espacenet\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/etatar.ru.js",
+    "label": "etatar.ru",
+    "type": "zotero-legacy",
+    "translatorID": "9d8fb229-a563-489b-b36d-3bdaa69ddf1f",
+    "target": "^https?://(www\\.)?etatar\\.ru/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Euclid.js",
     "label": "Euclid",
     "type": "zotero-legacy",
     "translatorID": "2e1c09a0-3006-11de-8c30-0800200c9a66",
     "target": "^https?://[^/]*projecteuclid\\.org[^/]*/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/EUR-Lex.js",
+    "label": "EUR-Lex",
+    "type": "zotero-legacy",
+    "translatorID": "bf053edc-a8c3-458c-93db-6d04ead2e636",
+    "target": "^https://eur-lex\\.europa\\.eu/",
     "translatorType": 4
   },
   {
@@ -1800,30 +1920,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/FAO Knowledge Repository.js",
-    "label": "FAO Knowledge Repository",
-    "type": "zotero-legacy",
-    "translatorID": "4883f662-29df-44ad-959e-27c9d036d165",
-    "target": "^https?://openknowledge\\.fao\\.org/(items/|search|browse/|collections/)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/FAOLEX Database.js",
-    "label": "FAOLEX Database",
-    "type": "zotero-legacy",
-    "translatorID": "3b163469-3e62-46d8-82a1-4f31e86bf6f4",
-    "target": "^https?://www\\.fao\\.org/faolex/results/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/FAZ.NET.js",
-    "label": "FAZ.NET",
-    "type": "zotero-legacy",
-    "translatorID": "4f0d0c90-5da0-11df-a08a-0800200c9a66",
-    "target": "^https?://((www\\.)?faz\\.net/.)",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Fachportal Padagogik.js",
     "label": "Fachportal P\u00e4dagogik",
     "type": "zotero-legacy",
@@ -1856,11 +1952,43 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/FAO Knowledge Repository.js",
+    "label": "FAO Knowledge Repository",
+    "type": "zotero-legacy",
+    "translatorID": "4883f662-29df-44ad-959e-27c9d036d165",
+    "target": "^https?://openknowledge\\.fao\\.org/(items/|search|browse/|collections/)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/FAOLEX Database.js",
+    "label": "FAOLEX Database",
+    "type": "zotero-legacy",
+    "translatorID": "3b163469-3e62-46d8-82a1-4f31e86bf6f4",
+    "target": "^https?://www\\.fao\\.org/faolex/results/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Fatcat.js",
     "label": "Fatcat",
     "type": "zotero-legacy",
     "translatorID": "afef9c9d-53a1-49da-9155-1fdf683798c3",
     "target": "^https://fatcat\\.wiki/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/FAZ.NET.js",
+    "label": "FAZ.NET",
+    "type": "zotero-legacy",
+    "translatorID": "4f0d0c90-5da0-11df-a08a-0800200c9a66",
+    "target": "^https?://((www\\.)?faz\\.net/.)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/feb-web.ru.js",
+    "label": "feb-web.ru",
+    "type": "zotero-legacy",
+    "translatorID": "e92c8359-c3fc-468b-bc6a-107b2744fd17",
+    "target": "^https?://(www\\.)?feb-web\\.ru/.*cmd=2",
     "translatorType": 4
   },
   {
@@ -1888,6 +2016,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/fishpond.co.nz.js",
+    "label": "fishpond.co.nz",
+    "type": "zotero-legacy",
+    "translatorID": "c436f3c7-4246-4ed3-a227-a538c8113a0e",
+    "target": "^https?://www\\.fishpond\\.co\\.nz/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Flickr.js",
     "label": "Flickr",
     "type": "zotero-legacy",
@@ -1909,6 +2045,22 @@
     "type": "zotero-legacy",
     "translatorID": "0e7ab798-bb96-4a3a-9a01-8d1d67153908",
     "target": "^https?://[^/]*foreignpolicy\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ForumMagnum.js",
+    "label": "ForumMagnum",
+    "type": "zotero-legacy",
+    "translatorID": "d9f957ca-6393-48ba-b179-59c384e37a12",
+    "target": "^https://(forum\\.effectivealtruism\\.org|www\\.lesswrong\\.com)/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/fr-online.de.js",
+    "label": "fr-online.de",
+    "type": "zotero-legacy",
+    "translatorID": "488fe1e0-b7d2-406f-8257-5060418ce9b2",
+    "target": "^https?://www\\.fr-online\\.de",
     "translatorType": 4
   },
   {
@@ -1941,22 +2093,6 @@
     "type": "zotero-legacy",
     "translatorID": "cb9e794e-7a65-47cd-90f6-58cdd191e8b0",
     "target": "^https?://[^./]+\\.frontiersin\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/GMS German Medical Science.js",
-    "label": "GMS German Medical Science",
-    "type": "zotero-legacy",
-    "translatorID": "8d5984e8-3ba9-4faa-8b84-a58adae56439",
-    "target": "^https?://www\\.egms\\.de/static/(de|en)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/GPO Access e-CFR.js",
-    "label": "GPO Access e-CFR",
-    "type": "zotero-legacy",
-    "translatorID": "dede653d-d1f8-411e-911c-44a0219bbdad",
-    "target": "^https?://(www\\.)?ecfr\\.gov/cgi-bin/",
     "translatorType": 4
   },
   {
@@ -2064,6 +2200,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/GMS German Medical Science.js",
+    "label": "GMS German Medical Science",
+    "type": "zotero-legacy",
+    "translatorID": "8d5984e8-3ba9-4faa-8b84-a58adae56439",
+    "target": "^https?://www\\.egms\\.de/static/(de|en)/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Goodreads.js",
     "label": "Goodreads",
     "type": "zotero-legacy",
@@ -2124,7 +2268,23 @@
     "label": "Google Scholar",
     "type": "zotero-legacy",
     "translatorID": "57a00950-f0d1-4b41-b6ba-44ff0fc30289",
-    "target": "^https?://scholar[-.]google[-.](com|cat|(com?[-.])?[a-z]{2})(\\.[^/]+)?/(scholar(_case)?\\?|citations\\?)",
+    "target": "^https?://scholar[-.]google[-.](com|cat|(com?[-.])?[a-z]{2})(\\.[^/]+)?/(scholar(_case|_labs/search/session/\\d+)?\\?|citations\\?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/govinfo.js",
+    "label": "govinfo",
+    "type": "zotero-legacy",
+    "translatorID": "12a3b1cb-6bbb-4cf9-904f-8f732ee3d1e3",
+    "target": "https?://www\\.govinfo\\.gov/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/GPO Access e-CFR.js",
+    "label": "GPO Access e-CFR",
+    "type": "zotero-legacy",
+    "translatorID": "dede653d-d1f8-411e-911c-44a0219bbdad",
+    "target": "^https?://(www\\.)?ecfr\\.gov/cgi-bin/",
     "translatorType": 4
   },
   {
@@ -2133,30 +2293,6 @@
     "type": "zotero-legacy",
     "translatorID": "c41c9c66-8540-4216-b138-7c00532748c9",
     "target": "^https?://gulaghistory\\.org",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/HAL.js",
-    "label": "HAL",
-    "type": "zotero-legacy",
-    "translatorID": "f20f91fe-d875-47e7-9656-0abb928be472",
-    "target": "^https://([^/.]+\\.)?hal\\.science/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/HCSP.js",
-    "label": "HCSP",
-    "type": "zotero-legacy",
-    "translatorID": "3e375db7-5f6e-4861-ab8b-3ddb0f4accc9",
-    "target": "^https?://(www\\.)?hcsp\\.fr/explore\\.cgi/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/HUDOC.js",
-    "label": "HUDOC",
-    "type": "zotero-legacy",
-    "translatorID": "d541622d-09c3-4e20-b010-c506b2d01151",
-    "target": "^https?://hudoc\\.echr\\.coe\\.int",
     "translatorType": 4
   },
   {
@@ -2173,6 +2309,14 @@
     "type": "zotero-legacy",
     "translatorID": "b4c54248-6e78-4afc-b566-45fee8cd43b7",
     "target": "^https://habr\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/HAL.js",
+    "label": "HAL",
+    "type": "zotero-legacy",
+    "translatorID": "f20f91fe-d875-47e7-9656-0abb928be472",
+    "target": "^https://([^/.]+\\.)?hal\\.science/",
     "translatorType": 4
   },
   {
@@ -2229,6 +2373,14 @@
     "type": "zotero-legacy",
     "translatorID": "31da33ad-b4d9-4e99-b9ea-3e1ddad284d8",
     "target": "^https?://(catalog|babel)\\.hathitrust\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/HCSP.js",
+    "label": "HCSP",
+    "type": "zotero-legacy",
+    "translatorID": "3e375db7-5f6e-4861-ab8b-3ddb0f4accc9",
+    "target": "^https?://(www\\.)?hcsp\\.fr/explore\\.cgi/",
     "translatorType": 4
   },
   {
@@ -2312,6 +2464,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/HUDOC.js",
+    "label": "HUDOC",
+    "type": "zotero-legacy",
+    "translatorID": "d541622d-09c3-4e20-b010-c506b2d01151",
+    "target": "^https?://hudoc\\.echr\\.coe\\.int",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Huff Post.js",
     "label": "Huff Post",
     "type": "zotero-legacy",
@@ -2341,6 +2501,14 @@
     "type": "zotero-legacy",
     "translatorID": "af5e71a1-798f-4b46-bc79-3d6ed83ba8f1",
     "target": "/((notebook(_f?ext)?)|list)\\.asp",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Idref.js",
+    "label": "Idref",
+    "type": "zotero-legacy",
+    "translatorID": "271ee1a5-da86-465b-b3a5-eafe7bd3c156",
+    "target": "^https?://www\\.idref\\.fr/",
     "translatorType": 4
   },
   {
@@ -2384,38 +2552,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/INSPIRE.js",
-    "label": "INSPIRE",
-    "type": "zotero-legacy",
-    "translatorID": "17b1a93f-b342-4b54-ad50-08ecc26e0ac3",
-    "target": "^https?://inspirehep\\.net/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/IPCC.js",
-    "label": "IPCC",
-    "type": "zotero-legacy",
-    "translatorID": "c6efb3a8-a6c9-4ff2-b1c5-27fb4b5b2935",
-    "target": "^https?://www\\.ipcc\\.ch/report/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ISTC.js",
-    "label": "ISTC",
-    "type": "zotero-legacy",
-    "translatorID": "29051e64-8eba-4b26-bbf1-0c224bc59497",
-    "target": "^https?://data\\.cerl\\.org/istc/(_search|i[a-z]\\d{8})",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Idref.js",
-    "label": "Idref",
-    "type": "zotero-legacy",
-    "translatorID": "271ee1a5-da86-465b-b3a5-eafe7bd3c156",
-    "target": "^https?://www\\.idref\\.fr/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/In These Times.js",
     "label": "In These Times",
     "type": "zotero-legacy",
@@ -2432,19 +2568,27 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/InfoTrac.js",
-    "label": "InfoTrac",
-    "type": "zotero-legacy",
-    "translatorID": "6773a9af-5375-3224-d148-d32793884dec",
-    "target": "^https?://[^/]+/itw/infomark/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Informationssystem Medienpaedagogik.js",
     "label": "Informationssystem Medienpaedagogik",
     "type": "zotero-legacy",
     "translatorID": "f4469574-1d96-4a4a-a0ac-1b9f7c49654b",
     "target": "^https?://www\\.ism-info\\.de/ism-info\\.html\\?",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/informIT database.js",
+    "label": "informIT database",
+    "type": "zotero-legacy",
+    "translatorID": "add79dfd-7951-4c72-af1d-ce1d50aa4fb4",
+    "target": "^https?://www\\.informit\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/InfoTrac.js",
+    "label": "InfoTrac",
+    "type": "zotero-legacy",
+    "translatorID": "6773a9af-5375-3224-d148-d32793884dec",
+    "target": "^https?://[^/]+/itw/infomark/",
     "translatorType": 4
   },
   {
@@ -2469,6 +2613,14 @@
     "type": "zotero-legacy",
     "translatorID": "abd7c626-6913-42d4-a05f-acc6683c69da",
     "target": "^https?://[^/]+/(library|crts)/[^/?#]+\\.aspx",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/INSPIRE.js",
+    "label": "INSPIRE",
+    "type": "zotero-legacy",
+    "translatorID": "17b1a93f-b342-4b54-ad50-08ecc26e0ac3",
+    "target": "^https?://inspirehep\\.net/",
     "translatorType": 4
   },
   {
@@ -2548,7 +2700,23 @@
     "label": "InvenioRDM",
     "type": "zotero-legacy",
     "translatorID": "a714cb93-6595-482f-b371-a4ca0be14449",
-    "target": "^https?://(zenodo\\.org|sandbox\\.zenodo\\.org|data\\.caltech\\.edu|repository\\.tugraz\\.at|researchdata\\.tuwien\\.at|ultraviolet\\.library\\.nyu\\.edu|adc\\.ei-basel\\.hasdai\\.org|fdat\\.uni-tuebingen\\.de|www\\.fdr\\.uni-hamburg\\.de|rodare\\.hzdr\\.de|aperta\\.ulakbim.gov\\.tr|www\\.openaccessrepository\\.it|eic-zenodo\\.sdcc\\.bnl\\.gov)",
+    "target": "^https?://(zenodo\\.org|sandbox\\.zenodo\\.org|repository\\.cern|data\\.caltech\\.edu|repository\\.tugraz\\.at|researchdata\\.tuwien\\.at|ultraviolet\\.library\\.nyu\\.edu|adc\\.ei-basel\\.hasdai\\.org|fdat\\.uni-tuebingen\\.de|www\\.fdr\\.uni-hamburg\\.de|rodare\\.hzdr\\.de|aperta\\.ulakbim.gov\\.tr|www\\.openaccessrepository\\.it|eic-zenodo\\.sdcc\\.bnl\\.gov)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/io-port.js",
+    "label": "io-port",
+    "type": "zotero-legacy",
+    "translatorID": "1c0c63d9-4a95-44d4-b441-173cdc1b8688",
+    "target": "^https?://www\\.zentralblatt-math\\.org/ioport/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/IPCC.js",
+    "label": "IPCC",
+    "type": "zotero-legacy",
+    "translatorID": "c6efb3a8-a6c9-4ff2-b1c5-27fb4b5b2935",
+    "target": "^https?://www\\.ipcc\\.ch/report/",
     "translatorType": 4
   },
   {
@@ -2560,43 +2728,19 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/ISTC.js",
+    "label": "ISTC",
+    "type": "zotero-legacy",
+    "translatorID": "29051e64-8eba-4b26-bbf1-0c224bc59497",
+    "target": "^https?://data\\.cerl\\.org/istc/(_search|i[a-z]\\d{8})",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/J-Stage.js",
     "label": "J-Stage",
     "type": "zotero-legacy",
     "translatorID": "e40a27bc-0eef-4c50-b78b-37274808d7d2",
     "target": "^https?://www\\.jstage\\.jst\\.go\\.jp/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/JETS.js",
-    "label": "JETS",
-    "type": "zotero-legacy",
-    "translatorID": "e7bb82b1-cebf-432c-96df-1c5211f59927",
-    "target": "^https?://(www\\.)?etsjets\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/JISC Historical Texts.js",
-    "label": "JISC Historical Texts",
-    "type": "zotero-legacy",
-    "translatorID": "327cacea-9603-4554-91a8-ed0587e0d83a",
-    "target": "^https?://(data\\.)?[^/]*historicaltexts\\.jisc\\.ac\\.uk/(view|results)\\?",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/JRC Publications Repository.js",
-    "label": "JRC Publications Repository",
-    "type": "zotero-legacy",
-    "translatorID": "03df2575-dbd9-49aa-9e58-1e6edd86d562",
-    "target": "^https?://(www\\.)?publications\\.jrc\\.ec\\.europa\\.eu/repository/(handle/|simple-search\\?|browse\\?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/JSTOR.js",
-    "label": "JSTOR",
-    "type": "zotero-legacy",
-    "translatorID": "d921155f-0186-1684-615c-ca57682ced9b",
-    "target": "^https?://([^/]+\\.)?jstor\\.org/(discover/|action/(showArticle|doBasicSearch|doAdvancedSearch|doLocatorSearch|doAdvancedResults|doBasicResults)|stable/|pss/|openurl\\?|sici\\?)",
     "translatorType": 4
   },
   {
@@ -2613,6 +2757,22 @@
     "type": "zotero-legacy",
     "translatorID": "b56d756e-934e-4b46-bc58-d61dccc9f32f",
     "target": "^https?://(www|search)\\.japantimes\\.co\\.jp/(cgi-bin|gsearch|search-results|features|entertainment|sports|life|news|rss|\\?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/JETS.js",
+    "label": "JETS",
+    "type": "zotero-legacy",
+    "translatorID": "e7bb82b1-cebf-432c-96df-1c5211f59927",
+    "target": "^https?://(www\\.)?etsjets\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/JISC Historical Texts.js",
+    "label": "JISC Historical Texts",
+    "type": "zotero-legacy",
+    "translatorID": "327cacea-9603-4554-91a8-ed0587e0d83a",
+    "target": "^https?://(data\\.)?[^/]*historicaltexts\\.jisc\\.ac\\.uk/(view|results)\\?",
     "translatorType": 4
   },
   {
@@ -2648,11 +2808,19 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/JurPC.js",
-    "label": "JurPC",
+    "path": "translators/zotero/JRC Publications Repository.js",
+    "label": "JRC Publications Repository",
     "type": "zotero-legacy",
-    "translatorID": "b662c6eb-e478-46bd- bad4-23cdfd0c9d67",
-    "target": "^https?://www\\.jurpc\\.de/jurpc/show\\?id=",
+    "translatorID": "03df2575-dbd9-49aa-9e58-1e6edd86d562",
+    "target": "^https?://(www\\.)?publications\\.jrc\\.ec\\.europa\\.eu/repository/(handle/|simple-search\\?|browse\\?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/JSTOR.js",
+    "label": "JSTOR",
+    "type": "zotero-legacy",
+    "translatorID": "d921155f-0186-1684-615c-ca57682ced9b",
+    "target": "^https?://([^/]+\\.)?jstor\\.org/(discover/|action/(showArticle|doBasicSearch|doAdvancedSearch|doLocatorSearch|doAdvancedResults|doBasicResults)|stable/|pss/|openurl\\?|sici\\?)",
     "translatorType": 4
   },
   {
@@ -2664,11 +2832,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/jurion.js",
+    "label": "jurion",
+    "type": "zotero-legacy",
+    "translatorID": "dc78e210-31da-4fe5-99d6-1ea1a61874ca",
+    "target": "^https?://www\\.recht\\.jurion\\.de/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Juris.js",
     "label": "Juris",
     "type": "zotero-legacy",
     "translatorID": "bc2ec385-e60a-4899-96ae-d4f0d6574ad7",
     "target": "^https?://(www\\.|testsystem\\.)?juris\\.de/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/JurPC.js",
+    "label": "JurPC",
+    "type": "zotero-legacy",
+    "translatorID": "b662c6eb-e478-46bd- bad4-23cdfd0c9d67",
+    "target": "^https?://www\\.jurpc\\.de/jurpc/show\\?id=",
     "translatorType": 4
   },
   {
@@ -2678,14 +2862,6 @@
     "translatorID": "de0eef58-cb39-4410-ada0-6b39f43383f9",
     "target": "",
     "translatorType": 8
-  },
-  {
-    "path": "translators/zotero/KStudy.js",
-    "label": "KStudy",
-    "type": "zotero-legacy",
-    "translatorID": "b298ca93-0010-48f5-97fb-e9923519a380",
-    "target": "^https?://[^/]+\\.kstudy\\.com",
-    "translatorType": 4
   },
   {
     "path": "translators/zotero/Kanopy.js",
@@ -2701,6 +2877,14 @@
     "type": "zotero-legacy",
     "translatorID": "dfb58faa-d501-4de8-8e03-ea84ef8986cd",
     "target": "^https?://www\\.khaama\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/KiM.js",
+    "label": "KiM",
+    "type": "zotero-legacy",
+    "translatorID": "429936dd-ad60-4e23-b346-569c85d17e0b",
+    "target": "^https?://[^/]*kimnet\\.nl/document",
     "translatorType": 4
   },
   {
@@ -2728,43 +2912,19 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/KStudy.js",
+    "label": "KStudy",
+    "type": "zotero-legacy",
+    "translatorID": "b298ca93-0010-48f5-97fb-e9923519a380",
+    "target": "^https?://[^/]+\\.kstudy\\.com",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/L'Annee Philologique.js",
     "label": "L'Ann\u00e9e Philologique",
     "type": "zotero-legacy",
     "translatorID": "e04e4bab-64c2-4b9a-b6c2-7fb186281969",
     "target": "^https?://cpps\\.brepolis\\.net/aph/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/LA Times.js",
-    "label": "LA Times",
-    "type": "zotero-legacy",
-    "translatorID": "e4fe1596-a8c4-4d09-945f-120c4d83e580",
-    "target": "^https?://(www\\.|travel\\.|articles\\.|latimesblogs\\.)?latimes\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/LIBRIS ISBN.js",
-    "label": "LIBRIS ISBN",
-    "type": "zotero-legacy",
-    "translatorID": "5f506a9a-8076-4e1e-950c-f55d32003aae",
-    "target": "",
-    "translatorType": 8
-  },
-  {
-    "path": "translators/zotero/LIVIVO.js",
-    "label": "LIVIVO",
-    "type": "zotero-legacy",
-    "translatorID": "485cd5f3-9c36-473e-80a7-b36a9c367515",
-    "target": "^https?://www\\.livivo\\.de/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/LWN.net.js",
-    "label": "LWN.net",
-    "type": "zotero-legacy",
-    "translatorID": "57517a91-b881-4da3-b205-751f6c7e2cae",
-    "target": "^https?://lwn\\.net/",
     "translatorType": 4
   },
   {
@@ -2797,6 +2957,14 @@
     "type": "zotero-legacy",
     "translatorID": "4ec51dc9-b949-497e-856b-a7624175d5c6",
     "target": "^https?://larepublica\\.pe/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/LA Times.js",
+    "label": "LA Times",
+    "type": "zotero-legacy",
+    "translatorID": "e4fe1596-a8c4-4d09-945f-120c4d83e580",
+    "target": "^https?://(www\\.|travel\\.|articles\\.|latimesblogs\\.)?latimes\\.com",
     "translatorType": 4
   },
   {
@@ -2848,19 +3016,19 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Le Monde.js",
-    "label": "Le Monde",
-    "type": "zotero-legacy",
-    "translatorID": "6bc635a4-6823-4f95-acaf-b43e8a158144",
-    "target": "^https?://(www\\.)?(abonnes\\.)?lemonde\\.fr/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Le monde diplomatique.js",
     "label": "Le monde diplomatique",
     "type": "zotero-legacy",
     "translatorID": "530cf18c-e80a-4e67-ae9c-9b8c08591610",
     "target": "^https?://(www\\.)?monde-diplomatique\\.de",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Le Monde.js",
+    "label": "Le Monde",
+    "type": "zotero-legacy",
+    "translatorID": "6bc635a4-6823-4f95-acaf-b43e8a158144",
+    "target": "^https?://(www\\.)?(abonnes\\.)?lemonde\\.fr/",
     "translatorType": 4
   },
   {
@@ -3096,14 +3264,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Library Catalog (TLCYouSeeMore).js",
-    "label": "Library Catalog (TLC/YouSeeMore)",
-    "type": "zotero-legacy",
-    "translatorID": "0f9fc2fc-306e-5204-1117-25bca009dffc",
-    "target": "TLCScripts/interpac\\.dll\\?(.*LabelDisplay.*RecordNumber=[0-9]|Search|ItemTitles)",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Library Catalog (TinREAD).js",
     "label": "Library Catalog (TinREAD)",
     "type": "zotero-legacy",
@@ -3112,11 +3272,11 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Library Catalog (VTLS).js",
-    "label": "Library Catalog (VTLS)",
+    "path": "translators/zotero/Library Catalog (TLCYouSeeMore).js",
+    "label": "Library Catalog (TLC/YouSeeMore)",
     "type": "zotero-legacy",
-    "translatorID": "63a0a351-3131-18f4-21aa-f46b9ac51d87",
-    "target": "/chameleon(\\?|$)",
+    "translatorID": "0f9fc2fc-306e-5204-1117-25bca009dffc",
+    "target": "TLCScripts/interpac\\.dll\\?(.*LabelDisplay.*RecordNumber=[0-9]|Search|ItemTitles)",
     "translatorType": 4
   },
   {
@@ -3141,6 +3301,14 @@
     "type": "zotero-legacy",
     "translatorID": "88915634-1af6-c134-0171-56fd198235ed",
     "target": "Pwebrecon\\.cgi",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Library Catalog (VTLS).js",
+    "label": "Library Catalog (VTLS)",
+    "type": "zotero-legacy",
+    "translatorID": "63a0a351-3131-18f4-21aa-f46b9ac51d87",
+    "target": "/chameleon(\\?|$)",
     "translatorType": 4
   },
   {
@@ -3172,6 +3340,14 @@
     "label": "Library of Congress ISBN",
     "type": "zotero-legacy",
     "translatorID": "c070e5a2-4bfd-44bb-9b3c-4be20c50d0d9",
+    "target": "",
+    "translatorType": 8
+  },
+  {
+    "path": "translators/zotero/LIBRIS ISBN.js",
+    "label": "LIBRIS ISBN",
+    "type": "zotero-legacy",
+    "translatorID": "5f506a9a-8076-4e1e-950c-f55d32003aae",
     "target": "",
     "translatorType": 8
   },
@@ -3216,6 +3392,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/LIVIVO.js",
+    "label": "LIVIVO",
+    "type": "zotero-legacy",
+    "translatorID": "485cd5f3-9c36-473e-80a7-b36a9c367515",
+    "target": "^https?://www\\.livivo\\.de/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/London Review of Books.js",
     "label": "London Review of Books",
     "type": "zotero-legacy",
@@ -3240,12 +3424,44 @@
     "translatorType": 12
   },
   {
+    "path": "translators/zotero/LWN.net.js",
+    "label": "LWN.net",
+    "type": "zotero-legacy",
+    "translatorID": "57517a91-b881-4da3-b205-751f6c7e2cae",
+    "target": "^https?://lwn\\.net/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/MAB2.js",
     "label": "MAB2",
     "type": "zotero-legacy",
     "translatorID": "91acf493-0de7-4473-8b62-89fd141e6c74",
     "target": "mab2",
     "translatorType": 1
+  },
+  {
+    "path": "translators/zotero/magazines.russ.ru.js",
+    "label": "magazines.russ.ru",
+    "type": "zotero-legacy",
+    "translatorID": "0db1c2d0-eaae-4f3d-94ef-d4b3aa61de16",
+    "target": "^https?://magazines\\.russ\\.ru/[a-zA-Z -_]+/[0-9]+/[0-9]+/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Mailman.js",
+    "label": "Mailman",
+    "type": "zotero-legacy",
+    "translatorID": "6cb92652-6a2b-473e-b976-434f50b15069",
+    "target": "/(pipermail|archives)/[A-Za-z0-9_-]*/[0-9]{4}-(January|February|March|April|May|June|July|August|September|October|November|December)/[0-9]{6}\\.html",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Mainichi Daily News.js",
+    "label": "Mainichi Daily News",
+    "type": "zotero-legacy",
+    "translatorID": "b56f856e-934e-4b46-bc58-d61dccc9f32f",
+    "target": "^https?://mainichi\\.jp/(?:english/)?(articles/|search\\?)",
+    "translatorType": 4
   },
   {
     "path": "translators/zotero/MARC.js",
@@ -3264,6 +3480,30 @@
     "translatorType": 1
   },
   {
+    "path": "translators/zotero/Mastodon.js",
+    "label": "Mastodon",
+    "type": "zotero-legacy",
+    "translatorID": "98878eeb-84b7-4945-86dd-3d61258ecc1b",
+    "target": "/@.+/\\d{10}",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Matbugat.ru.js",
+    "label": "Matbugat.ru",
+    "type": "zotero-legacy",
+    "translatorID": "4f7c1422-2eef-4d22-a4be-8e1a78ef7bd2",
+    "target": "^https?://(www\\.)?matbugat\\.ru/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Max Planck Institute for the History of Science Virtual Laboratory Library.js",
+    "label": "Max Planck Institute for the History of Science: Virtual Laboratory Library",
+    "type": "zotero-legacy",
+    "translatorID": "66928fe3-1e93-45a7-8e11-9df6de0a11b3",
+    "target": "^https?://vlp\\.mpiwg-berlin\\.mpg\\.de/library/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/MCV.js",
     "label": "MCV",
     "type": "zotero-legacy",
@@ -3280,12 +3520,44 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/medes.js",
+    "label": "medes",
+    "type": "zotero-legacy",
+    "translatorID": "96a92909-f23c-4f16-ae93-1948c2459932",
+    "target": "^https?://(www\\.)?medes\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Medium.js",
+    "label": "Medium",
+    "type": "zotero-legacy",
+    "translatorID": "6c957d6b-a554-474f-81a9-91c178fef65d",
+    "target": "^https?://([^.]+\\.)?medium\\.com",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/MEDLINEnbib.js",
     "label": "MEDLINE/nbib",
     "type": "zotero-legacy",
     "translatorID": "9ec64cfd-bea7-472a-9557-493c0c26b0fb",
     "target": "txt",
     "translatorType": 1
+  },
+  {
+    "path": "translators/zotero/mEDRA.js",
+    "label": "mEDRA",
+    "type": "zotero-legacy",
+    "translatorID": "d9b57cd5-5a9c-4946-8616-3bdf8edfcbb5",
+    "target": "^https?://www\\.medra\\.org/servlet/view\\?",
+    "translatorType": 12
+  },
+  {
+    "path": "translators/zotero/MetaLib.js",
+    "label": "MetaLib",
+    "type": "zotero-legacy",
+    "translatorID": "b06d2609-ebca-4125-ac67-6d7a0dba274e",
+    "target": "^https?://[^/]*/V/",
+    "translatorType": 4
   },
   {
     "path": "translators/zotero/METS.js",
@@ -3296,11 +3568,43 @@
     "translatorType": 1
   },
   {
+    "path": "translators/zotero/Microbiology Society Journals.js",
+    "label": "Microbiology Society Journals",
+    "type": "zotero-legacy",
+    "translatorID": "ce5f2849-4500-47cc-8d7d-3fc0a1de9848",
+    "target": "^https?://(www\\.)?(\\w)+\\.microbiologyresearch\\.org/(content/journal/|search?)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Microsoft Academic.js",
+    "label": "Microsoft Academic",
+    "type": "zotero-legacy",
+    "translatorID": "91c7b393-af05-476c-ae72-ae244d2347f4",
+    "target": "^https?://academic\\.microsoft\\.com",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/MIDAS Journals.js",
     "label": "MIDAS Journals",
     "type": "zotero-legacy",
     "translatorID": "86c35e86-3f97-4e80-9356-8209c97737c2",
     "target": "^https?://(www\\.)?(insight-journal|midasjournal|vtkjournal)\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Mikromarc.js",
+    "label": "Mikromarc",
+    "type": "zotero-legacy",
+    "translatorID": "b937ee25-6686-4975-a5ce-95dcfc01b545",
+    "target": "^https?://[^/]+\\.mikromarc\\.no/mikromarc3/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Milli Kutuphane.js",
+    "label": "Milli K\u00fct\u00fcphane",
+    "type": "zotero-legacy",
+    "translatorID": "a5998785-222b-4459-9ce8-9c081d599af7",
+    "target": "^https?://(www\\.)?kasif\\.mkutup\\.gov\\.tr/",
     "translatorType": 4
   },
   {
@@ -3328,99 +3632,19 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Mailman.js",
-    "label": "Mailman",
-    "type": "zotero-legacy",
-    "translatorID": "6cb92652-6a2b-473e-b976-434f50b15069",
-    "target": "/(pipermail|archives)/[A-Za-z0-9_-]*/[0-9]{4}-(January|February|March|April|May|June|July|August|September|October|November|December)/[0-9]{6}\\.html",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Mainichi Daily News.js",
-    "label": "Mainichi Daily News",
-    "type": "zotero-legacy",
-    "translatorID": "b56f856e-934e-4b46-bc58-d61dccc9f32f",
-    "target": "^https?://mainichi\\.jp/(?:english/)?(articles/|search\\?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Mastodon.js",
-    "label": "Mastodon",
-    "type": "zotero-legacy",
-    "translatorID": "98878eeb-84b7-4945-86dd-3d61258ecc1b",
-    "target": "/@.+/\\d{10}",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Matbugat.ru.js",
-    "label": "Matbugat.ru",
-    "type": "zotero-legacy",
-    "translatorID": "4f7c1422-2eef-4d22-a4be-8e1a78ef7bd2",
-    "target": "^https?://(www\\.)?matbugat\\.ru/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Max Planck Institute for the History of Science Virtual Laboratory Library.js",
-    "label": "Max Planck Institute for the History of Science: Virtual Laboratory Library",
-    "type": "zotero-legacy",
-    "translatorID": "66928fe3-1e93-45a7-8e11-9df6de0a11b3",
-    "target": "^https?://vlp\\.mpiwg-berlin\\.mpg\\.de/library/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Medium.js",
-    "label": "Medium",
-    "type": "zotero-legacy",
-    "translatorID": "6c957d6b-a554-474f-81a9-91c178fef65d",
-    "target": "^https?://([^.]+\\.)?medium\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/MetaLib.js",
-    "label": "MetaLib",
-    "type": "zotero-legacy",
-    "translatorID": "b06d2609-ebca-4125-ac67-6d7a0dba274e",
-    "target": "^https?://[^/]*/V/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Microbiology Society Journals.js",
-    "label": "Microbiology Society Journals",
-    "type": "zotero-legacy",
-    "translatorID": "ce5f2849-4500-47cc-8d7d-3fc0a1de9848",
-    "target": "^https?://(www\\.)?(\\w)+\\.microbiologyresearch\\.org/(content/journal/|search?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Microsoft Academic.js",
-    "label": "Microsoft Academic",
-    "type": "zotero-legacy",
-    "translatorID": "91c7b393-af05-476c-ae72-ae244d2347f4",
-    "target": "^https?://academic\\.microsoft\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Mikromarc.js",
-    "label": "Mikromarc",
-    "type": "zotero-legacy",
-    "translatorID": "b937ee25-6686-4975-a5ce-95dcfc01b545",
-    "target": "^https?://[^/]+\\.mikromarc\\.no/mikromarc3/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Milli Kutuphane.js",
-    "label": "Milli K\u00fct\u00fcphane",
-    "type": "zotero-legacy",
-    "translatorID": "a5998785-222b-4459-9ce8-9c081d599af7",
-    "target": "^https?://(www\\.)?kasif\\.mkutup\\.gov\\.tr/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Musee du Louvre.js",
     "label": "Mus\u00e9e du Louvre",
     "type": "zotero-legacy",
     "translatorID": "22d17fb9-ae32-412e-bcc4-7650ed3359bc",
     "target": "^https?://collections\\.louvre\\.fr/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Nagoya University OPAC.js",
+    "label": "Nagoya University OPAC",
+    "type": "zotero-legacy",
+    "translatorID": "b56d756e-814e-4b46-bc58-d61dccc9f32f",
+    "target": "^https?://opac\\.nul\\.nagoya-u\\.ac\\.jp/webopac/(catdbl\\.do|ctlsrh\\.do)",
     "translatorType": 4
   },
   {
@@ -3437,86 +3661,6 @@
     "type": "zotero-legacy",
     "translatorID": "5a697ab5-913a-478a-b4ec-98d019aa5dc6",
     "target": "^https?://ntrs\\.nasa\\.gov/(citations/|search)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NCBI Nucleotide.js",
-    "label": "NCBI Nucleotide",
-    "type": "zotero-legacy",
-    "translatorID": "5e385e77-2f51-41b4-a29b-908e23d5d3e8",
-    "target": "^https?://(www\\.)?ncbi\\.nlm\\.nih\\.gov/nuccore/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NPR.js",
-    "label": "NPR",
-    "type": "zotero-legacy",
-    "translatorID": "bc2fbf38-3061-4335-8644-69ce68580b20",
-    "target": "^https?://www\\.npr\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NRC Research Press.js",
-    "label": "NRC Research Press",
-    "type": "zotero-legacy",
-    "translatorID": "fc08c878-ac92-40dc-9105-ca36ca20665d",
-    "target": "^https?://www\\.nrcresearchpress\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NRC.nl.js",
-    "label": "NRC.nl",
-    "type": "zotero-legacy",
-    "translatorID": "8e708ceb-ce42-446f-bffd-21e2bdeb0742",
-    "target": "^https?://www\\.nrc\\.nl",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NTSB Accident Reports.js",
-    "label": "NTSB Accident Reports",
-    "type": "zotero-legacy",
-    "translatorID": "fef8575b-da80-40ec-8084-631a08cae2bd",
-    "target": "^https?://(www\\.)?ntsb\\.gov/investigations/AccidentReports/Pages/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NYPL Menus.js",
-    "label": "NYPL Menus",
-    "type": "zotero-legacy",
-    "translatorID": "df9dca51-1f66-4dc6-a3e1-09b4c416db23",
-    "target": "^https?://menus\\.nypl\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NYPL Research Catalog.js",
-    "label": "NYPL Research Catalog",
-    "type": "zotero-legacy",
-    "translatorID": "dcf75e09-7f8a-4d4d-ad6f-363b46f79b13",
-    "target": "^https://www\\.nypl\\.org/research/research-catalog/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NYTimes.com.js",
-    "label": "NYTimes.com",
-    "type": "zotero-legacy",
-    "translatorID": "ce7a3727-d184-407f-ac12-52837f3361ff",
-    "target": "^https?://(query\\.nytimes\\.com/(search|gst)/|(select\\.|www\\.|mobile\\.|[^\\/.]*\\.blogs\\.)?nytimes\\.com/)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/NZZ.ch.js",
-    "label": "NZZ.ch",
-    "type": "zotero-legacy",
-    "translatorID": "61ffe600-55e0-11df-bed9-0002a5d5c51b",
-    "target": "^https?://(www\\.)?nzz\\.ch/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Nagoya University OPAC.js",
-    "label": "Nagoya University OPAC",
-    "type": "zotero-legacy",
-    "translatorID": "b56d756e-814e-4b46-bc58-d61dccc9f32f",
-    "target": "^https?://opac\\.nul\\.nagoya-u\\.ac\\.jp/webopac/(catdbl\\.do|ctlsrh\\.do)",
     "translatorType": 4
   },
   {
@@ -3549,6 +3693,14 @@
     "type": "zotero-legacy",
     "translatorID": "5b02e8d4-d8fb-4143-af3d-3576d4c1b49c",
     "target": "^https?://www\\.national\\.archsrch\\.gov\\.za",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/National Archives UK Case Law.js",
+    "label": "National Archives UK Case Law",
+    "type": "zotero-legacy",
+    "translatorID": "be076b36-b2ef-41e3-afd9-3ab9da626ff1",
+    "target": "^https?://caselaw\\.nationalarchives\\.gov\\.uk/",
     "translatorType": 4
   },
   {
@@ -3648,6 +3800,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/NCBI Nucleotide.js",
+    "label": "NCBI Nucleotide",
+    "type": "zotero-legacy",
+    "translatorID": "5e385e77-2f51-41b4-a29b-908e23d5d3e8",
+    "target": "^https?://(www\\.)?ncbi\\.nlm\\.nih\\.gov/nuccore/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Neural Information Processing Systems.js",
     "label": "Neural Information Processing Systems",
     "type": "zotero-legacy",
@@ -3696,11 +3856,35 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/newshub.co.nz.js",
+    "label": "newshub.co.nz",
+    "type": "zotero-legacy",
+    "translatorID": "a9f7b277-e134-4d1d-ada6-8f7942be71a6",
+    "target": "^https?://www\\.newshub\\.co\\.nz/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/NewsnetTamedia.js",
     "label": "Newsnet/Tamedia",
     "type": "zotero-legacy",
     "translatorID": "caecaea0-5d06-11df-a08a-0800200c9a66",
     "target": "^https?://((www\\.)?(tagesanzeiger|(bo\\.)?bernerzeitung|bazonline|derbund|lematin|24heures|landbote|zuonline|zsz|tdg|letemps)\\.ch/.)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/newspapers.com.js",
+    "label": "newspapers.com",
+    "type": "zotero-legacy",
+    "translatorID": "22dd8e35-02da-4968-b306-6efe0779a48d",
+    "target": "^https?://[^/]+\\.newspapers\\.com/(article|image|newspage)/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NIST Publications.js",
+    "label": "NIST Publications",
+    "type": "zotero-legacy",
+    "translatorID": "9bba4c1b-7189-49c5-845f-ca20026d9e51",
+    "target": "^https?://www\\.nist\\.gov/publications(/|\\?|$)",
     "translatorType": 4
   },
   {
@@ -3736,6 +3920,70 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/NPR.js",
+    "label": "NPR",
+    "type": "zotero-legacy",
+    "translatorID": "bc2fbf38-3061-4335-8644-69ce68580b20",
+    "target": "^https?://www\\.npr\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NRC Research Press.js",
+    "label": "NRC Research Press",
+    "type": "zotero-legacy",
+    "translatorID": "fc08c878-ac92-40dc-9105-ca36ca20665d",
+    "target": "^https?://www\\.nrcresearchpress\\.com",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NRC.nl.js",
+    "label": "NRC.nl",
+    "type": "zotero-legacy",
+    "translatorID": "8e708ceb-ce42-446f-bffd-21e2bdeb0742",
+    "target": "^https?://www\\.nrc\\.nl",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NTSB Accident Reports.js",
+    "label": "NTSB Accident Reports",
+    "type": "zotero-legacy",
+    "translatorID": "fef8575b-da80-40ec-8084-631a08cae2bd",
+    "target": "^https?://(www\\.)?ntsb\\.gov/investigations/AccidentReports/Pages/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NYPL Menus.js",
+    "label": "NYPL Menus",
+    "type": "zotero-legacy",
+    "translatorID": "df9dca51-1f66-4dc6-a3e1-09b4c416db23",
+    "target": "^https?://menus\\.nypl\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NYPL Research Catalog.js",
+    "label": "NYPL Research Catalog",
+    "type": "zotero-legacy",
+    "translatorID": "dcf75e09-7f8a-4d4d-ad6f-363b46f79b13",
+    "target": "^https://www\\.nypl\\.org/research/research-catalog/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NYTimes.com.js",
+    "label": "NYTimes.com",
+    "type": "zotero-legacy",
+    "translatorID": "ce7a3727-d184-407f-ac12-52837f3361ff",
+    "target": "^https?://(query\\.nytimes\\.com/(search|gst)/|(select\\.|www\\.|mobile\\.|[^\\/.]*\\.blogs\\.)?nytimes\\.com/)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/NZZ.ch.js",
+    "label": "NZZ.ch",
+    "type": "zotero-legacy",
+    "translatorID": "61ffe600-55e0-11df-bed9-0002a5d5c51b",
+    "target": "^https?://(www\\.)?nzz\\.ch/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/OAPEN.js",
     "label": "OAPEN",
     "type": "zotero-legacy",
@@ -3757,46 +4005,6 @@
     "type": "zotero-legacy",
     "translatorID": "8cf74360-e772-4818-8cf1-eda0481c7dfb",
     "target": "^https?://(www\\.)?oecd-ilibrary\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ORCID.js",
-    "label": "ORCID",
-    "type": "zotero-legacy",
-    "translatorID": "e83248bb-caa4-4dd2-a470-11f4cd164083",
-    "target": "^https?://orcid\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/OSF Preprints.js",
-    "label": "OSF Preprints",
-    "type": "zotero-legacy",
-    "translatorID": "3b978207-5d5c-416f-b15e-2d9da4aa75e9",
-    "target": "^https://osf\\.io/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/OSTI Energy Citations.js",
-    "label": "OSTI Energy Citations",
-    "type": "zotero-legacy",
-    "translatorID": "0cdc6a07-38cf-4ec1-b9d5-7a3c0cc89b15",
-    "target": "^https?://www\\.osti\\.gov/(energycitations|scitech)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/OVID Tagged.js",
-    "label": "OVID Tagged",
-    "type": "zotero-legacy",
-    "translatorID": "59e7e93e-4ef0-4777-8388-d6eddb3261bf",
-    "target": "txt",
-    "translatorType": 1
-  },
-  {
-    "path": "translators/zotero/OZON.ru.js",
-    "label": "OZON.ru",
-    "type": "zotero-legacy",
-    "translatorID": "73be930f-5773-41b2-a7a1-37c0eeade92f",
-    "target": "^https?://www\\.ozon\\.ru/(context/detail/id/|\\?context=search)",
     "translatorType": 4
   },
   {
@@ -3872,6 +4080,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/openJur.js",
+    "label": "openJur",
+    "type": "zotero-legacy",
+    "translatorID": "a078c90c-c016-4a15-9b1f-40989b1d153e",
+    "target": "^https?://openjur\\.de/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Optical Society of America.js",
     "label": "Optical Society of America",
     "type": "zotero-legacy",
@@ -3888,12 +4104,44 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/ORCID.js",
+    "label": "ORCID",
+    "type": "zotero-legacy",
+    "translatorID": "e83248bb-caa4-4dd2-a470-11f4cd164083",
+    "target": "^https?://orcid\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/OSF Preprints.js",
+    "label": "OSF Preprints",
+    "type": "zotero-legacy",
+    "translatorID": "3b978207-5d5c-416f-b15e-2d9da4aa75e9",
+    "target": "^https://osf\\.io/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/OSTI Energy Citations.js",
+    "label": "OSTI Energy Citations",
+    "type": "zotero-legacy",
+    "translatorID": "0cdc6a07-38cf-4ec1-b9d5-7a3c0cc89b15",
+    "target": "^https?://www\\.osti\\.gov/(energycitations|scitech)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Ovid OCE.js",
     "label": "Ovid OCE",
     "type": "zotero-legacy",
     "translatorID": "b2285ec2-e454-49dc-b9ce-115035b55325",
     "target": "^https://oce\\.ovid\\.com/",
     "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/OVID Tagged.js",
+    "label": "OVID Tagged",
+    "type": "zotero-legacy",
+    "translatorID": "59e7e93e-4ef0-4777-8388-d6eddb3261bf",
+    "target": "txt",
+    "translatorType": 1
   },
   {
     "path": "translators/zotero/Ovid.js",
@@ -3944,59 +4192,11 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/PC Gamer.js",
-    "label": "PC Gamer",
+    "path": "translators/zotero/OZON.ru.js",
+    "label": "OZON.ru",
     "type": "zotero-legacy",
-    "translatorID": "274284a8-fc91-4f54-be77-bfcb7f9c3d6f",
-    "target": "^https?://(www\\.)?pcgamer\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/PC Games.js",
-    "label": "PC Games",
-    "type": "zotero-legacy",
-    "translatorID": "e3e57ecd-b278-4b27-b49e-5aa2c76b25fd",
-    "target": "^https?://(www\\.)?pcgames\\.de",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/PEI Archival Information Network.js",
-    "label": "PEI Archival Information Network",
-    "type": "zotero-legacy",
-    "translatorID": "6871e8c5-f935-4ba1-8305-0ba563ce3941",
-    "target": "^https?://www\\.archives\\.pe\\.ca/atom/index\\.php/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/PEP Web.js",
-    "label": "PEP Web",
-    "type": "zotero-legacy",
-    "translatorID": "32ad4782-b106-4ccb-8ae1-ff102ba93eef",
-    "target": "^https?://www\\.pep-web\\.org",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/PKP Catalog Systems.js",
-    "label": "PKP Catalog Systems",
-    "type": "zotero-legacy",
-    "translatorID": "99b62ba4-065c-4e83-a5c0-d8cc0c75d388",
-    "target": "/(article|preprint|issue)/view/|/catalog/book/|/search/search|/index\\.php/default",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/PLoS Journals.js",
-    "label": "PLoS Journals",
-    "type": "zotero-legacy",
-    "translatorID": "9575e804-219e-4cd6-813d-9b690cbfc0fc",
-    "target": "^https?://(www\\.plos(one|ntds|compbiol|pathogens|genetics|medicine|biology)\\.org|journals\\.plos\\.org(/\\w+)?)/(search|\\w+/article)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/PRC History Review.js",
-    "label": "PRC History Review",
-    "type": "zotero-legacy",
-    "translatorID": "56854750-868a-4de0-bfe5-fe075344a121",
-    "target": "^https?://(www\\.)?prchistory\\.org/",
+    "translatorID": "73be930f-5773-41b2-a7a1-37c0eeade92f",
+    "target": "^https?://www\\.ozon\\.ru/(context/detail/id/|\\?context=search)",
     "translatorType": 4
   },
   {
@@ -4040,11 +4240,43 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/PC Gamer.js",
+    "label": "PC Gamer",
+    "type": "zotero-legacy",
+    "translatorID": "274284a8-fc91-4f54-be77-bfcb7f9c3d6f",
+    "target": "^https?://(www\\.)?pcgamer\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/PC Games.js",
+    "label": "PC Games",
+    "type": "zotero-legacy",
+    "translatorID": "e3e57ecd-b278-4b27-b49e-5aa2c76b25fd",
+    "target": "^https?://(www\\.)?pcgames\\.de",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Peeters.js",
     "label": "Peeters",
     "type": "zotero-legacy",
     "translatorID": "c216ae06-da95-4fd0-bce8-38de1f6cf17c",
     "target": "^https?://(www\\.)?poj\\.peeters-leuven\\.be/content\\.php",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/PEI Archival Information Network.js",
+    "label": "PEI Archival Information Network",
+    "type": "zotero-legacy",
+    "translatorID": "6871e8c5-f935-4ba1-8305-0ba563ce3941",
+    "target": "^https?://www\\.archives\\.pe\\.ca/atom/index\\.php/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/PEP Web.js",
+    "label": "PEP Web",
+    "type": "zotero-legacy",
+    "translatorID": "32ad4782-b106-4ccb-8ae1-ff102ba93eef",
+    "target": "^https?://www\\.pep-web\\.org",
     "translatorType": 4
   },
   {
@@ -4064,14 +4296,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/PhilPapers.js",
-    "label": "PhilPapers",
-    "type": "zotero-legacy",
-    "translatorID": "8df4f61b-0881-4c85-9186-05f457edb4d3",
-    "target": "^https?://phil(papers|archive)\\.org/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Philosopher's Imprint.js",
     "label": "Philosopher's Imprint",
     "type": "zotero-legacy",
@@ -4080,11 +4304,35 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/PhilPapers.js",
+    "label": "PhilPapers",
+    "type": "zotero-legacy",
+    "translatorID": "8df4f61b-0881-4c85-9186-05f457edb4d3",
+    "target": "^https?://phil(papers|archive)\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/PKP Catalog Systems.js",
+    "label": "PKP Catalog Systems",
+    "type": "zotero-legacy",
+    "translatorID": "99b62ba4-065c-4e83-a5c0-d8cc0c75d388",
+    "target": "/(article|preprint|issue)/view/|/catalog/book/|/search/search|/index\\.php/default",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Pleade.js",
     "label": "Pleade",
     "type": "zotero-legacy",
     "translatorID": "ce68b0ed-3137-4e38-b691-f3bc49bc1497",
     "target": "(list-results|results|ead)\\.html\\?.*(base=ead|mode=|id=)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/PLoS Journals.js",
+    "label": "PLoS Journals",
+    "type": "zotero-legacy",
+    "translatorID": "9575e804-219e-4cd6-813d-9b690cbfc0fc",
+    "target": "^https?://(www\\.plos(one|ntds|compbiol|pathogens|genetics|medicine|biology)\\.org|journals\\.plos\\.org(/\\w+)?)/(search|\\w+/article)",
     "translatorType": 4
   },
   {
@@ -4101,6 +4349,14 @@
     "type": "zotero-legacy",
     "translatorID": "9405db4b-be7f-42ab-86ca-430226be9b35",
     "target": "^https?://www\\.pnn\\.de",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/PRC History Review.js",
+    "label": "PRC History Review",
+    "type": "zotero-legacy",
+    "translatorID": "56854750-868a-4de0-bfe5-fe075344a121",
+    "target": "^https?://(www\\.)?prchistory\\.org/",
     "translatorType": 4
   },
   {
@@ -4152,6 +4408,30 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Probing the Past.js",
+    "label": "Probing the Past",
+    "type": "zotero-legacy",
+    "translatorID": "095239e7-c18c-4f45-a932-bcf4a9e48c08",
+    "target": "^https?://chnm\\.gmu\\.edu/probateinventory/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Project Gutenberg.js",
+    "label": "Project Gutenberg",
+    "type": "zotero-legacy",
+    "translatorID": "d770e7d2-106c-4396-8c32-b35cdc46376c",
+    "target": "^https?://www\\.gutenberg\\.org",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Project MUSE.js",
+    "label": "Project MUSE",
+    "type": "zotero-legacy",
+    "translatorID": "c54d1932-73ce-dfd4-a943-109380e06574",
+    "target": "^https?://[^/]*muse\\.jhu\\.edu/(book/|pub/|article/|issue/|search\\?)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/ProMED.js",
     "label": "ProMED",
     "type": "zotero-legacy",
@@ -4184,30 +4464,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Probing the Past.js",
-    "label": "Probing the Past",
-    "type": "zotero-legacy",
-    "translatorID": "095239e7-c18c-4f45-a932-bcf4a9e48c08",
-    "target": "^https?://chnm\\.gmu\\.edu/probateinventory/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Project Gutenberg.js",
-    "label": "Project Gutenberg",
-    "type": "zotero-legacy",
-    "translatorID": "d770e7d2-106c-4396-8c32-b35cdc46376c",
-    "target": "^https?://www\\.gutenberg\\.org",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Project MUSE.js",
-    "label": "Project MUSE",
-    "type": "zotero-legacy",
-    "translatorID": "c54d1932-73ce-dfd4-a943-109380e06574",
-    "target": "^https?://[^/]*muse\\.jhu\\.edu/(book/|pub/|article/|issue/|search\\?)",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Protein Data Bank.js",
     "label": "Protein Data Bank",
     "type": "zotero-legacy",
@@ -4221,6 +4477,30 @@
     "type": "zotero-legacy",
     "translatorID": "8d1fb775-df6d-4069-8830-1dfe8e8387dd",
     "target": "^https://([^/]+/view/journals/.+\\.xml|[^.]*journals\\.[^/]+/search)\\b",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Public Record Office Victoria.js",
+    "label": "Public Record Office Victoria",
+    "type": "zotero-legacy",
+    "translatorID": "99592877-f698-4e14-b541-b6181f6c577f",
+    "target": "^https?://prov\\.vic\\.gov\\.au/(archive|search_journey)/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Publications du Quebec.js",
+    "label": "Publications du Qu\u00e9bec",
+    "type": "zotero-legacy",
+    "translatorID": "22d0bede-8db5-4656-9b9a-7d682ec1335d",
+    "target": "^https?://(www\\.)?legisquebec\\.gouv\\.qc\\.ca/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Publications Office of the European Union.js",
+    "label": "Publications Office of the European Union",
+    "type": "zotero-legacy",
+    "translatorID": "7d8e6337-3f52-4e8c-8915-95a2ec755b6c",
+    "target": "^https?://op\\.europa\\.eu/",
     "translatorType": 4
   },
   {
@@ -4256,30 +4536,6 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Public Record Office Victoria.js",
-    "label": "Public Record Office Victoria",
-    "type": "zotero-legacy",
-    "translatorID": "99592877-f698-4e14-b541-b6181f6c577f",
-    "target": "^https?://prov\\.vic\\.gov\\.au/(archive|search_journey)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Publications Office of the European Union.js",
-    "label": "Publications Office of the European Union",
-    "type": "zotero-legacy",
-    "translatorID": "7d8e6337-3f52-4e8c-8915-95a2ec755b6c",
-    "target": "^https?://op\\.europa\\.eu/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Publications du Quebec.js",
-    "label": "Publications du Qu\u00e9bec",
-    "type": "zotero-legacy",
-    "translatorID": "22d0bede-8db5-4656-9b9a-7d682ec1335d",
-    "target": "^https?://(www\\.)?legisquebec\\.gouv\\.qc\\.ca/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/PyPI.js",
     "label": "PyPI",
     "type": "zotero-legacy",
@@ -4312,6 +4568,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Radio Free Europe  Radio Liberty.js",
+    "label": "Radio Free Europe / Radio Liberty",
+    "type": "zotero-legacy",
+    "translatorID": "b1c90b99-2e1a-4374-a03b-92e45f1afc55",
+    "target": "^https?://((www|gandhara)\\.rferl\\.org/|www\\.azatliq\\.org/|www\\.azattyq\\.org/|rus\\.azattyq\\.org/|da\\.azadiradio\\.com/|pa\\.azadiradio\\.com/|www\\.azattyk\\.org/|www\\.ozodi\\.org/|www\\.ozodlik\\.org/|www\\.evropaelire\\.org/|www\\.slobodnaevropa\\.org/|www\\.makdenes\\.org/|www\\.iraqhurr\\.org/|www\\.radiofarda\\.com/|www\\.azatutyun\\.am/|www\\.azadliq\\.org/|www\\.svaboda\\.org/|www\\.svoboda\\.org/|www\\.tavisupleba\\.org/|www\\.azathabar\\.com/|www\\.svobodanews\\.ru/|(romania|moldova)\\.europalibera\\.org/|www\\.radiosvoboda\\.org/)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/RAND.js",
     "label": "RAND",
     "type": "zotero-legacy",
@@ -4328,6 +4592,14 @@
     "translatorType": 1
   },
   {
+    "path": "translators/zotero/Rechtspraak.nl.js",
+    "label": "Rechtspraak.nl",
+    "type": "zotero-legacy",
+    "translatorID": "aede3fda-1894-4dfc-8bca-1c3463f11076",
+    "target": "^https?://(uitspraken\\.rechtspraak|linkeddata\\.overheid)\\.nl/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/REDALYC.js",
     "label": "REDALYC",
     "type": "zotero-legacy",
@@ -4336,27 +4608,35 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/RIS.js",
-    "label": "RIS",
+    "path": "translators/zotero/reddit.js",
+    "label": "reddit",
     "type": "zotero-legacy",
-    "translatorID": "32d59d2d-b65a-4da4-b0a3-bdd3cfb979e7",
-    "target": "ris",
-    "translatorType": 3
-  },
-  {
-    "path": "translators/zotero/RSC Publishing.js",
-    "label": "RSC Publishing",
-    "type": "zotero-legacy",
-    "translatorID": "ca0e7488-ef20-4485-8499-9c47e60dcfa7",
-    "target": "^https?://(:?www\\.|google\\.)?pubs\\.rsc\\.org/",
+    "translatorID": "23bacc11-98e3-4b78-b1ef-cc2c9a04b893",
+    "target": "^https?://[^/]+\\.reddit\\.com/",
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/Radio Free Europe  Radio Liberty.js",
-    "label": "Radio Free Europe / Radio Liberty",
+    "path": "translators/zotero/ReferBibIX.js",
+    "label": "Refer/BibIX",
     "type": "zotero-legacy",
-    "translatorID": "b1c90b99-2e1a-4374-a03b-92e45f1afc55",
-    "target": "^https?://((www|gandhara)\\.rferl\\.org/|www\\.azatliq\\.org/|www\\.azattyq\\.org/|rus\\.azattyq\\.org/|da\\.azadiradio\\.com/|pa\\.azadiradio\\.com/|www\\.azattyk\\.org/|www\\.ozodi\\.org/|www\\.ozodlik\\.org/|www\\.evropaelire\\.org/|www\\.slobodnaevropa\\.org/|www\\.makdenes\\.org/|www\\.iraqhurr\\.org/|www\\.radiofarda\\.com/|www\\.azatutyun\\.am/|www\\.azadliq\\.org/|www\\.svaboda\\.org/|www\\.svoboda\\.org/|www\\.tavisupleba\\.org/|www\\.azathabar\\.com/|www\\.svobodanews\\.ru/|(romania|moldova)\\.europalibera\\.org/|www\\.radiosvoboda\\.org/)",
+    "translatorID": "881f60f2-0802-411a-9228-ce5f47b64c7d",
+    "target": "txt",
+    "translatorType": 3
+  },
+  {
+    "path": "translators/zotero/RefWorks Tagged.js",
+    "label": "RefWorks Tagged",
+    "type": "zotero-legacy",
+    "translatorID": "1a3506da-a303-4b0a-a1cd-f216e6138d86",
+    "target": "txt",
+    "translatorType": 3
+  },
+  {
+    "path": "translators/zotero/Regeringskansliet.js",
+    "label": "Regeringskansliet",
+    "type": "zotero-legacy",
+    "translatorID": "f7262c7d-a11c-4679-899c-bab8c21a19c6",
+    "target": "^https?://(www\\.)?regeringen\\.se/",
     "translatorType": 4
   },
   {
@@ -4373,38 +4653,6 @@
     "type": "zotero-legacy",
     "translatorID": "bd2e6136-d8e5-4f76-906b-0fbcd888dd63",
     "target": "^https?://ideas\\.repec\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Rechtspraak.nl.js",
-    "label": "Rechtspraak.nl",
-    "type": "zotero-legacy",
-    "translatorID": "aede3fda-1894-4dfc-8bca-1c3463f11076",
-    "target": "^https?://(uitspraken\\.rechtspraak|linkeddata\\.overheid)\\.nl/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/RefWorks Tagged.js",
-    "label": "RefWorks Tagged",
-    "type": "zotero-legacy",
-    "translatorID": "1a3506da-a303-4b0a-a1cd-f216e6138d86",
-    "target": "txt",
-    "translatorType": 3
-  },
-  {
-    "path": "translators/zotero/ReferBibIX.js",
-    "label": "Refer/BibIX",
-    "type": "zotero-legacy",
-    "translatorID": "881f60f2-0802-411a-9228-ce5f47b64c7d",
-    "target": "txt",
-    "translatorType": 3
-  },
-  {
-    "path": "translators/zotero/Regeringskansliet.js",
-    "label": "Regeringskansliet",
-    "type": "zotero-legacy",
-    "translatorID": "f7262c7d-a11c-4679-899c-bab8c21a19c6",
-    "target": "^https?://(www\\.)?regeringen\\.se/",
     "translatorType": 4
   },
   {
@@ -4440,6 +4688,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/RIS.js",
+    "label": "RIS",
+    "type": "zotero-legacy",
+    "translatorID": "32d59d2d-b65a-4da4-b0a3-bdd3cfb979e7",
+    "target": "ris",
+    "translatorType": 3
+  },
+  {
     "path": "translators/zotero/Rock, Paper, Shotgun.js",
     "label": "Rock, Paper, Shotgun",
     "type": "zotero-legacy",
@@ -4456,6 +4712,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/RSC Publishing.js",
+    "label": "RSC Publishing",
+    "type": "zotero-legacy",
+    "translatorID": "ca0e7488-ef20-4485-8499-9c47e60dcfa7",
+    "target": "^https?://(:?www\\.|google\\.)?pubs\\.rsc\\.org/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Russian State Library.js",
     "label": "Russian State Library",
     "type": "zotero-legacy",
@@ -4464,11 +4728,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/Sacramento Bee.js",
+    "label": "Sacramento Bee",
+    "type": "zotero-legacy",
+    "translatorID": "82b534ea-abf0-4527-9d5d-48cd98a89ba5",
+    "target": "^https?://(www\\.)?sacbee\\.com",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/SAE Papers.js",
     "label": "SAE Papers",
     "type": "zotero-legacy",
     "translatorID": "2c98b8e6-6138-4b60-a999-15e3a7c8cb4b",
     "target": "^https?://(www|papers)\\.sae\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/Safari Books Online.js",
+    "label": "Safari Books Online",
+    "type": "zotero-legacy",
+    "translatorID": "ec491fc2-10b1-11e3-99d7-1bd4dc830245",
+    "target": "^https?://([^/]+\\.)?safaribooksonline\\.[a-zA-Z]+/",
     "translatorType": 4
   },
   {
@@ -4504,83 +4784,11 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/SFU IPinCH.js",
-    "label": "SFU IPinCH",
+    "path": "translators/zotero/sbn.it.js",
+    "label": "sbn.it",
     "type": "zotero-legacy",
-    "translatorID": "7448d1d7-57e4-4685-b6e4-d4d9f7046fc2",
-    "target": "^https?://[^/]*sfu\\.ca/kbipinch/(records|browse|search)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SIPRI.js",
-    "label": "SIPRI",
-    "type": "zotero-legacy",
-    "translatorID": "3a92a47b-a532-40b8-8e69-c40b4edf56ec",
-    "target": "^https?://(www\\.)?sipri\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SIRS Knowledge Source.js",
-    "label": "SIRS Knowledge Source",
-    "type": "zotero-legacy",
-    "translatorID": "d4cccbd1-a92f-4dd8-b636-74eb9e344441",
-    "target": "^https?://([^/]+\\.)?sks\\.sirs\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SLUB Dresden.js",
-    "label": "SLUB Dresden",
-    "type": "zotero-legacy",
-    "translatorID": "eda36b1d-2395-432d-9780-0e7d2e6cf0de",
-    "target": "^https://katalog\\.slub-dresden\\.de/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SORA.js",
-    "label": "SORA",
-    "type": "zotero-legacy",
-    "translatorID": "83d2ed27-40a5-4dc7-bd87-baddc8fb35da",
-    "target": "^https?://sora\\.unm\\.edu/(node/|search/node/|advancedsearch\\?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SSOAR.js",
-    "label": "SSOAR",
-    "type": "zotero-legacy",
-    "translatorID": "d2959995-d0a2-4fb7-990f-16b671690e99",
-    "target": "^https?://www\\.ssoar\\.info/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SSRN.js",
-    "label": "SSRN",
-    "type": "zotero-legacy",
-    "translatorID": "b61c224b-34b6-4bfd-8a76-a476e7092d43",
-    "target": "^https?://(www|papers|hq)\\.ssrn\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/SVT Nyheter.js",
-    "label": "SVT Nyheter",
-    "type": "zotero-legacy",
-    "translatorID": "4c6d887e-341d-4edb-b651-ea702a8918d7",
-    "target": "^https?://www\\.svt\\.se/nyheter/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Sacramento Bee.js",
-    "label": "Sacramento Bee",
-    "type": "zotero-legacy",
-    "translatorID": "82b534ea-abf0-4527-9d5d-48cd98a89ba5",
-    "target": "^https?://(www\\.)?sacbee\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/Safari Books Online.js",
-    "label": "Safari Books Online",
-    "type": "zotero-legacy",
-    "translatorID": "ec491fc2-10b1-11e3-99d7-1bd4dc830245",
-    "target": "^https?://([^/]+\\.)?safaribooksonline\\.[a-zA-Z]+/",
+    "translatorID": "4c272290-7ac4-433e-862d-244884ed285a",
+    "target": "^https?://(www|opac)\\.sbn\\.it/opacsbn/opaclib",
     "translatorType": 4
   },
   {
@@ -4620,7 +4828,15 @@
     "label": "ScienceDirect",
     "type": "zotero-legacy",
     "translatorID": "b6d0a7a-d076-48ae-b2f0-b6de28b194e",
-    "target": "^https?://[^/]*science-?direct\\.com[^/]*/((science/)?(article/|(journal|bookseries|book|handbook)/\\d)|search[?/]|journal/[^/]+/vol)",
+    "target": "^https?://[^/]*science-?direct\\.com[^/]*/((science/)?(article/|chapter/|(journal|bookseries|handbook)/\\d|book/(?:[a-z-]+/)?\\d)|search[?/]|journal/[^/]+/vol)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/scinapse.js",
+    "label": "scinapse",
+    "type": "zotero-legacy",
+    "translatorID": "42680c5e-1ae8-4171-ab53-afe1d8e840d4",
+    "target": "^https?://(www\\.)?scinapse\\.io/",
     "translatorType": 4
   },
   {
@@ -4640,11 +4856,43 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/semantics Visual Library.js",
+    "label": "semantics Visual Library",
+    "type": "zotero-legacy",
+    "translatorID": "fe85e97b-5e2a-4d9e-976e-c336c5350ce9",
+    "target": "^https?://www\\.(blldb-online\\.de/blldb|bdsl-online\\.de/BDSL-DB)/suche/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/SFU IPinCH.js",
+    "label": "SFU IPinCH",
+    "type": "zotero-legacy",
+    "translatorID": "7448d1d7-57e4-4685-b6e4-d4d9f7046fc2",
+    "target": "^https?://[^/]*sfu\\.ca/kbipinch/(records|browse|search)/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Silverchair.js",
     "label": "Silverchair",
     "type": "zotero-legacy",
     "translatorID": "3bae3a55-f021-4b59-8a14-43701f336adf",
     "target": "/(article|fullarticle|advance-article|advance-article-abstract|article-abstract|book|edited-volume)(/|\\.aspx)|search-results?|\\/issue(/|s\\.aspx|$)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/SIPRI.js",
+    "label": "SIPRI",
+    "type": "zotero-legacy",
+    "translatorID": "3a92a47b-a532-40b8-8e69-c40b4edf56ec",
+    "target": "^https?://(www\\.)?sipri\\.org/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/SIRS Knowledge Source.js",
+    "label": "SIRS Knowledge Source",
+    "type": "zotero-legacy",
+    "translatorID": "d4cccbd1-a92f-4dd8-b636-74eb9e344441",
+    "target": "^https?://([^/]+\\.)?sks\\.sirs\\.com/",
     "translatorType": 4
   },
   {
@@ -4664,11 +4912,43 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/SLUB Dresden.js",
+    "label": "SLUB Dresden",
+    "type": "zotero-legacy",
+    "translatorID": "eda36b1d-2395-432d-9780-0e7d2e6cf0de",
+    "target": "^https://katalog\\.slub-dresden\\.de/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/SORA.js",
+    "label": "SORA",
+    "type": "zotero-legacy",
+    "translatorID": "83d2ed27-40a5-4dc7-bd87-baddc8fb35da",
+    "target": "^https?://sora\\.unm\\.edu/(node/|search/node/|advancedsearch\\?)",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Springer Link.js",
     "label": "Springer Link",
     "type": "zotero-legacy",
     "translatorID": "d6c6210a-297c-4b2c-8c43-48cb503cc49e",
     "target": "^https?://link\\.springer\\.com/(search(/page/\\d+)?\\?|(article|chapter|book|referenceworkentry|protocol|journal|referencework)/.+)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/SSOAR.js",
+    "label": "SSOAR",
+    "type": "zotero-legacy",
+    "translatorID": "d2959995-d0a2-4fb7-990f-16b671690e99",
+    "target": "^https?://www\\.ssoar\\.info/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/SSRN.js",
+    "label": "SSRN",
+    "type": "zotero-legacy",
+    "translatorID": "b61c224b-34b6-4bfd-8a76-a476e7092d43",
+    "target": "^https?://(www|papers|hq)\\.ssrn\\.com/",
     "translatorType": 4
   },
   {
@@ -4792,27 +5072,11 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/TEI.js",
-    "label": "TEI",
+    "path": "translators/zotero/SVT Nyheter.js",
+    "label": "SVT Nyheter",
     "type": "zotero-legacy",
-    "translatorID": "032ae9b7-ab90-9205-a479-baf81f49184a",
-    "target": "xml",
-    "translatorType": 2
-  },
-  {
-    "path": "translators/zotero/TV by the Numbers.js",
-    "label": "TV by the Numbers",
-    "type": "zotero-legacy",
-    "translatorID": "180a62bf-efdd-4d38-8d85-8971af04dd85",
-    "target": "^https?://tvbythenumbers\\.zap2it\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/TVNZ.js",
-    "label": "TVNZ",
-    "type": "zotero-legacy",
-    "translatorID": "649c2836-a94d-4bbe-8e28-6771f283702f",
-    "target": "^https?://(www\\.)?tvnz\\.co\\.nz/one-news/",
+    "translatorID": "4c6d887e-341d-4edb-b651-ea702a8918d7",
+    "target": "^https?://www\\.svt\\.se/nyheter/",
     "translatorType": 4
   },
   {
@@ -4872,6 +5136,22 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/taz.de.js",
+    "label": "taz.de",
+    "type": "zotero-legacy",
+    "translatorID": "d84574f1-e4d6-4337-934f-bf9d01173bf0",
+    "target": "^https?://(www\\.)?taz\\.de",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/TEI.js",
+    "label": "TEI",
+    "type": "zotero-legacy",
+    "translatorID": "032ae9b7-ab90-9205-a479-baf81f49184a",
+    "target": "xml",
+    "translatorType": 2
+  },
+  {
     "path": "translators/zotero/Tesis Doctorals en Xarxa.js",
     "label": "Tesis Doctorals en Xarxa",
     "type": "zotero-legacy",
@@ -4900,7 +5180,7 @@
     "label": "The Boston Globe",
     "type": "zotero-legacy",
     "translatorID": "1f245496-4c1b-406a-8641-d286b3888231",
-    "target": "^https?://(www|search|articles|archive)\\.boston\\.com/",
+    "target": "^https?://(www\\.|search\\.|articles\\.|archive\\.)?boston(globe)?\\.com/",
     "translatorType": 4
   },
   {
@@ -5184,51 +5464,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/TV by the Numbers.js",
+    "label": "TV by the Numbers",
+    "type": "zotero-legacy",
+    "translatorID": "180a62bf-efdd-4d38-8d85-8971af04dd85",
+    "target": "^https?://tvbythenumbers\\.zap2it\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/TVNZ.js",
+    "label": "TVNZ",
+    "type": "zotero-legacy",
+    "translatorID": "649c2836-a94d-4bbe-8e28-6771f283702f",
+    "target": "^https?://(www\\.)?tvnz\\.co\\.nz/one-news/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Twitter.js",
     "label": "Twitter",
     "type": "zotero-legacy",
     "translatorID": "31659710-d04e-45d0-84ba-8e3f5afc4a54",
     "target": "^https?://([^/]+\\.)?(twitter|x)\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/UChicago VuFind.js",
-    "label": "UChicago VuFind",
-    "type": "zotero-legacy",
-    "translatorID": "f9052879-ab4c-4056-84b4-e963dd98cb5d",
-    "target": "^https?://([^/]+\\.)?lib\\.uchicago\\.edu/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/UNZ Print Archive.js",
-    "label": "UNZ Print Archive",
-    "type": "zotero-legacy",
-    "translatorID": "0754db60-3ad1-49e0-8e3f-f4e1210c756c",
-    "target": "^https?://(www\\.)?unz\\.com/print",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/UPCommons.js",
-    "label": "UPCommons",
-    "type": "zotero-legacy",
-    "translatorID": "0abd577b-ec45-4e9f-9081-448737e2fd34",
-    "target": "^https?://upcommons\\.upc\\.edu",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/US National Archives Research Catalog.js",
-    "label": "US National Archives Research Catalog",
-    "type": "zotero-legacy",
-    "translatorID": "f8b5501a-1acc-4ffa-a0a5-594add5e6bd3",
-    "target": "^https?://catalog\\.archives\\.gov/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/USENIX.js",
-    "label": "USENIX",
-    "type": "zotero-legacy",
-    "translatorID": "b97462fa-f20b-4a1e-8a73-3a434a81518b",
-    "target": "^https://www\\.usenix\\.org/conference/.*/presentation",
     "translatorType": 4
   },
   {
@@ -5240,11 +5496,19 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/University Press Scholarship.js",
-    "label": "University Press Scholarship",
+    "path": "translators/zotero/UChicago VuFind.js",
+    "label": "UChicago VuFind",
     "type": "zotero-legacy",
-    "translatorID": "f098a2db-6bfc-49ef-a6d7-9fc84f3c868c",
-    "target": "^https?://[^/]+\\.universitypressscholarship\\.com/",
+    "translatorID": "f9052879-ab4c-4056-84b4-e963dd98cb5d",
+    "target": "^https?://([^/]+\\.)?lib\\.uchicago\\.edu/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/unAPI.js",
+    "label": "unAPI",
+    "type": "zotero-legacy",
+    "translatorID": "e7e01cac-1e37-4da6-b078-a0e8343b0e98",
+    "target": "",
     "translatorType": 4
   },
   {
@@ -5272,6 +5536,14 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/University Press Scholarship.js",
+    "label": "University Press Scholarship",
+    "type": "zotero-legacy",
+    "translatorID": "f098a2db-6bfc-49ef-a6d7-9fc84f3c868c",
+    "target": "^https?://[^/]+\\.universitypressscholarship\\.com/",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Unqualified Dublin Core RDF.js",
     "label": "Unqualified Dublin Core RDF",
     "type": "zotero-legacy",
@@ -5280,11 +5552,43 @@
     "translatorType": 2
   },
   {
+    "path": "translators/zotero/UNZ Print Archive.js",
+    "label": "UNZ Print Archive",
+    "type": "zotero-legacy",
+    "translatorID": "0754db60-3ad1-49e0-8e3f-f4e1210c756c",
+    "target": "^https?://(www\\.)?unz\\.com/print",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/UPCommons.js",
+    "label": "UPCommons",
+    "type": "zotero-legacy",
+    "translatorID": "0abd577b-ec45-4e9f-9081-448737e2fd34",
+    "target": "^https?://upcommons\\.upc\\.edu",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/UpToDate References.js",
     "label": "UpToDate References",
     "type": "zotero-legacy",
     "translatorID": "70dc2609-d6fd-415a-822c-a2c04293cb5a",
     "target": "^https?://www\\.uptodate\\.com/contents/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/US National Archives Research Catalog.js",
+    "label": "US National Archives Research Catalog",
+    "type": "zotero-legacy",
+    "translatorID": "f8b5501a-1acc-4ffa-a0a5-594add5e6bd3",
+    "target": "^https?://catalog\\.archives\\.gov/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/USENIX.js",
+    "label": "USENIX",
+    "type": "zotero-legacy",
+    "translatorID": "b97462fa-f20b-4a1e-8a73-3a434a81518b",
+    "target": "^https://www\\.usenix\\.org/conference/.*/presentation",
     "translatorType": 4
   },
   {
@@ -5341,22 +5645,6 @@
     "type": "zotero-legacy",
     "translatorID": "508e8fb9-8a33-4095-844f-133cba7e7b54",
     "target": "^https?://(www\\.)?voxeu\\.org",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/WHO.js",
-    "label": "WHO",
-    "type": "zotero-legacy",
-    "translatorID": "cd587058-6125-4b33-a876-8c6aae48b5e8",
-    "target": "^https?://apps\\.who\\.int/iris/",
-    "translatorType": 12
-  },
-  {
-    "path": "translators/zotero/WIPO.js",
-    "label": "WIPO",
-    "type": "zotero-legacy",
-    "translatorID": "039338fc-d84f-44bf-99e4-693cc91b569f",
-    "target": "^https?://patentscope\\.wipo\\.int",
     "translatorType": 4
   },
   {
@@ -5432,12 +5720,12 @@
     "translatorType": 4
   },
   {
-    "path": "translators/zotero/WikiLeaks PlusD.js",
-    "label": "WikiLeaks PlusD",
+    "path": "translators/zotero/WHO.js",
+    "label": "WHO",
     "type": "zotero-legacy",
-    "translatorID": "8b73dd9c-b873-4d13-b36a-45922b9f04a1",
-    "target": "^https?://(search\\.|www\\.)?wikileaks\\.org/plusd/",
-    "translatorType": 4
+    "translatorID": "cd587058-6125-4b33-a876-8c6aae48b5e8",
+    "target": "^https?://apps\\.who\\.int/iris/",
+    "translatorType": 12
   },
   {
     "path": "translators/zotero/Wikidata QuickStatements.js",
@@ -5453,6 +5741,14 @@
     "type": "zotero-legacy",
     "translatorID": "eaef8d43-2f17-45b3-a5cb-affb49bc5e81",
     "target": "^https?://(www\\.)?wikidata\\.org/wiki/Q",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/WikiLeaks PlusD.js",
+    "label": "WikiLeaks PlusD",
+    "type": "zotero-legacy",
+    "translatorID": "8b73dd9c-b873-4d13-b36a-45922b9f04a1",
+    "target": "^https?://(search\\.|www\\.)?wikileaks\\.org/plusd/",
     "translatorType": 4
   },
   {
@@ -5536,11 +5832,27 @@
     "translatorType": 4
   },
   {
+    "path": "translators/zotero/WIPO.js",
+    "label": "WIPO",
+    "type": "zotero-legacy",
+    "translatorID": "039338fc-d84f-44bf-99e4-693cc91b569f",
+    "target": "^https?://patentscope\\.wipo\\.int",
+    "translatorType": 4
+  },
+  {
     "path": "translators/zotero/Wired.js",
     "label": "Wired",
     "type": "zotero-legacy",
     "translatorID": "f054a3d9-d705-4d2e-a96a-258508bebba3",
     "target": "^https?://(www\\.)?wired\\.(com|co\\.uk)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/wiso.js",
+    "label": "wiso",
+    "type": "zotero-legacy",
+    "translatorID": "136d5c30-d8b1-476f-9564-702a41b6126e",
+    "target": "^https?://www\\.wiso-net\\.de/(document/|dosearch\\?)",
     "translatorType": 4
   },
   {
@@ -5592,14 +5904,6 @@
     "translatorType": 1
   },
   {
-    "path": "translators/zotero/YPSF.js",
-    "label": "YPFS",
-    "type": "zotero-legacy",
-    "translatorID": "5e1f3e08-ca5f-4196-a662-6cf46b3cdaa7",
-    "target": "^https?://ypfs\\.som\\.yale\\.edu",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/Yandex Books.js",
     "label": "Yandex Books",
     "type": "zotero-legacy",
@@ -5621,6 +5925,22 @@
     "type": "zotero-legacy",
     "translatorID": "d3b1d34c-f8a1-43bb-9dd6-27aa6403b217",
     "target": "^https?://([^/]+\\.)?youtube\\.com/",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/YPSF.js",
+    "label": "YPFS",
+    "type": "zotero-legacy",
+    "translatorID": "5e1f3e08-ca5f-4196-a662-6cf46b3cdaa7",
+    "target": "^https?://ypfs\\.som\\.yale\\.edu",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/zbMATH.js",
+    "label": "zbMATH",
+    "type": "zotero-legacy",
+    "translatorID": "1d84c107-9dbb-4b87-8208-e3632b87889f",
+    "target": "^https?://(www\\.)?zbmath\\.org/",
     "translatorType": 4
   },
   {
@@ -5648,307 +5968,19 @@
     "translatorType": 2
   },
   {
-    "path": "translators/zotero/ZoteroBib.js",
-    "label": "ZoteroBib",
-    "type": "zotero-legacy",
-    "translatorID": "b7c665ba-173c-4dea-b28e-e866580002a2",
-    "target": "^https://zbib\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/arXiv.org.js",
-    "label": "arXiv.org",
-    "type": "zotero-legacy",
-    "translatorID": "ecddda2e-4fc6-4aea-9f17-ef3b56d7377a",
-    "target": "^https?://([^\\.]+\\.)?(arxiv\\.org|xxx\\.lanl\\.gov)/(search|find|catchup|list/\\w|abs/|pdf/)",
-    "translatorType": 12
-  },
-  {
-    "path": "translators/zotero/artnet.js",
-    "label": "artnet",
-    "type": "zotero-legacy",
-    "translatorID": "a6bfb69f-5dd3-4d60-b9ad-d68ef9eb9a26",
-    "target": "https?://(www\\.)?artnet\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/beck-online.js",
-    "label": "beck-online",
-    "type": "zotero-legacy",
-    "translatorID": "e8544423-1515-4daf-bb5d-3202bf422b58",
-    "target": "^https?://beck[-.]online\\.beck\\.de/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/clinicaltrials.gov.js",
-    "label": "clinicaltrials.gov",
-    "type": "zotero-legacy",
-    "translatorID": "874d70a0-6b95-4391-a681-c56dabaa1411",
-    "target": "^https://(classic\\.clinicaltrials\\.gov/ct2/(show|results)|(www\\.)?clinicaltrials\\.gov/(study|search))\\b",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/dLibra.js",
-    "label": "dLibra",
-    "type": "zotero-legacy",
-    "translatorID": "915e3ae2-afa9-4b1d-9780-28ed3defe0ab",
-    "target": "/.*dlibra/(doccontent|docmetadata|collectiondescription|results)|/dlibra/?",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/dejure.org.js",
-    "label": "dejure.org",
-    "type": "zotero-legacy",
-    "translatorID": "16c7d938-5f77-4fb5-99a1-bcec6fdafe84",
-    "target": "^https?://dejure\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/dhistory.js",
-    "label": "dhistory",
-    "type": "zotero-legacy",
-    "translatorID": "946ddf3a-74ca-4309-9917-85aa30297f4c",
-    "target": "^https?://(www\\.)?dhistory\\.org/archives/naa/items/\\d+",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/digibib.net.js",
-    "label": "digibib.net",
-    "type": "zotero-legacy",
-    "translatorID": "e99bd723-39e6-418c-9524-390dbc583e08",
-    "target": "^https?://.*\\.digibib\\.net/(Digibib|jumpto|metasearch|opensearch|template)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/eLibrary.ru.js",
-    "label": "eLibrary.ru",
-    "type": "zotero-legacy",
-    "translatorID": "587709d3-80c5-467d-9fc8-ed41c31e20cf",
-    "target": "^https?://(www\\.)?elibrary\\.ru/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/eLife.js",
-    "label": "eLife",
-    "type": "zotero-legacy",
-    "translatorID": "98ad3ad1-9d43-4b2e-bc36-172cbf00ba1d",
-    "target": "^https?://(elife\\.)?elifesciences\\.org/(articles|search|subjects|archive)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/eMJA.js",
-    "label": "eMJA",
-    "type": "zotero-legacy",
-    "translatorID": "966a7612-900c-42d9-8780-2a3247548588",
-    "target": "^https?://www\\.mja\\.com\\.au/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/eMedicine.js",
-    "label": "eMedicine",
-    "type": "zotero-legacy",
-    "translatorID": "ab88d517-d88c-4a73-a0ad-c94c76cca849",
-    "target": "^https?://emedicine\\.medscape\\.com/article/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ePrint IACR.js",
-    "label": "ePrint IACR",
-    "type": "zotero-legacy",
-    "translatorID": "04a23cbe-5f8b-d6cd-8eb1-2e23bcc8ae8f",
-    "target": "^https://eprint\\.iacr\\.org/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/ebrary.js",
-    "label": "ebrary",
-    "type": "zotero-legacy",
-    "translatorID": "2abe2519-2f0a-48c0-ad3a-b87b9c059459",
-    "target": "^https?://site\\.ebrary\\.com/.+(docDetail|search|detail)\\.action\\?",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/etatar.ru.js",
-    "label": "etatar.ru",
-    "type": "zotero-legacy",
-    "translatorID": "9d8fb229-a563-489b-b36d-3bdaa69ddf1f",
-    "target": "^https?://(www\\.)?etatar\\.ru/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/feb-web.ru.js",
-    "label": "feb-web.ru",
-    "type": "zotero-legacy",
-    "translatorID": "e92c8359-c3fc-468b-bc6a-107b2744fd17",
-    "target": "^https?://(www\\.)?feb-web\\.ru/.*cmd=2",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/fishpond.co.nz.js",
-    "label": "fishpond.co.nz",
-    "type": "zotero-legacy",
-    "translatorID": "c436f3c7-4246-4ed3-a227-a538c8113a0e",
-    "target": "^https?://www\\.fishpond\\.co\\.nz/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/fr-online.de.js",
-    "label": "fr-online.de",
-    "type": "zotero-legacy",
-    "translatorID": "488fe1e0-b7d2-406f-8257-5060418ce9b2",
-    "target": "^https?://www\\.fr-online\\.de",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/govinfo.js",
-    "label": "govinfo",
-    "type": "zotero-legacy",
-    "translatorID": "12a3b1cb-6bbb-4cf9-904f-8f732ee3d1e3",
-    "target": "https?://www\\.govinfo\\.gov/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/informIT database.js",
-    "label": "informIT database",
-    "type": "zotero-legacy",
-    "translatorID": "add79dfd-7951-4c72-af1d-ce1d50aa4fb4",
-    "target": "^https?://www\\.informit\\.com",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/io-port.js",
-    "label": "io-port",
-    "type": "zotero-legacy",
-    "translatorID": "1c0c63d9-4a95-44d4-b441-173cdc1b8688",
-    "target": "^https?://www\\.zentralblatt-math\\.org/ioport/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/jurion.js",
-    "label": "jurion",
-    "type": "zotero-legacy",
-    "translatorID": "dc78e210-31da-4fe5-99d6-1ea1a61874ca",
-    "target": "^https?://www\\.recht\\.jurion\\.de/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/mEDRA.js",
-    "label": "mEDRA",
-    "type": "zotero-legacy",
-    "translatorID": "d9b57cd5-5a9c-4946-8616-3bdf8edfcbb5",
-    "target": "^https?://www\\.medra\\.org/servlet/view\\?",
-    "translatorType": 12
-  },
-  {
-    "path": "translators/zotero/magazines.russ.ru.js",
-    "label": "magazines.russ.ru",
-    "type": "zotero-legacy",
-    "translatorID": "0db1c2d0-eaae-4f3d-94ef-d4b3aa61de16",
-    "target": "^https?://magazines\\.russ\\.ru/[a-zA-Z -_]+/[0-9]+/[0-9]+/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/medes.js",
-    "label": "medes",
-    "type": "zotero-legacy",
-    "translatorID": "96a92909-f23c-4f16-ae93-1948c2459932",
-    "target": "^https?://(www\\.)?medes\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/newshub.co.nz.js",
-    "label": "newshub.co.nz",
-    "type": "zotero-legacy",
-    "translatorID": "a9f7b277-e134-4d1d-ada6-8f7942be71a6",
-    "target": "^https?://www\\.newshub\\.co\\.nz/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/newspapers.com.js",
-    "label": "newspapers.com",
-    "type": "zotero-legacy",
-    "translatorID": "22dd8e35-02da-4968-b306-6efe0779a48d",
-    "target": "^https?://[^/]+\\.newspapers\\.com/(article|image)/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/openJur.js",
-    "label": "openJur",
-    "type": "zotero-legacy",
-    "translatorID": "a078c90c-c016-4a15-9b1f-40989b1d153e",
-    "target": "^https?://openjur\\.de/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/reddit.js",
-    "label": "reddit",
-    "type": "zotero-legacy",
-    "translatorID": "23bacc11-98e3-4b78-b1ef-cc2c9a04b893",
-    "target": "^https?://[^/]+\\.reddit\\.com/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/sbn.it.js",
-    "label": "sbn.it",
-    "type": "zotero-legacy",
-    "translatorID": "4c272290-7ac4-433e-862d-244884ed285a",
-    "target": "^https?://(www|opac)\\.sbn\\.it/opacsbn/opaclib",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/scinapse.js",
-    "label": "scinapse",
-    "type": "zotero-legacy",
-    "translatorID": "42680c5e-1ae8-4171-ab53-afe1d8e840d4",
-    "target": "^https?://(www\\.)?scinapse\\.io/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/semantics Visual Library.js",
-    "label": "semantics Visual Library",
-    "type": "zotero-legacy",
-    "translatorID": "fe85e97b-5e2a-4d9e-976e-c336c5350ce9",
-    "target": "^https?://www\\.(blldb-online\\.de/blldb|bdsl-online\\.de/BDSL-DB)/suche/",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/taz.de.js",
-    "label": "taz.de",
-    "type": "zotero-legacy",
-    "translatorID": "d84574f1-e4d6-4337-934f-bf9d01173bf0",
-    "target": "^https?://(www\\.)?taz\\.de",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/unAPI.js",
-    "label": "unAPI",
-    "type": "zotero-legacy",
-    "translatorID": "e7e01cac-1e37-4da6-b078-a0e8343b0e98",
-    "target": "",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/wiso.js",
-    "label": "wiso",
-    "type": "zotero-legacy",
-    "translatorID": "136d5c30-d8b1-476f-9564-702a41b6126e",
-    "target": "^https?://www\\.wiso-net\\.de/(document/|dosearch\\?)",
-    "translatorType": 4
-  },
-  {
-    "path": "translators/zotero/zbMATH.js",
-    "label": "zbMATH",
-    "type": "zotero-legacy",
-    "translatorID": "1d84c107-9dbb-4b87-8208-e3632b87889f",
-    "target": "^https?://(www\\.)?zbmath\\.org/",
-    "translatorType": 4
-  },
-  {
     "path": "translators/zotero/zotero.org.js",
     "label": "zotero.org",
     "type": "zotero-legacy",
     "translatorID": "c82c574d-7fe8-49ca-a360-a05d6e34fec0",
     "target": "^https?://[^/]*zotero\\.org(:\\d+)?/.+/(items|collections|library|publications|trash|search|item-list|item-details)(/|$)",
+    "translatorType": 4
+  },
+  {
+    "path": "translators/zotero/ZoteroBib.js",
+    "label": "ZoteroBib",
+    "type": "zotero-legacy",
+    "translatorID": "b7c665ba-173c-4dea-b28e-e866580002a2",
+    "target": "^https://zbib\\.org/",
     "translatorType": 4
   }
 ]
