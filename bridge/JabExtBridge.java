@@ -4,11 +4,13 @@
 //NATIVE_IMAGE_OPTIONS --no-fallback -O2 -H:+ReportExceptionStackTraces
 //SOURCES Json.java
 //DEPS org.hisp.dhis:json-tree:1.5
+//DEPS org.tinylog:tinylog-api:2.7.0
+//DEPS org.tinylog:tinylog-impl:2.7.0
+//FILES META-INF/native-image/jabext-experimental/reflect-config.json=reflect-config.json
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.PrintStream;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -30,6 +32,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
+import org.tinylog.Logger;
 
 /// Loopback HTTP bridge that lets JabRef's `BrowserExtensionFulltextFetcher`
 /// reach the JabRef Browser Extension (experimental).
@@ -56,8 +59,6 @@ public final class JabExtBridge {
     private static final Duration FETCH_TIMEOUT = Duration.ofMinutes(5);
     private static final int MAX_NM_MESSAGE = 1 << 20;
 
-    private static final PrintStream LOG = System.err;
-
     private final ConcurrentHashMap<String, CompletableFuture<Json.NmReply>> pending = new ConcurrentHashMap<>();
     private final Object stdoutLock = new Object();
     private final OutputStream rawStdout;
@@ -69,6 +70,16 @@ public final class JabExtBridge {
     private HttpServer httpServer;
     private volatile boolean shutdownDone;
 
+    static {
+        // Configure tinylog before any Logger call. Inline config avoids the
+        // classpath-resource lookup that does not survive native-image.
+        System.setProperty("tinylog.writer", "console");
+        System.setProperty("tinylog.writer.stream", "err");
+        System.setProperty("tinylog.writer.format",
+                "{date: HH:mm:ss.SSS} [bridge] {level|min-size=5}: {message}");
+        System.setProperty("tinylog.writer.level", "info");
+    }
+
     public static void main(String[] args) {
         JabExtBridge bridge = null;
         int exitCode = 0;
@@ -76,8 +87,7 @@ public final class JabExtBridge {
             bridge = new JabExtBridge();
             bridge.run();
         } catch (Exception e) {
-            LOG.println("[bridge] fatal: " + e.getMessage());
-            e.printStackTrace(LOG);
+            Logger.error(e, "fatal");
             exitCode = 1;
         } finally {
             if (bridge != null) {
@@ -89,8 +99,9 @@ public final class JabExtBridge {
 
     private JabExtBridge() throws IOException {
         this.rawStdout = System.out;
-        // Detach Java logging from the raw stdout to keep the NM frame stream pristine.
-        System.setOut(LOG);
+        // Detach System.out from stdout to keep the native-messaging frame
+        // stream pristine; tinylog writes through System.err per properties.
+        System.setOut(System.err);
 
         this.tokenFile = ensureTokenFile();
         this.bearer = Files.readString(tokenFile, StandardCharsets.UTF_8).strip();
@@ -115,7 +126,7 @@ public final class JabExtBridge {
         try {
             Files.deleteIfExists(discoveryFile);
         } catch (IOException e) {
-            LOG.println("[bridge] failed to remove discovery file: " + e.getMessage());
+            Logger.warn(e, "failed to remove discovery file");
         }
         if (httpServer != null) {
             httpServer.stop(0);
@@ -130,7 +141,7 @@ public final class JabExtBridge {
         server.start();
         this.httpServer = server;
         int port = server.getAddress().getPort();
-        LOG.println("[bridge] http listening on 127.0.0.1:" + port);
+        Logger.info("http listening on 127.0.0.1:{}", port);
         return port;
     }
 
@@ -144,10 +155,10 @@ public final class JabExtBridge {
                 tokenFile.toAbsolutePath().toString(),
                 PROTOCOL_VERSION);
         Files.writeString(discoveryFile, json, StandardCharsets.UTF_8);
-        LOG.println("[bridge] wrote discovery file " + discoveryFile);
+        Logger.info("wrote discovery file {}", discoveryFile);
     }
 
-    // ---- HTTP handlers ----
+    // region HTTP handlers
 
     private void handleHealth(HttpExchange ex) throws IOException {
         try (ex) {
@@ -268,7 +279,9 @@ public final class JabExtBridge {
         ex.getResponseBody().write(body);
     }
 
-    // ---- Native-messaging dispatch ----
+    // endregion HTTP handlers
+
+    // region Native-messaging dispatch
 
     private void sendNmFetch(String requestId, String doi, String url) throws IOException {
         byte[] payload = Json.writeNmFetchRequest(requestId, doi, url).getBytes(StandardCharsets.UTF_8);
@@ -288,12 +301,12 @@ public final class JabExtBridge {
         byte[] lenBuf = new byte[4];
         while (true) {
             if (!readFully(in, lenBuf)) {
-                LOG.println("[bridge] stdin EOF; shutting down");
+                Logger.info("stdin EOF; shutting down");
                 break;
             }
             int len = ByteBuffer.wrap(lenBuf).order(ByteOrder.LITTLE_ENDIAN).getInt();
             if (len <= 0 || len > MAX_NM_MESSAGE) {
-                LOG.println("[bridge] invalid NM frame length: " + len);
+                Logger.warn("invalid NM frame length: {}", len);
                 break;
             }
             byte[] body = new byte[len];
@@ -303,17 +316,17 @@ public final class JabExtBridge {
             try {
                 Json.NmReply reply = Json.readNmReply(body);
                 if (reply.requestId() == null) {
-                    LOG.println("[bridge] NM message without requestId, ignored");
+                    Logger.debug("NM message without requestId, ignored");
                     continue;
                 }
                 CompletableFuture<Json.NmReply> fut = pending.get(reply.requestId());
                 if (fut != null) {
                     fut.complete(reply);
                 } else {
-                    LOG.println("[bridge] reply for unknown requestId " + reply.requestId());
+                    Logger.debug("reply for unknown requestId {}", reply.requestId());
                 }
             } catch (RuntimeException e) {
-                LOG.println("[bridge] malformed NM message: " + e.getMessage());
+                Logger.warn(e, "malformed NM message");
             }
         }
     }
@@ -330,7 +343,9 @@ public final class JabExtBridge {
         return true;
     }
 
-    // ---- Token bootstrap ----
+    // endregion Native-messaging dispatch
+
+    // region Token bootstrap
 
     private static Path ensureTokenFile() throws IOException {
         Path dir = JabRefPaths.tokenDirectory();
@@ -354,6 +369,8 @@ public final class JabExtBridge {
             // Windows path: directory under %APPDATA%\Roaming\JabRef inherits user-only ACL by default.
         }
     }
+
+    // endregion Token bootstrap
 
     private static boolean blank(String s) {
         return s == null || s.isBlank();
