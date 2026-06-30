@@ -125,6 +125,32 @@ async function getBaseUrl() {
   return `http://localhost:${port}/`;
 }
 
+// Open the jabref:// protocol handler and wait until the HTTP server becomes reachable.
+async function openJabRefAndWait(base, { timeout = 10000, interval = 1000 } = {}) {
+  // Try to navigate to the protocol URL to trigger JabRef
+  if (window.chrome && chrome.tabs && chrome.tabs.update) {
+    try {
+      await new Promise((resolve) =>
+        chrome.tabs.update({ url: "jabref://", active: false }, () => resolve()),
+      );
+    } catch (e) {
+      console.warn("chrome.tabs.update failed", e);
+    }
+  }
+
+  const start = Date.now();
+  while (Date.now() - start < timeout) {
+    try {
+      const resp = await fetch(base, { method: "GET", cache: "no-store" });
+      if (resp && (resp.ok || resp.status === 404)) return true;
+    } catch (e) {
+      // still waiting
+    }
+    await new Promise((r) => setTimeout(r, interval));
+  }
+  return false;
+}
+
 async function connectToJabRef() {
   const base = await getBaseUrl();
   if (!base) {
@@ -151,6 +177,15 @@ async function connectToJabRef() {
     console.error("HTTP connection error:", error);
     updateStatus("Disconnected", "disconnected");
     jabrefBaseUrl = null;
+    appendLog("Attempting to open JabRef via protocol handler...", "info");
+    const opened = await openJabRefAndWait(base, { timeout: 15000, interval: 1000 });
+    if (opened) {
+      appendLog("Detected JabRef after protocol handler open", "success");
+      updateStatus("Connected", "connected");
+      jabrefBaseUrl = base;
+      return true;
+    }
+    appendLog("Timed out waiting for JabRef after opening protocol handler", "error");
     return false;
   }
   return true;
