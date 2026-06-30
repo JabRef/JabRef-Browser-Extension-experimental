@@ -2,17 +2,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
-import java.util.StringJoiner;
 
 import org.hisp.dhis.jsontree.JsonObject;
 import org.hisp.dhis.jsontree.JsonValue;
 
+import static org.hisp.dhis.jsontree.Json.object;
+
 /// Wire-format helpers for the JabRef Browser-Extension Fulltext Protocol.
 ///
-/// Writers are hand-rolled with `StringJoiner` to keep the native-image
-/// binary free of serialiser reflection. Readers use json-tree's lazy
-/// projection so unknown fields are simply ignored, satisfying the
-/// protocol's forward-compatibility rule.
+/// Writers build the JSON via json-tree's typed builder so escaping and
+/// number formatting stay consistent with the readers. Readers use
+/// json-tree's lazy projection so unknown fields are simply ignored,
+/// satisfying the protocol's forward-compatibility rule.
 final class Json {
 
     private Json() {
@@ -33,55 +34,50 @@ final class Json {
     // ---- Writers ----
 
     static String writeHealth(String name, int protocolVersion) {
-        return new StringJoiner(",", "{", "}")
-                .add("\"ok\":true")
-                .add("\"name\":" + quote(name))
-                .add("\"protocolVersion\":" + protocolVersion)
-                .toString();
+        return object(o -> o
+                .addBoolean("ok", true)
+                .addString("name", name)
+                .addNumber("protocolVersion", protocolVersion))
+                .toJson();
     }
 
     static String writeFulltextResponse(String id, String path, String sourceUrl) {
-        StringJoiner j = new StringJoiner(",", "{", "}")
-                .add("\"id\":" + quote(id))
-                .add("\"path\":" + quote(path));
-        if (sourceUrl != null && !sourceUrl.isBlank()) {
-            j.add("\"sourceUrl\":" + quote(sourceUrl));
-        }
-        return j.toString();
+        return object(o -> {
+            o.addString("id", id).addString("path", path);
+            if (sourceUrl != null && !sourceUrl.isBlank()) {
+                o.addString("sourceUrl", sourceUrl);
+            }
+        }).toJson();
     }
 
     static String writeError(String code, String message) {
-        return new StringJoiner(",", "{", "}")
-                .add("\"error\":" + quote(code))
-                .add("\"message\":" + quote(message))
-                .toString();
+        return object(o -> o.addString("error", code).addString("message", message)).toJson();
     }
 
     static String writeNmFetchRequest(String requestId, String doi, String url) {
-        StringJoiner j = new StringJoiner(",", "{", "}")
-                .add("\"type\":\"fetchFulltext\"")
-                .add("\"requestId\":" + quote(requestId));
-        if (doi != null && !doi.isBlank()) {
-            j.add("\"doi\":" + quote(doi));
-        }
-        if (url != null && !url.isBlank()) {
-            j.add("\"url\":" + quote(url));
-        }
-        return j.toString();
+        return object(o -> {
+            o.addString("type", "fetchFulltext").addString("requestId", requestId);
+            if (doi != null && !doi.isBlank()) {
+                o.addString("doi", doi);
+            }
+            if (url != null && !url.isBlank()) {
+                o.addString("url", url);
+            }
+        }).toJson();
     }
 
     static String writeDiscovery(String name, String displayName, int port,
                                  String tokenFile, int protocolVersion) {
-        return new StringJoiner(",", "{", "}")
-                .add("\"name\":" + quote(name))
-                .add("\"displayName\":" + quote(displayName))
-                .add("\"port\":" + port)
-                .add("\"tokenFile\":" + quote(tokenFile))
-                .add("\"protocolVersion\":" + protocolVersion)
-                .toString();
+        return object(o -> o
+                .addString("name", name)
+                .addString("displayName", displayName)
+                .addNumber("port", port)
+                .addString("tokenFile", tokenFile)
+                .addNumber("protocolVersion", protocolVersion))
+                .toJson();
     }
 
-    // ---- Readers (json-tree) ----
+    // ---- Readers ----
 
     static FulltextRequest readFulltextRequest(InputStream in) {
         JsonObject obj = readObject(in);
@@ -111,34 +107,5 @@ final class Json {
 
     private static String optString(JsonObject obj, String name) {
         return obj.getString(name).string(null);
-    }
-
-    // ---- Quoting ----
-
-    /// RFC 8259 string escape. Control characters below 0x20 are emitted
-    /// as six-character `backslash-u-HHHH` escapes so the result is safe
-    /// to embed in any JSON context.
-    static String quote(String s) {
-        StringBuilder b = new StringBuilder(s.length() + 2).append('"');
-        for (int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            switch (c) {
-                case '"' -> b.append("\\\"");
-                case '\\' -> b.append("\\\\");
-                case '\b' -> b.append("\\b");
-                case '\f' -> b.append("\\f");
-                case '\n' -> b.append("\\n");
-                case '\r' -> b.append("\\r");
-                case '\t' -> b.append("\\t");
-                default -> {
-                    if (c < 0x20) {
-                        b.append(String.format("\\u%04x", (int) c));
-                    } else {
-                        b.append(c);
-                    }
-                }
-            }
-        }
-        return b.append('"').toString();
     }
 }
