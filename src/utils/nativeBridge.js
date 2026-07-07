@@ -52,6 +52,11 @@ export function registerHandler(type, handler) {
   handlers.set(type, handler);
 }
 
+/// Whether the native-messaging port to the bridge process is currently alive.
+export function isConnected() {
+  return port !== null;
+}
+
 /// Sends a reply/message back to the bridge process over the native port.
 export function reply(msg) {
   if (!port) {
