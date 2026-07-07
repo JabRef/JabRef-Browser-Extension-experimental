@@ -57,6 +57,7 @@ public final class JabExtBridge {
     private static final String PROVIDER_DISPLAY_NAME = "JabRef Browser Extension (experimental)";
     private static final int PROTOCOL_VERSION = 1;
     private static final Duration FETCH_TIMEOUT = Duration.ofMinutes(5);
+    private static final Duration MATHSCINET_OPEN_TIMEOUT = Duration.ofSeconds(10);
     private static final int MAX_NM_MESSAGE = 1 << 20;
 
     private final ConcurrentHashMap<String, CompletableFuture<Json.NmReply>> pending = new ConcurrentHashMap<>();
@@ -137,6 +138,7 @@ public final class JabExtBridge {
         HttpServer server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
         server.createContext("/v1/health", this::handleHealth);
         server.createContext("/v1/fulltext", this::handleFulltext);
+        server.createContext("/v1/mathscinet/open", this::handleMathSciNetOpen);
         server.setExecutor(Executors.newVirtualThreadPerTaskExecutor());
         server.start();
         this.httpServer = server;
@@ -228,6 +230,62 @@ public final class JabExtBridge {
         }
     }
 
+    private void handleMathSciNetOpen(HttpExchange ex) throws IOException {
+        try (ex) {
+            if (rejectByOrigin(ex) || rejectByBearer(ex)) {
+                return;
+            }
+            if (!"POST".equals(ex.getRequestMethod())) {
+                writeError(ex, 405, "bad-request", "Only POST is supported");
+                return;
+            }
+
+            Json.MathSciNetOpenRequest req;
+            try (InputStream in = ex.getRequestBody()) {
+                req = Json.readMathSciNetOpenRequest(in);
+            } catch (RuntimeException e) {
+                writeError(ex, 400, "bad-request", "Malformed request body");
+                return;
+            }
+            if (blank(req.mrNumber())) {
+                writeError(ex, 400, "bad-request", "mrNumber is required");
+                return;
+            }
+
+            String requestId = "r" + requestIdSeq.incrementAndGet();
+            CompletableFuture<Json.NmReply> future = new CompletableFuture<>();
+            pending.put(requestId, future);
+            try {
+                sendNmMathSciNetOpen(requestId, req.mrNumber());
+                Json.NmReply reply = future.get(MATHSCINET_OPEN_TIMEOUT.toMillis(), TimeUnit.MILLISECONDS);
+
+                if (reply.error() != null) {
+                    int status = httpStatusForError(reply.error());
+                    writeError(ex, status, reply.error(), Optional.ofNullable(reply.message()).orElse(reply.error()));
+                    return;
+                }
+                if (blank(reply.action()) || reply.tabId() == null) {
+                    writeError(ex, 500, "internal-error", "Provider returned no tab action");
+                    return;
+                }
+                byte[] body = Json.writeMathSciNetOpenResponse(reply.action(), reply.tabId())
+                                  .getBytes(StandardCharsets.UTF_8);
+                ex.getResponseHeaders().set("Content-Type", "application/json");
+                ex.sendResponseHeaders(200, body.length);
+                ex.getResponseBody().write(body);
+            } catch (TimeoutException e) {
+                writeError(ex, 504, "timeout", "Provider tab action exceeded internal timeout");
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                writeError(ex, 500, "internal-error", "Interrupted");
+            } catch (ExecutionException e) {
+                writeError(ex, 500, "internal-error", "Native-messaging dispatch failed");
+            } finally {
+                pending.remove(requestId);
+            }
+        }
+    }
+
     private static int httpStatusForError(String code) {
         return switch (code) {
             case "no-pdf-found", "no-adapter", "auth-required", "not-reachable" -> 404;
@@ -284,7 +342,15 @@ public final class JabExtBridge {
     // region Native-messaging dispatch
 
     private void sendNmFetch(String requestId, String doi, String url) throws IOException {
-        byte[] payload = Json.writeNmFetchRequest(requestId, doi, url).getBytes(StandardCharsets.UTF_8);
+        writeNmFrame(Json.writeNmFetchRequest(requestId, doi, url));
+    }
+
+    private void sendNmMathSciNetOpen(String requestId, String mrNumber) throws IOException {
+        writeNmFrame(Json.writeNmMathSciNetOpenRequest(requestId, mrNumber));
+    }
+
+    private void writeNmFrame(String json) throws IOException {
+        byte[] payload = json.getBytes(StandardCharsets.UTF_8);
         if (payload.length > MAX_NM_MESSAGE) {
             throw new IOException("NM payload exceeds 1 MiB");
         }

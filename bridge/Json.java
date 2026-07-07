@@ -25,9 +25,17 @@ final class Json {
     record FulltextRequest(String doi, String url) {
     }
 
+    /// `POST /v1/mathscinet/open` request body.
+    record MathSciNetOpenRequest(String mrNumber) {
+    }
+
     /// Native-messaging reply from the extension. Either `error` is non-null
-    /// (failure flow) or `path` is non-null (success flow).
+    /// (failure flow) or one of `path` (fulltext fetch) / `action` (MathSciNet
+    /// open) is non-null (success flow). One shape is reused for every
+    /// command so the native-messaging dispatch in JabExtBridge stays
+    /// command-agnostic; unused fields are simply null.
     record NmReply(String requestId, String id, String path, String sourceUrl,
+                   String action, Integer tabId,
                    String error, String message) {
     }
 
@@ -66,6 +74,21 @@ final class Json {
         }).toJson();
     }
 
+    static String writeNmMathSciNetOpenRequest(String requestId, String mrNumber) {
+        return object(o -> o
+                .addString("type", "openMathSciNet")
+                .addString("requestId", requestId)
+                .addString("mrNumber", mrNumber))
+                .toJson();
+    }
+
+    static String writeMathSciNetOpenResponse(String action, int tabId) {
+        return object(o -> o
+                .addString("action", action)
+                .addNumber("tabId", tabId))
+                .toJson();
+    }
+
     static String writeDiscovery(String name, String displayName, int port,
                                  String tokenFile, int protocolVersion) {
         return object(o -> o
@@ -86,6 +109,11 @@ final class Json {
                 optString(obj, "url"));
     }
 
+    static MathSciNetOpenRequest readMathSciNetOpenRequest(InputStream in) {
+        JsonObject obj = readObject(in);
+        return new MathSciNetOpenRequest(optString(obj, "mrNumber"));
+    }
+
     static NmReply readNmReply(byte[] body) {
         JsonObject obj = JsonValue.of(new String(body, StandardCharsets.UTF_8)).asObject();
         return new NmReply(
@@ -93,6 +121,8 @@ final class Json {
                 optString(obj, "id"),
                 optString(obj, "path"),
                 optString(obj, "sourceUrl"),
+                optString(obj, "action"),
+                optInt(obj, "tabId"),
                 optString(obj, "error"),
                 optString(obj, "message"));
     }
@@ -103,6 +133,10 @@ final class Json {
         } catch (IOException e) {
             throw new UncheckedIOException(e);
         }
+    }
+
+    private static Integer optInt(JsonObject obj, String name) {
+        return obj.getNumber(name).number((Integer) null);
     }
 
     private static String optString(JsonObject obj, String name) {
