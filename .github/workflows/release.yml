@@ -1,294 +1,264 @@
-name: Build and Release Browser Extension
-
 on:
+  pull_request:
   push:
-    tags:
-      - 'v*'
-  workflow_dispatch:
-
+    branches:
+      - main
+name: release
 permissions:
-  actions: write
-  contents: read
+  id-token: write
+  contents: write
   pull-requests: write
-
 jobs:
-  build:
-    name: Build Extension
-    runs-on: macos-latest
+  release-pr:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
+      - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
+        id: release
         with:
-          node-version: '24'
+          token: ${{ secrets.RELEASE_PR_TOKEN }}
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Set up Python
-        uses: actions/setup-python@v6
+      # Format changelog, workaround for https://github.com/google-github-actions/release-please-action/issues/542
+      # Taken from https://github.com/remarkablemark/release-please-extra-files-demo/blob/master/.github/workflows/release-please.yml
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        if: ${{ steps.release.outputs.pr }}
         with:
-          python-version: '3.x'
+          token: ${{ secrets.RELEASE_PR_TOKEN }}
+          fetch-depth: 0
+          ref: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
 
-      - name: Run import_and_patch_translators
-        run: python3 scripts/import_and_patch_translators.py
-
-      - name: Run tests
-        run: npm test
-
-      - name: Install web-ext
-        run: npm install -g web-ext
-
-      - name: Build extension
-        run: make all
-
-      - name: Import keychain certificate
-        uses: slidoapp/import-codesign-certs@1923310662e8682dd05b76b612b53301f431cd5d
-        with:
-          p12-file-base64: ${{ secrets.OSX_SIGNING_CERT_APPLICATION }}
-          p12-password: ${{ secrets.OSX_CERT_PWD }}
-          keychain-password: tEmPoRaRY-PaeSWD
-
-
-      - name: Sign Safari extension
-        shell: bash
+      - name: Configure Git user
+        if: ${{ steps.release.outputs.pr }}
         run: |
-          set -e
-          
-          SAFARI_DIR="dist/safari"
-          APP_NAME="JabRef Browser Extension"
-          IDENTITY="Developer ID Application: JabRef e.V. (6792V39SK3)" 
-          
-          # The app is already built by 'make all' in the previous step
-          # and it is located at $SAFARI_DIR/$APP_NAME.app as per Makefile
-          APP_PATH="$SAFARI_DIR/$APP_NAME.app"
-          echo "App path: $APP_PATH"
-          
-          # Debug: list the directory to see where the app actually is
-          echo "Listing directory..."
-          ls -la "$SAFARI_DIR"
-          
-          if [ ! -d "$APP_PATH" ]; then
-            echo "Error: App bundle not found at $APP_PATH"
-            # Try to find where it is
-            find "$SAFARI_DIR" -name "*.app" -maxdepth 2
-            exit 1
-          fi
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git --no-pager show --name-only
 
-          echo "Codesigning Safari extension..."
-          
-          # Clean up unnecessary files that can cause issues with signing and verification
-          echo "Cleaning up unnecessary files..."
-          find "$APP_PATH" -name ".DS_Store" -delete || true
-          find "$APP_PATH" -name "__pycache__" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "build" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "sign_safari.sh" -delete || true
-          find "$APP_PATH" -name "notarize_safari.sh" -delete || true
-          find "$APP_PATH" -name "import_and_patch_translators.py" -delete || true
-          find "$APP_PATH" -name "*.entitlements" -delete || true
-          find "$APP_PATH" -name "test_cache" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "test-results" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "test.js" -delete || true
-          find "$APP_PATH" -name "test.log" -delete || true
-          find "$APP_PATH" -name "eslint.config.mjs" -delete || true
-          find "$APP_PATH" -name "rollup.config.js" -delete || true
-          find "$APP_PATH" -name "package.json" -delete || true
-          find "$APP_PATH" -name "package-lock.json" -delete || true
-          find "$APP_PATH" -name "example_bib_page.html" -delete || true
-          find "$APP_PATH" -name "sample.bib" -delete || true
-          find "$APP_PATH" -name "*.md" -delete || true
-          
-          # Sign all native binaries (if any)
-          echo "Signing all native binaries..."
-          # Find and sign all Mach-O files (dylibs, .node modules, etc.)
-          find "$APP_PATH" -type f \( -name "*.dylib" -o -name "*.node" -o -name "*.so" \) -exec codesign --force --options runtime --sign "$IDENTITY" --timestamp --verbose=4 {} \;
+      - name: Format CHANGELOG.md
+        if: ${{ steps.release.outputs.pr }}
+        run: npx oxfmt CHANGELOG.md .release-please-manifest.json
 
-          # Sign the extension bundle specifically if it exists (Inside-out approach)
-          EXTENSION_PATH=$(find "$APP_PATH" -name "*.appex")
-          if [ -n "$EXTENSION_PATH" ]; then
-            echo "Signing extension bundle: $EXTENSION_PATH"
-            # We sign the extension executable specifically too just to be sure
-            EXTENSION_EXE=$(find "$EXTENSION_PATH" -path "*/Contents/MacOS/*" -type f)
-            if [ -n "$EXTENSION_EXE" ]; then
-                echo "Signing extension executable: $EXTENSION_EXE"
-                codesign --force --options runtime --entitlements "scripts/JabRef Browser Extension Extension.entitlements" --sign "$IDENTITY" --timestamp --verbose=4 "$EXTENSION_EXE"
-            fi
-            echo "Signing extension bundle: $EXTENSION_PATH"
-            codesign --force --options runtime --entitlements "scripts/JabRef Browser Extension Extension.entitlements" --sign "$IDENTITY" --timestamp --verbose=4 "$EXTENSION_PATH"
-          fi
+      - name: Commit
+        if: ${{ steps.release.outputs.pr }}
+        run: |
+          git add CHANGELOG.md .release-please-manifest.json
+          git commit -m 'chore: Format CHANGELOG.md' --no-verify
 
-          # Sign the main app executable specifically
-          echo "Signing main app executable..."
-          MAIN_EXE="$APP_PATH/Contents/MacOS/$APP_NAME"
-          if [ -f "$MAIN_EXE" ]; then
-            codesign --force --options runtime --entitlements "scripts/JabRef Browser Extension.entitlements" --sign "$IDENTITY" --timestamp --verbose=4 "$MAIN_EXE"
-          fi
+      - name: Push changes
+        if: ${{ steps.release.outputs.pr }}
+        uses: ad-m/github-push-action@881a6320fdb16eb5318c5054f31c218aec2b324c # v1.3.0
+        with:
+          github_token: ${{ secrets.RELEASE_PR_TOKEN }}
+          branch: ${{ fromJson(steps.release.outputs.pr).headBranchName }}
 
-          # Sign the main app
-          echo "Signing app: $APP_PATH"
-          codesign --force --options runtime --entitlements "scripts/JabRef Browser Extension.entitlements" --sign "$IDENTITY" --timestamp --verbose=4 "$APP_PATH" || {
-            echo "Failed to sign app."
-            exit 1
-          }
-          
-          echo "Verifying signature..."
-          if ! codesign -vvv --deep --strict "$APP_PATH"; then
-            echo "Deep verification failed. This is sometimes expected with Swift frameworks. Trying strict verification without --deep..."
-            if ! codesign -vvv --strict "$APP_PATH"; then
-              echo "Verification failed even without --deep."
-              ls -la "$APP_PATH"
-              ls -la "$APP_PATH/Contents"
-              exit 1
-            fi
-          fi
-          
-          echo "Stapling notarization ticket (best effort before upload)..."
-          # We don't have the ticket yet here, but local script does it.
-          # In CI, we staple in the next job after notarization.
-          
-          echo "Done! Signed app is at $APP_PATH"
-          
-          # Zip the app for better preservation of permissions and easier download
+  package:
+    name: Package Safari
+    runs-on: macos-latest
+    needs: [release-pr]
+    if: ${{ (github.event_name == 'pull_request' || needs.release-pr.outputs.release_created == 'true') && always() }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          submodules: true
+
+      - name: Setup build environment
+        uses: ./.github/actions/setup-browser-extension
+
+      - name: Build Safari app
+        run: make safari
+
+      - name: Archive Safari app
+        run: |
           cd dist/safari
           ditto -c -k --keepParent "JabRef Browser Extension.app" "JabRef Browser Extension.app.zip"
-          cd ../..
 
-      - name: Upload Chrome Artifact
-        uses: actions/upload-artifact@v7
+      - name: Upload Safari project artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: chrome-extension
-          path: dist/chrome/jabref-browser-extension-chrome.zip
+          name: safari-project
+          path: dist/safari
 
-      - name: Upload Firefox Artifact
-        uses: actions/upload-artifact@v7
+      - name: Upload Safari app artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: firefox-extension
-          path: dist/firefox/jabref-browser-extension-firefox.xpi
+          name: safari-unsigned-app
+          path: dist/safari/JabRef Browser Extension.app.zip
 
-      - name: Upload Signed Safari App (Internal)
-        uses: actions/upload-artifact@v7
+      - name: Setup macOS key chain
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: slidoapp/import-codesign-certs@1923310662e8682dd05b76b612b53301f431cd5d
+        with:
+          p12-file-base64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          p12-password: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          keychain-password: tEmPoRaRY-PaeSWD
+
+      - name: Setup macOS key chain for app id cert
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: slidoapp/import-codesign-certs@1923310662e8682dd05b76b612b53301f431cd5d
+        with:
+          p12-file-base64: ${{ secrets.APPLE_DEVELOPER_ID_CERTIFICATE_BASE64 }}
+          p12-password: ${{ secrets.APPLE_DEVELOPER_ID_CERTIFICATE_PASSWORD }}
+          create-keychain: false
+          keychain-password: tEmPoRaRY-PaeSWD
+
+      - name: Sign Safari app for direct distribution
+        if: ${{ github.event_name != 'pull_request' }}
+        env:
+          IDENTITY: ${{ secrets.SAFARI_DEVELOPER_ID_SIGNING_IDENTITY }}
+        run: pnpm sign:safari-local
+
+      - name: Upload signed Safari app artifact
+        if: ${{ github.event_name != 'pull_request' }}
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: safari-signed-app
-          path: dist/safari/JabRef Browser Extension.app.zip
-          retention-days: 1
-
+          path: dist/safari/JabRef Browser Extension.app
 
   notarize-safari:
-    name: Notarize Safari Extension
-    needs: build
+    name: Notarize Safari
     runs-on: macos-latest
+    needs: [release-pr, package]
+    if: ${{ github.event_name != 'pull_request' && needs.release-pr.outputs.release_created == 'true' }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Download Signed Safari App
-        uses: actions/download-artifact@v8
+      - name: Download signed Safari app artifact
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v5.0.0
         with:
           name: safari-signed-app
           path: dist/safari
 
-      - name: Unzip Signed Safari App
+      - name: Notarize Safari app for direct distribution
+        shell: bash
+        env:
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
         run: |
-          cd dist/safari
-          ditto -x -k "JabRef Browser Extension.app.zip" .
-          rm "JabRef Browser Extension.app.zip"
-          cd ../..
+          app_path='dist/safari/JabRef Browser Extension.app'
+          archive_path='dist/safari/JabRef Browser Extension.zip'
+          final_zip='dist/safari/jabref-browser-extension-safari.zip'
+          key_path="$RUNNER_TEMP/AuthKey_${APPLE_API_KEY_ID}.p8"
 
+          echo "$APPLE_API_KEY" | base64 --decode > "$key_path"
+          chmod 600 "$key_path"
 
-      - name: Notarize Safari extension
-        run: |
-          echo "Checking app structure..."
-          # Clean up any leftover files if they reappeared
-          APP_PATH="dist/safari/JabRef Browser Extension.app"
-          find "$APP_PATH" -name ".DS_Store" -delete || true
-          find "$APP_PATH" -name "__pycache__" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "build" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "sign_safari.sh" -delete || true
-          find "$APP_PATH" -name "notarize_safari.sh" -delete || true
-          find "$APP_PATH" -name "import_and_patch_translators.py" -delete || true
-          find "$APP_PATH" -name "*.entitlements" -delete || true
-          find "$APP_PATH" -name "test_cache" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "test-results" -type d -exec rm -rf {} + || true
-          find "$APP_PATH" -name "test.js" -delete || true
-          find "$APP_PATH" -name "test.log" -delete || true
-          find "$APP_PATH" -name "eslint.config.mjs" -delete || true
-          find "$APP_PATH" -name "rollup.config.js" -delete || true
-          find "$APP_PATH" -name "package.json" -delete || true
-          find "$APP_PATH" -name "package-lock.json" -delete || true
-          find "$APP_PATH" -name "example_bib_page.html" -delete || true
-          find "$APP_PATH" -name "sample.bib" -delete || true
-          find "$APP_PATH" -name "*.md" -delete || true
-          
-          ls -R dist/safari
-          
-          ARCHIVE_PATH="dist/safari/JabRef Browser Extension.zip"
+          codesign -vvv --deep --strict "$app_path"
+          rm -f "$archive_path" "$final_zip"
+          ditto -c -k --keepParent "$app_path" "$archive_path"
 
-          echo "Verifying signature before zipping..."
-          if ! codesign -vvv --deep --strict "$APP_PATH"; then
-            echo "Deep verification failed, trying strict verification without --deep..."
-            codesign -vvv --strict "$APP_PATH"
-          fi
+          xcrun notarytool submit "$archive_path" \
+            --key "$key_path" \
+            --key-id "$APPLE_API_KEY_ID" \
+            --issuer "$APPLE_API_ISSUER" \
+            --wait
 
-          echo "Zipping app for notarization using ditto..."
-          ditto -c -k --keepParent "$APP_PATH" "$ARCHIVE_PATH"
-          
-          if [ ! -f "$ARCHIVE_PATH" ]; then
-            echo "Error: Zip archive not created at $ARCHIVE_PATH"
-            exit 1
-          fi
-          
-          echo "Submitting for notarization..."
-          xcrun notarytool store-credentials "notarytool-profile" --apple-id "vorstand@jabref.org" --team-id "6792V39SK3" --password "${{ secrets.OSX_NOTARIZATION_APP_PWD }}"
-          xcrun notarytool submit "$ARCHIVE_PATH" --keychain-profile "notarytool-profile" --wait
-          
-          echo "Stapling notarization ticket..."
-          xcrun stapler staple "$APP_PATH"
-          
-          echo "Re-zipping the notarized app for distribution using ditto..."
-          # Ensure the final zip for the user has the correct name
-          FINAL_ZIP="dist/safari/jabref-browser-extension-safari.zip"
-          ditto -c -k --keepParent "$APP_PATH" "$FINAL_ZIP"
-          
-          echo "Done! Notarized app is at $APP_PATH and zip is at $FINAL_ZIP"
-          
-          # Create a zip of the .app for easier testing
-          cd dist/safari
-          ditto -c -k --keepParent "JabRef Browser Extension.app" "JabRef Browser Extension.app.zip"
-          cd ../..
+          xcrun stapler staple "$app_path"
+          ditto -c -k --keepParent "$app_path" "$final_zip"
 
-
-      - name: Upload Final Notarized Safari App
-        uses: actions/upload-artifact@v7
+      - name: Upload signed Safari distribution artifact
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
-          name: safari-notarized-app
-          path: dist/safari/JabRef Browser Extension.app.zip
-
-      - name: Upload Safari Artifact
-        uses: actions/upload-artifact@v7
-        with:
-          name: safari-extension
+          name: safari-signed-distribution
           path: dist/safari/jabref-browser-extension-safari.zip
 
-  release:
-    name: Create GitHub Release
-    needs: [ build, notarize-safari ]
-    if: github.event_name != 'workflow_dispatch' && always() && (needs.build.result == 'success') && (needs.notarize-safari.result == 'success' || needs.notarize-safari.result == 'skipped')
-    runs-on: ubuntu-latest
+  publish:
+    name: Publish (${{ matrix.target }})
+    runs-on: ${{ matrix.runs-on }}
     permissions:
       contents: write
+      pull-requests: write
+      id-token: write
+    needs: [release-pr, package, notarize-safari]
+    if: ${{ (github.event_name == 'pull_request' || needs.release-pr.outputs.release_created == 'true') && always() }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - target: browser-stores
+            runs-on: ubuntu-latest
+          - target: safari
+            runs-on: macos-26
+          - target: safari-distribution
+            runs-on: ubuntu-latest
     steps:
-      - name: Download all artifacts
-        uses: actions/download-artifact@v8
+      - name: Checkout
+        if: ${{ matrix.target == 'browser-stores' }}
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          path: artifacts
+          submodules: true
 
-      - name: Create Release
-        uses: softprops/action-gh-release@v3
+      - name: Setup build environment
+        if: ${{ matrix.target == 'browser-stores' }}
+        uses: ./.github/actions/setup-browser-extension
+
+      - name: Build browser store packages
+        if: ${{ matrix.target == 'browser-stores' }}
+        run: |
+          pnpm zip
+          pnpm zip:firefox
+
+      - name: Checkout
+        if: ${{ matrix.target == 'safari' && github.event_name != 'pull_request' }}
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
-          files: |
-            artifacts/chrome-extension/jabref-browser-extension-chrome.zip
-            artifacts/firefox-extension/jabref-browser-extension-firefox.xpi
-            artifacts/safari-extension/jabref-browser-extension-safari.zip
-          generate_release_notes: true
+          submodules: true
+
+      - name: Setup build environment
+        if: ${{ matrix.target == 'safari' && github.event_name != 'pull_request' }}
+        uses: ./.github/actions/setup-browser-extension
+
+      - name: Download signed Safari distribution artifact
+        if: ${{ matrix.target == 'safari-distribution' && github.event_name != 'pull_request' }}
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v5.0.0
+        with:
+          name: safari-signed-distribution
+          path: dist/safari
+
+      - name: Submit to Firefox Add-ons
+        if: ${{ matrix.target == 'browser-stores' }}
+        run: |
+          pnpm wxt submit \
+            ${{ github.event_name == 'pull_request' && '--dry-run' || '' }} \
+            --firefox-zip .output/*-firefox.zip --firefox-sources-zip .output/*-sources.zip
+
+        #--chrome-zip .output/*-chrome.zip \
+        #--edge-zip .output/{your-extension}-{version}-chrome.zip
+        env:
+          #CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+          #CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          #CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          #CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+          FIREFOX_EXTENSION_ID: "@jabfox"
+          FIREFOX_JWT_ISSUER: ${{ secrets.FIREFOX_JWT_ISSUER }}
+          FIREFOX_JWT_SECRET: ${{ secrets.FIREFOX_JWT_SECRET }}
+
+      - name: Build Safari app
+        if: ${{ matrix.target == 'safari' && github.event_name != 'pull_request' }}
+        run: make safari
+
+      - name: Upload Safari to App Store Connect
+        if: ${{ matrix.target == 'safari' && github.event_name != 'pull_request' }}
+        uses: rxliuli/safari-webext-publish-action@624701331ecbeb38464a09d3cac6d246b6efb006
+        with:
+          project-path: "dist/safari"
+          bundle-identifier: "org.jabref.JabRef-Browser-Extension"
+          team-id: ${{ secrets.APPLE_TEAM_ID }}
+          app-signing-identity: ${{ secrets.SAFARI_APP_SIGNING_IDENTITY }}
+          installer-signing-identity: ${{ secrets.SAFARI_INSTALLER_SIGNING_IDENTITY }}
+        env:
+          APPLE_CERTIFICATE_BASE64: ${{ secrets.APPLE_CERTIFICATE_BASE64 }}
+          APPLE_CERTIFICATE_PASSWORD: ${{ secrets.APPLE_CERTIFICATE_PASSWORD }}
+          APPLE_MACOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_MACOS_PROVISIONING_PROFILE_BASE64 }}
+          APPLE_MACOS_EXTENSION_PROVISIONING_PROFILE_BASE64: ${{ secrets.APPLE_MACOS_EXTENSION_PROVISIONING_PROFILE_BASE64 }}
+          APPLE_API_KEY: ${{ secrets.APPLE_API_KEY }}
+          APPLE_API_KEY_ID: ${{ secrets.APPLE_API_KEY_ID }}
+          APPLE_API_ISSUER: ${{ secrets.APPLE_API_ISSUER }}
+
+      - name: Publish Safari distribution artifact
+        if: ${{ matrix.target == 'safari-distribution' && github.event_name != 'pull_request' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release upload "${{ needs.release-pr.outputs.tag_name }}" dist/safari/jabref-browser-extension-safari.zip --clobber
