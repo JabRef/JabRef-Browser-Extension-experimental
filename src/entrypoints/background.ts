@@ -9,6 +9,19 @@ export default defineBackground({
     var tabInfo = new Map();
 
     /*
+    Boot the fulltext native-messaging bridge. The Java bridge process
+    (bridge/JabExtBridge.java) hosts the loopback HTTP server JabRef talks to.
+    main() runs again whenever the service worker restarts, so the bridge
+    reconnects automatically; startFulltextBridge no-ops while the port is
+    already alive.
+*/
+    try {
+      startFulltextBridge();
+    } catch (e) {
+      console.debug("[background] fulltext bridge unavailable:", e);
+    }
+
+    /*
     Show/hide import button for all tabs (when add-on is loaded).
     */
     browser.tabs.query({}).then((tabs) => {
