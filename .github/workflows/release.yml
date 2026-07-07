@@ -14,6 +14,7 @@ jobs:
     if: github.event_name == 'push'
     outputs:
       release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         id: release
@@ -159,3 +160,82 @@ jobs:
             jabref-experimental-chrome.zip \
             jabref-experimental-firefox.zip \
             --repo "$GITHUB_REPOSITORY" --clobber
+
+  # Native-image builds of the fulltext bridge (bridge/README.md). Runs only
+  # when release-please created a release; PR-level validation is covered by
+  # the cheap JVM smoke job in test.yml.
+  build-bridge:
+    name: Build bridge (${{ matrix.os_label }})
+    needs: [release-pr]
+    if: ${{ needs.release-pr.outputs.release_created == 'true' && always() }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - runner: windows-latest
+            os_label: windows_x86_64
+            artifact: jabext-bridge_windows_x86_64.exe
+          - runner: ubuntu-latest
+            os_label: linux_x86_64
+            artifact: jabext-bridge_linux_x86_64
+          - runner: macos-13
+            os_label: macos_x86_64
+            artifact: jabext-bridge_macos_x86_64
+          - runner: macos-latest
+            os_label: macos_aarch64
+            artifact: jabext-bridge_macos_aarch64
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Setup GraalVM
+        uses: graalvm/setup-graalvm@186d0493a2df5eb62df5ecc498883d18fd58c303 # v1
+        with:
+          java-version: "25"
+          distribution: "graalvm-community"
+
+      - name: Setup JBang
+        uses: jbangdev/setup-jbang@2b1b465a7b75f4222b81426f23a01e013aa7b95c # v0.1.1
+
+      - name: Build native bridge
+        shell: bash
+        working-directory: bridge
+        run: |
+          mkdir -p build
+          # Windows GraalVM CE ships native-image under lib/svm/bin; stage it.
+          if [[ "$RUNNER_OS" == "Windows" ]] && [[ ! -f "$JAVA_HOME/bin/native-image.exe" ]] && [[ -f "$JAVA_HOME/lib/svm/bin/native-image.exe" ]]; then
+            cp "$JAVA_HOME/lib/svm/bin/native-image.exe" "$JAVA_HOME/bin/native-image.exe"
+          fi
+          jbang export native --force -O "build/${{ matrix.artifact }}" JabExtBridge.java
+
+      - name: Upload bridge artifact
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: ${{ matrix.artifact }}
+          path: bridge/build/${{ matrix.artifact }}
+
+  attach-bridge:
+    name: Attach bridge binaries to release
+    needs: [release-pr, build-bridge]
+    if: ${{ needs.release-pr.outputs.release_created == 'true' && needs.build-bridge.result == 'success' && always() }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download bridge artifacts
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8
+        with:
+          pattern: jabext-bridge_*
+          path: artifacts
+
+      - name: Upload to GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ needs.release-pr.outputs.tag_name }}" \
+            artifacts/jabext-bridge_windows_x86_64.exe/jabext-bridge_windows_x86_64.exe \
+            artifacts/jabext-bridge_linux_x86_64/jabext-bridge_linux_x86_64 \
+            artifacts/jabext-bridge_macos_x86_64/jabext-bridge_macos_x86_64 \
+            artifacts/jabext-bridge_macos_aarch64/jabext-bridge_macos_aarch64 \
+            --repo "${{ github.repository }}" --clobber
