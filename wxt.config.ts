@@ -47,6 +47,7 @@ export default defineConfig({
       "tabs",
       "storage",
       "nativeMessaging",
+      "downloads",
       "offscreen",
       "webRequest",
       "declarativeNetRequest",
