@@ -16,43 +16,13 @@
 // Failures are reported as protocol error codes (no-pdf-found, not-reachable,
 // no-adapter, timeout, internal-error) so the bridge can map them to HTTP.
 
-const HOST_NAME = "jabext_bridge";
+import { registerHandler, reply } from "./nativeBridge.js";
+
 const TAB_TIMEOUT_MS = 60_000;
 const DOWNLOAD_SUBDIR = "jabref-fulltext";
 
-let port = null;
-
-function connect() {
-  try {
-    port = browser.runtime.connectNative(HOST_NAME);
-  } catch (e) {
-    console.warn("[fulltext-bridge] connectNative failed:", e);
-    port = null;
-    return;
-  }
-  port.onMessage.addListener(onMessage);
-  port.onDisconnect.addListener(() => {
-    const err = browser.runtime.lastError;
-    console.debug("[fulltext-bridge] native port disconnected", err && err.message);
-    port = null;
-  });
-  console.debug("[fulltext-bridge] connected to native host", HOST_NAME);
-}
-
-function reply(msg) {
-  if (!port) {
-    console.warn("[fulltext-bridge] reply dropped (no port):", msg);
-    return;
-  }
-  try {
-    port.postMessage(msg);
-  } catch (e) {
-    console.warn("[fulltext-bridge] postMessage failed:", e);
-  }
-}
-
 function onMessage(msg) {
-  if (!msg || msg.type !== "fetchFulltext" || !msg.requestId) {
+  if (!msg || !msg.requestId) {
     return;
   }
   handleFetch(msg).catch((err) => {
@@ -198,6 +168,5 @@ async function downloadPdf(pdfUrl, requestId) {
 }
 
 export function startFulltextBridge() {
-  if (port) return;
-  connect();
+  registerHandler("fetchFulltext", onMessage);
 }
