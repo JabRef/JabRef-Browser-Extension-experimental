@@ -1,21 +1,57 @@
 {
-  "name": "jabref-browser-extension",
-  "description": "Tests for JabRef Connector Extension",
+  "name": "jabrefbrowserextension",
+  "version": "3.2.2",
+  "description": "Browser extension for users of the bibliographic reference manager [JabRef](https://www.jabref.org/). It automatically identifies and extracts bibliographic information on websites and sends them to JabRef with one click.",
+  "keywords": [
+    "JabRef",
+    "bibliographic information extraction",
+    "collect references",
+    "reference management"
+  ],
+  "homepage": "https://github.com/JabRef/JabRef-Browser-Extension#readme",
+  "bugs": {
+    "url": "https://github.com/JabRef/JabRef-Browser-Extension/issues"
+  },
+  "license": "AGPL-3.0-or-later",
+  "author": "JabRef",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JabRef/JabRef-Browser-Extension.git"
+  },
+  "type": "module",
   "scripts": {
-    "lint": "eslint . --ignore-pattern 'translators/*' --ignore-pattern 'sources/vendor/linkedom.js' --ignore-pattern 'dist/*'",
-    "test": "node test.js arXiv.org.js",
-    "bundle-linkedom": "rollup -c"
+    "dev": "wxt",
+    "dev:firefox": "wxt -b firefox",
+    "dev:chrome": "wxt -b chrome",
+    "dev:opera": "wxt -b opera",
+    "dev:edge": "wxt -b edge",
+    "build": "wxt build",
+    "build:firefox": "wxt build -b firefox",
+    "zip": "wxt zip",
+    "zip:firefox": "wxt zip -b firefox",
+    "compile": "vue-tsc --noEmit",
+    "lint": "pnpm lint:oxlint && pnpm lint:oxfmt",
+    "lint:oxlint": "oxlint",
+    "lint:oxfmt": "oxfmt --check",
+    "test": "vitest run",
+    "test:legacy": "node test.js arXiv.org.js",
+    "postinstall": "wxt prepare"
   },
   "dependencies": {
-    "jsdom": "^29.1.1",
-    "linkedom": "^0.18.12"
+    "vue": "3.5.39"
   },
   "devDependencies": {
-    "@eslint/js": "^10.0.1",
-    "@rollup/plugin-commonjs": "^29.0.3",
-    "@rollup/plugin-node-resolve": "^16.0.0",
-    "eslint": "^10.6.0",
-    "globals": "^17.7.0",
-    "rollup": "^4.62.2"
-  }
+    "@tailwindcss/vite": "4.3.0",
+    "@wxt-dev/module-vue": "1.0.3",
+    "globals": "17.6.0",
+    "jsdom": "29.1.1",
+    "oxfmt": "0.53.0",
+    "oxlint": "1.68.0",
+    "tailwindcss": "4.3.0",
+    "typescript": "6.0.3",
+    "vitest": "4.1.9",
+    "vue-tsc": "3.3.6",
+    "wxt": "0.20.27"
+  },
+  "packageManager": "pnpm@10.34.1"
 }
