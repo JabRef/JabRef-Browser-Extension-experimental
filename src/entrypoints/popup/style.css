@@ -48,7 +48,8 @@ h1 {
   margin: 0 0 8px 0;
 }
 
-.connection-section p {
+.connection-section p,
+.bridge-status-section p {
   margin: 3px 0px;
 }
 

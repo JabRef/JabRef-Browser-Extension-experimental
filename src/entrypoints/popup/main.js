@@ -69,6 +69,32 @@ addon.port.on("updateProgress", function onUpdateProgress(item) {
 });
 */
 
+// Query and render the native-messaging bridge status (separate from the
+// JabRef HTTP connection): whether the background currently holds a live
+// connectNative() port, and the most recent MathSciNet tab sync.
+async function updateBridgeStatus() {
+  const bridgeStatusEl = document.getElementById("bridge-status");
+  const lastMathSciNetEl = document.getElementById("last-mathscinet");
+  try {
+    const resp = await browser.runtime.sendMessage({ type: "getBridgeStatus" });
+    if (!resp || !resp.ok) throw new Error("no response from background");
+
+    bridgeStatusEl.textContent = resp.connected ? "Connected" : "Disconnected";
+    bridgeStatusEl.className = resp.connected ? "status-connected" : "status-disconnected";
+
+    if (resp.lastMathSciNet) {
+      const { mrNumber, action, timestamp } = resp.lastMathSciNet;
+      const when = new Date(timestamp).toLocaleTimeString();
+      lastMathSciNetEl.textContent = `Last MathSciNet: MR ${mrNumber} (${action} at ${when})`;
+      lastMathSciNetEl.style.display = "block";
+    }
+  } catch (e) {
+    bridgeStatusEl.textContent = "Unavailable";
+    bridgeStatusEl.className = "status-disconnected";
+    console.warn("Failed to query bridge status", e);
+  }
+}
+
 async function onPopupOpened() {
   try {
     appendLog("Popup opened, starting translator run", "info");
@@ -107,6 +133,10 @@ function appendLog(text) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   console.log("JabRef: Popup opened");
+
+  // Independent of the translator run below, so it renders even when that
+  // fails.
+  updateBridgeStatus();
 
   // Run translators for the active tab
   onPopupOpened();

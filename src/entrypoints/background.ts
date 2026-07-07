@@ -19,6 +19,7 @@ export default defineBackground({
 */
     try {
       startFulltextBridge();
+      startMathSciNetBridge();
       startNativeBridge();
     } catch (e) {
       console.debug("[background] native bridge unavailable:", e);
@@ -357,7 +358,16 @@ export default defineBackground({
 
     browser.runtime.onMessage.addListener(async function (message, sender, _sendResponse) {
       try {
-        if (message.type === "popupOpened") {
+        if (message.type === "getBridgeStatus") {
+          // Popup status display: native-messaging port state plus the most
+          // recent MathSciNet tab sync (independent of the JabRef HTTP
+          // connection).
+          return {
+            ok: true,
+            connected: isConnected(),
+            lastMathSciNet: getLastSync(),
+          };
+        } else if (message.type === "popupOpened") {
           // The popup opened, i.e. the user clicked on the page action button
           console.log("JabRef: Popup opened confirmed");
           const tabs = await browser.tabs.query({
