@@ -15,7 +15,8 @@
 
 [CmdletBinding()]
 param(
-  [string] $BridgePath
+  [string] $BridgePath,
+  [string] $Download
 )
 
 $ErrorActionPreference = "Stop"
@@ -28,8 +29,27 @@ if (-not $BridgePath) {
   $BridgePath = Join-Path $here "..\build\jabext-bridge.exe"
 }
 
+if ($Download) {
+  $asset = "jabext-bridge_windows_x86_64.exe"
+  $cacheDir = Join-Path $env:LOCALAPPDATA "jabext-bridge\cache\$Download"
+  New-Item -ItemType Directory -Force -Path $cacheDir | Out-Null
+  $cachedExe = Join-Path $cacheDir $asset
+  if (-not (Test-Path -LiteralPath $cachedExe)) {
+    if ($Download -eq "latest") {
+      $api = Invoke-RestMethod -Uri "https://api.github.com/repos/JabRef/JabRef-Browser-Extension-experimental/releases/latest"
+      $tag = $api.tag_name
+    } else {
+      $tag = $Download
+    }
+    $url = "https://github.com/JabRef/JabRef-Browser-Extension-experimental/releases/download/$tag/$asset"
+    Write-Host "[install] downloading $url"
+    Invoke-WebRequest -Uri $url -OutFile $cachedExe -UseBasicParsing
+  }
+  $BridgePath = $cachedExe
+}
+
 if (-not (Test-Path -LiteralPath $BridgePath)) {
-  throw "Bridge binary missing at $BridgePath. Run 'bridge/build.sh' first."
+  throw "Bridge binary missing at $BridgePath. Run 'bridge/build.sh' or pass -Download <version>."
 }
 
 $bridgeAbs = (Resolve-Path -LiteralPath $BridgePath).Path

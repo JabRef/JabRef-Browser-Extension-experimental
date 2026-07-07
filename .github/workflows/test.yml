@@ -31,3 +31,46 @@ jobs:
 
       - name: Run tests
         run: pnpm test
+
+  bridge-smoke:
+    name: Bridge smoke (JVM mode)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: Setup Java
+        uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
+        with:
+          java-version: "25"
+          distribution: "temurin"
+
+      - name: Setup JBang
+        uses: jbangdev/setup-jbang@2b1b465a7b75f4222b81426f23a01e013aa7b95c # v0.1.1
+
+      - name: JBang build (JVM, no native-image)
+        working-directory: bridge
+        shell: bash
+        run: |
+          mkdir -p build
+          jbang export portable --force -O build/jabext-bridge.jar JabExtBridge.java
+
+      - name: Smoke /v1/health
+        working-directory: bridge
+        shell: bash
+        run: |
+          mkfifo keepalive.fifo
+          ( tail -f /dev/null > keepalive.fifo & )
+          java -jar build/jabext-bridge.jar < keepalive.fifo > stdout.log 2> stderr.log &
+          BRIDGE_PID=$!
+          sleep 3
+          cat stderr.log
+          PORT=$(grep -oP 'listening on 127\.0\.0\.1:\K\d+' stderr.log)
+          if [ -z "$PORT" ]; then
+            echo "bridge failed to start" >&2
+            exit 1
+          fi
+          BODY=$(curl -s "http://127.0.0.1:$PORT/v1/health")
+          echo "health: $BODY"
+          echo "$BODY" | grep -q '"ok":true' || { echo "health failed" >&2; exit 1; }
+          kill $BRIDGE_PID || true
