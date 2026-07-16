@@ -1,0 +1,47 @@
+# This repo is a "semantic" fork of JabRef/JabRef-Browser-Extension, not a
+# GitHub fork, so there is no Sync-fork button. main is a pure fast-forward
+# mirror of upstream main; experimental = main + the not-yet-upstreamed delta.
+#
+# On merge conflict this job fails loudly - resolve by merging origin/main
+# into experimental manually. If a sync brings workflow-file changes, the
+# push needs RELEASE_PR_TOKEN to carry the `workflow` scope.
+name: Sync upstream
+
+on:
+  schedule:
+    - cron: "23 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout experimental
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+        with:
+          ref: experimental
+          fetch-depth: 0
+          # PAT instead of github.token so the pushes trigger the test,
+          # lint and release workflows on experimental.
+          token: ${{ secrets.RELEASE_PR_TOKEN }}
+
+      - name: Fast-forward main from upstream
+        run: |
+          git fetch https://github.com/JabRef/JabRef-Browser-Extension.git main
+          # Plain push refuses non-fast-forward, keeping main a pure mirror.
+          git push origin FETCH_HEAD:refs/heads/main
+
+      - name: Merge main into experimental
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "experimental already contains main - nothing to merge"
+            exit 0
+          fi
+          git merge --no-edit origin/main
+          git push origin experimental
