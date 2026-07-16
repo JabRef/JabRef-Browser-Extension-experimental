@@ -28,6 +28,13 @@ Once the JabRef browser extension has extracted the references and downloaded th
 You might want to configure JabRef so that new entries are always imported in an already opened instance of JabRef.
 For this, activate "Remote operation" under the Network tab in the JabRef Preferences.
 
+## Architecture
+
+How JabRef and this extension interact is specified in JabRef's requirements docs:
+
+- [Browser-Extension Fulltext Protocol](https://github.com/JabRef/jabref/blob/main/docs/requirements/browser-extension-fulltext.md) (`req~bxf.*`) — JabRef fetches full-text PDFs through the browser. The provider half lives in [`bridge/`](bridge/README.md), a small native-messaging companion process.
+- [MathSciNet sync](https://github.com/JabRef/jabref/blob/main/docs/requirements/mathscinet.md) (`req~mathscinet.sync.*`) — JabRef opens or focuses a MathSciNet browser tab for the current entry, via the same bridge.
+
 ## About this Add-On
 
 Internally, this browser extension uses the magic of Zotero's site translators.
