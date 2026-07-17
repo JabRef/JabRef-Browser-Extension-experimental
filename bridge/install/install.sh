@@ -11,6 +11,21 @@
 
 set -euo pipefail
 
+case "$(uname -s)" in
+  MINGW*|MSYS*|CYGWIN*)
+    echo "error: this is the Linux installer. Windows registers the" >&2
+    echo "native-messaging host under HKCU, not in a dotfile dir." >&2
+    echo "Run the PowerShell installer instead:" >&2
+    echo "  pwsh bridge/install/install.ps1" >&2
+    exit 1
+    ;;
+  Darwin)
+    echo "error: this is the Linux installer. On macOS run:" >&2
+    echo "  sh bridge/install/install.command" >&2
+    exit 1
+    ;;
+esac
+
 here="$(cd "$(dirname "$0")" && pwd)"
 repo="$(cd "$here/.." && pwd)"
 
