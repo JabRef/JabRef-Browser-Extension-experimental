@@ -24,12 +24,14 @@ Now just follow the typical steps to [contribute code](https://guides.github.com
 
 ## Running in your regular Firefox (with your logins)
 
-`pnpm dev:firefox` starts Firefox with a fresh, throwaway profile — none of your logins or cookies. To test against sites where you are signed in (e.g. paywalled PDFs), side-load a build into your normal Firefox profile instead:
+`pnpm dev:firefox` launches Firefox with a fresh, throwaway profile — none of your logins or cookies. To test against sites where you are signed in (e.g. paywalled PDFs), side-load the build into your own Firefox profile instead:
 
-1. Build the Firefox target: `pnpm build:firefox` (output: `.output/firefox-mv3/`).
-2. Open `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…** → select `.output/firefox-mv3/manifest.json`.
+1. Run `pnpm dev:firefox` and leave it running (ignore the throwaway window it opens). It builds to `.output/firefox-mv3-dev/` and rebuilds on save.
+2. In your normal Firefox, open `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…** → select `.output/firefox-mv3-dev/manifest.json`.
 
-This loads into your running Firefox with your real profile. After each rebuild, click **Reload** on the add-on card. Temporary add-ons are removed when Firefox restarts.
+This loads into your running Firefox with your real profile, and WXT's auto-reload refreshes it on save. Temporary add-ons are removed when Firefox restarts.
+
+For a static build (no auto-reload), run `pnpm build:firefox` and load `.output/firefox-mv3/manifest.json` the same way, clicking **Reload** on the add-on card after each rebuild.
 
 To keep it installed across restarts, build a package with `pnpm zip:firefox` (`.output/*-firefox.zip`) and install it in Firefox Developer Edition / Nightly / ESR after setting `xpinstall.signatures.required = false` in `about:config` (`about:addons` → gear → **Install Add-on From File…**). Release Firefox refuses unsigned add-ons.
 
