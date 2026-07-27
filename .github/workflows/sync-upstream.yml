@@ -1,19 +1,40 @@
 # This repo is a "semantic" fork of JabRef/JabRef-Browser-Extension, not a
 # GitHub fork, so there is no Sync-fork button. main is a pure fast-forward
-# mirror of upstream main; experimental = main + the not-yet-upstreamed delta.
+# mirror of upstream main; experimental = main + the PRs listed below.
 #
-# On merge conflict this job fails loudly - resolve by merging origin/main
-# into experimental manually. If a sync brings workflow-file changes, the
-# push needs RELEASE_PR_TOKEN to carry the `workflow` scope.
+# A conflict with main fails loudly - experimental is broken until someone
+# merges origin/main into it by hand. A conflicting or vanished PR is only a
+# ::warning, so one stale entry never blocks the others. If a sync brings
+# workflow-file changes, the push needs RELEASE_PR_TOKEN to carry the
+# `workflow` scope.
 name: Sync upstream
 
 on:
   schedule:
     - cron: "23 4 * * *"
   workflow_dispatch:
+  push:
+    branches:
+      - experimental
+    paths:
+      # Editing the PR list below re-merges right away instead of waiting for the nightly run.
+      - .github/workflows/sync-upstream.yml
 
 permissions:
   contents: write
+
+env:
+  # Merged into experimental on top of main, in order. Entries are PR URLs,
+  # resolved to refs/pull/<number>/head; blank and #-comment lines are ignored.
+  PRS: |
+    # Add fulltext bridge for JabRef Browser-Extension Fulltext Protocol
+    https://github.com/JabRef/JabRef-Browser-Extension-experimental/pull/81
+    # Build and publish safari browser extension
+    https://github.com/JabRef/JabRef-Browser-Extension/pull/681
+    # Add diagnostics UI and popup logging for native messaging flow
+    https://github.com/JabRef/JabRef-Browser-Extension/pull/699
+    # Fix Chrome native messaging
+    https://github.com/JabRef/JabRef-Browser-Extension/pull/700
 
 jobs:
   sync:
@@ -32,16 +53,38 @@ jobs:
         run: |
           git fetch https://github.com/JabRef/JabRef-Browser-Extension.git main
           # Plain push refuses non-fast-forward, keeping main a pure mirror.
-          git push origin FETCH_HEAD:refs/heads/main
+          # Rewinding it here would silently drop whatever main is ahead by.
+          if ! git push origin FETCH_HEAD:refs/heads/main; then
+            echo "::warning::main is not a fast-forward of upstream main - left untouched"
+          fi
 
-      - name: Merge main into experimental
+      - name: Merge main and PRs into experimental
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
+
           git fetch origin main
           if git merge-base --is-ancestor origin/main HEAD; then
-            echo "experimental already contains main - nothing to merge"
-            exit 0
+            echo "experimental already contains main"
+          else
+            git merge --no-edit origin/main
           fi
-          git merge --no-edit origin/main
+
+          while read -r url; do
+            case "$url" in '' | '#'*) continue ;; esac
+            repo=${url#https://github.com/}
+            number=${repo##*/}
+            repo=${repo%%/pull/*}
+            if ! git fetch --no-tags "https://github.com/$repo.git" "refs/pull/$number/head"; then
+              echo "::warning::$url cannot be fetched (deleted?) - skipped"
+              echo "- :warning: [$repo#$number]($url) - unreachable, skipped" >> "$GITHUB_STEP_SUMMARY"
+            elif git merge --no-edit -m "Merge $repo#$number into experimental" FETCH_HEAD; then
+              echo "- :white_check_mark: [$repo#$number]($url)" >> "$GITHUB_STEP_SUMMARY"
+            else
+              git merge --abort
+              echo "::warning::Merge conflict for $url - skipped"
+              echo "- :x: [$repo#$number]($url) - merge conflict, skipped" >> "$GITHUB_STEP_SUMMARY"
+            fi
+          done <<< "$PRS"
+
           git push origin experimental
