@@ -9,6 +9,23 @@ export default defineBackground({
     var tabInfo = new Map();
 
     /*
+    Boot the native-messaging bridge. The Java bridge process
+    (bridge/JabExtBridge.java) hosts the loopback HTTP server JabRef talks to;
+    register every feature handler against the single shared connection
+    before starting it, so no feature module races another for the native
+    messaging port. main() runs again whenever the service worker restarts,
+    so the bridge reconnects automatically; startNativeBridge no-ops while
+    the port is already alive.
+*/
+    try {
+      startFulltextBridge();
+      startMathSciNetBridge();
+      startNativeBridge();
+    } catch (e) {
+      console.debug("[background] native bridge unavailable:", e);
+    }
+
+    /*
     Show/hide import button for all tabs (when add-on is loaded).
     */
     browser.tabs.query({}).then((tabs) => {
@@ -341,7 +358,16 @@ export default defineBackground({
 
     browser.runtime.onMessage.addListener(async function (message, sender, _sendResponse) {
       try {
-        if (message.type === "popupOpened") {
+        if (message.type === "getBridgeStatus") {
+          // Popup status display: native-messaging port state plus the most
+          // recent MathSciNet tab sync (independent of the JabRef HTTP
+          // connection).
+          return {
+            ok: true,
+            connected: isConnected(),
+            lastMathSciNet: getLastSync(),
+          };
+        } else if (message.type === "popupOpened") {
           // The popup opened, i.e. the user clicked on the page action button
           console.log("JabRef: Popup opened confirmed");
           const tabs = await browser.tabs.query({
