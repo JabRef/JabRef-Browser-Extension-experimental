@@ -7,6 +7,7 @@ export default defineBackground({
   type: "module",
   main() {
     var tabInfo = new Map();
+    const BIB_EXPORT_TIMEOUT_MS = 5000;
 
     /*
     Boot the native-messaging bridge. The Java bridge process
@@ -162,6 +163,9 @@ export default defineBackground({
 
     async function sendBibEntryHttp(bibtex) {
       const baseUrl = await getBaseUrl();
+      await browser.runtime.sendMessage({
+        popupLog: `Trying JabRef HTTP endpoint at ${baseUrl}`,
+      });
 
       const health = await fetch(baseUrl, { method: "GET", cache: "no-store" });
       if (!(health.ok || health.status === 404)) {
@@ -178,13 +182,23 @@ export default defineBackground({
         const body = await resp.text().catch(() => "");
         throw new Error(`HTTP ${resp.status}${body ? `: ${body}` : ""}`);
       }
+
+      await browser.runtime.sendMessage({
+        popupLog: "JabRef accepted data over HTTP",
+      });
     }
 
     async function sendBibEntryNative(bibtex) {
+      await browser.runtime.sendMessage({
+        popupLog: "Trying native messaging to reach JabRef",
+      });
       const response = await browser.runtime.sendNativeMessage("org.jabref.jabref", {
         text: bibtex,
       });
       if (response?.message === "ok") {
+        await browser.runtime.sendMessage({
+          popupLog: "JabRef accepted data over native messaging",
+        });
         return;
       }
 
@@ -207,13 +221,22 @@ export default defineBackground({
 
       try {
         await sendBibEntryHttp(bibtex);
+        await browser.runtime.sendMessage({
+          popupLog: "Send to JabRef finished",
+        });
         await browser.runtime.sendMessage({ popupClose: "close" });
         return;
       } catch (httpError) {
         console.warn("JabRef: HTTP send failed, falling back to native messaging", httpError);
+        await browser.runtime.sendMessage({
+          popupLog: `HTTP send failed, falling back to native messaging: ${httpError}`,
+        });
       }
 
       await sendBibEntryNative(bibtex);
+      await browser.runtime.sendMessage({
+        popupLog: "Send to JabRef finished",
+      });
       await browser.runtime.sendMessage({ popupClose: "close" });
     }
 
@@ -323,6 +346,18 @@ export default defineBackground({
       return cfg.exportMode || "bibtex";
     }
 
+    async function raceWithTimeout(promise, timeoutMs, label) {
+      return Promise.race([
+        promise,
+        new Promise((_, reject) => {
+          setTimeout(
+            () => reject(new Error(`${label} timed out after ${timeoutMs} ms`)),
+            timeoutMs,
+          );
+        }),
+      ]);
+    }
+
     async function prepareForExport(items) {
       const { takeSnapshots } = await browser.storage.sync.get({ takeSnapshots: false });
 
@@ -413,11 +448,24 @@ export default defineBackground({
             return;
           }
           const { url, items } = message;
+          await browser.runtime.sendMessage({
+            popupLog: `Translator returned ${items.length} item(s) for ${url}`,
+          });
           const conversionMode = await getConversionMode();
           await prepareForExport(items);
           await browser.runtime.sendMessage({ onConvertToBibtex: "convertStarted" });
-          const bib = await exportItems(items, conversionMode);
+          await browser.runtime.sendMessage({
+            popupLog: `Starting BibTeX export in background for ${items.length} item(s)`,
+          });
+          const bib = await raceWithTimeout(
+            exportItems(items, conversionMode),
+            BIB_EXPORT_TIMEOUT_MS,
+            "BibTeX export",
+          );
           console.debug("JabRef: Exported BibTeX: %o", bib);
+          await browser.runtime.sendMessage({
+            popupLog: `BibTeX export finished using mode ${conversionMode}`,
+          });
           await sendBibTexToJabRef(bib);
         } else if (message.eval) {
           console.debug(
@@ -437,6 +485,11 @@ export default defineBackground({
         }
       } catch (e) {
         console.error("JabRef: Error handling message in background.js", e);
+        try {
+          await browser.runtime.sendMessage({
+            popupLog: `Background error: ${e instanceof Error ? e.message : String(e)}`,
+          });
+        } catch {}
         throw e;
       }
     });
