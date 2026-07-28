@@ -2,11 +2,13 @@
 # GitHub fork, so there is no Sync-fork button. main is a pure fast-forward
 # mirror of upstream main; experimental = main + the PRs listed below.
 #
-# Every listed PR must target main, never experimental: merging a PR's head
-# into its own base branch makes GitHub close it as merged and delete its head
-# branch. That is what happened to #81, now reopened as #89 against main.
-# Targeting main also keeps each diff expressed against upstream, so it stays
-# portable to JabRef/JabRef-Browser-Extension.
+# No listed PR may target experimental: merging a PR's head into its own base
+# branch makes GitHub close it as merged and delete its head branch. That is
+# what happened to #81, now reopened as #89 against main. Base main where you
+# can - it keeps the diff expressed against upstream, so it stays portable to
+# JabRef/JabRef-Browser-Extension - or the branch below it in a stack. List a
+# stack bottom-up; a later entry supersedes the earlier ones it builds on, so
+# the earlier merges go no-op rather than replaying work.
 #
 # A conflict with main fails loudly - experimental is broken until someone
 # merges origin/main into it by hand. A conflicting or vanished PR is only a
@@ -46,6 +48,10 @@ env:
     https://github.com/JabRef/JabRef-Browser-Extension/pull/690
     # Add fulltext bridge for JabRef Browser-Extension Fulltext Protocol (was #81)
     https://github.com/JabRef/JabRef-Browser-Extension-experimental/pull/89
+    # Extract shared native-messaging connection ownership - stacked on #89
+    https://github.com/JabRef/JabRef-Browser-Extension-experimental/pull/82
+    # Add MathSciNet tab open/focus command to the bridge - stacked on #82
+    https://github.com/JabRef/JabRef-Browser-Extension-experimental/pull/83
     # Build and publish safari browser extension
     https://github.com/JabRef/JabRef-Browser-Extension/pull/681
     # Add diagnostics UI and popup logging for native messaging flow
