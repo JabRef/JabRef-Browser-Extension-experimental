@@ -55,6 +55,11 @@ cd bridge
 `bridge/build.sh` reads `.mise.toml` and lets `mise install` provision
 GraalVM 25 + JBang on first run. No host JDK required.
 
+The `Makefile` uses GNU Make syntax (e.g. `:=`). Where `make` resolves to
+BSD Make instead (macOS ships this as `/usr/bin/make`), install GNU Make
+and invoke it as `gmake bridge-build` / `gmake bridge-build-jvm` /
+`gmake bridge-install` instead.
+
 ## Installing
 
 ```sh
