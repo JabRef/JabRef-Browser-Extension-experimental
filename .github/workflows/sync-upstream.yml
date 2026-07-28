@@ -1,6 +1,10 @@
 # This repo is a "semantic" fork of JabRef/JabRef-Browser-Extension, not a
 # GitHub fork, so there is no Sync-fork button. main is a pure fast-forward
-# mirror of upstream main; experimental = main + the PRs listed below.
+# mirror of upstream main; experimental = main + the PRs listed below + one
+# commit that belongs to no PR and never goes upstream: 96939bb, which points
+# the push triggers at experimental and adds the experimental-latest rolling
+# prerelease. That commit is the whole exception - everything else here is
+# accounted for by an entry below, so upstream PRs can be filed from the list.
 #
 # No listed PR may target experimental: merging a PR's head into its own base
 # branch makes GitHub close it as merged and delete its head branch. That is
@@ -36,8 +40,7 @@ env:
   # resolved to refs/pull/<number>/head; blank and #-comment lines are ignored.
   PRS: |
     # Merged upstream but not on upstream main, which was rewound to #679 - they
-    # would be lost from main otherwise. Two further commits from that stretch,
-    # "Add automerge.yml" and "Also approve", had no PR and live on experimental only.
+    # would be lost from main otherwise.
     # chore(deps): update dependency vitest to v4.1.9
     https://github.com/JabRef/JabRef-Browser-Extension/pull/687
     # chore(deps): update dependency vue to v3.5.39
