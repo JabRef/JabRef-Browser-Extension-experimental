@@ -1,6 +1,7 @@
 # This repo is a "semantic" fork of JabRef/JabRef-Browser-Extension, not a
-# GitHub fork, so there is no Sync-fork button. main is a pure fast-forward
-# mirror of upstream main; experimental = main + the PRs listed below + one
+# GitHub fork, so there is no Sync-fork button. main is a pure mirror of
+# upstream main, force-reset to it on every run - never commit or merge
+# anything here, it will be discarded; experimental = main + the PRs below + one
 # commit that belongs to no PR and never goes upstream: 96939bb, which points
 # the push triggers at experimental and adds the experimental-latest rolling
 # prerelease. That commit is the whole exception - everything else here is
@@ -75,14 +76,17 @@ jobs:
           # lint and release workflows on experimental.
           token: ${{ secrets.RELEASE_PR_TOKEN }}
 
-      - name: Fast-forward main from upstream
+      - name: Reset main to upstream
         run: |
           git fetch https://github.com/JabRef/JabRef-Browser-Extension.git main
-          # Plain push refuses non-fast-forward, keeping main a pure mirror.
-          # Rewinding it here would silently drop whatever main is ahead by.
-          if ! git push origin FETCH_HEAD:refs/heads/main; then
-            echo "::warning::main is not a fast-forward of upstream main - left untouched"
-          fi
+          # Force, not fast-forward: main is a pure mirror of upstream, so
+          # anything it is ahead by (a bot PR merged here by mistake, or an
+          # upstream rewind) is discarded instead of blocking every later sync.
+          # Nothing experimental needs is lost - experimental keeps its own
+          # merges, and anything worth keeping belongs in the PRS list above.
+          # Log what the reset drops, so a discarded commit is never silent.
+          git log --oneline FETCH_HEAD..origin/main >> "$GITHUB_STEP_SUMMARY" || true
+          git push --force origin FETCH_HEAD:refs/heads/main
 
       - name: Merge main and PRs into experimental
         run: |
