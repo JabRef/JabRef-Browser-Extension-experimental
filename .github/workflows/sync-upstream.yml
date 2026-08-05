@@ -40,14 +40,10 @@ env:
   # Merged into experimental on top of main, in order. Entries are PR URLs,
   # resolved to refs/pull/<number>/head; blank and #-comment lines are ignored.
   PRS: |
-    # Merged upstream but not on upstream main, which was rewound to #679 - they
-    # would be lost from main otherwise.
-    # chore(deps): update dependency vitest to v4.1.9
-    https://github.com/JabRef/JabRef-Browser-Extension/pull/687
-    # chore(deps): update dependency vue to v3.5.39
-    https://github.com/JabRef/JabRef-Browser-Extension/pull/688
-    # chore(deps): update dependency vue-tsc to v3.3.6
-    https://github.com/JabRef/JabRef-Browser-Extension/pull/689
+    # Merged upstream but not on upstream main, which was rewound to #679 - it
+    # would be lost from main otherwise. The vitest, vue and vue-tsc entries
+    # that stood here are gone: main has moved past them, so re-merging only
+    # conflicted.
     # chore(deps): update dependency wxt to v0.20.27
     https://github.com/JabRef/JabRef-Browser-Extension/pull/690
     # Add fulltext bridge for JabRef Browser-Extension Fulltext Protocol (was #81)
