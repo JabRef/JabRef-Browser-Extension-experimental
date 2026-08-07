@@ -16,8 +16,9 @@
 # the earlier merges go no-op rather than replaying work.
 #
 # A conflict with main fails loudly - experimental is broken until someone
-# merges origin/main into it by hand. A conflicting or vanished PR is only a
-# ::warning, so one stale entry never blocks the others. If a sync brings
+# merges origin/main into it by hand. The one exception is pnpm-lock.yaml,
+# which is regenerated rather than merged. A conflicting or vanished PR is
+# only a ::warning, so one stale entry never blocks the others. If a sync brings
 # workflow-file changes, the push needs RELEASE_PR_TOKEN to carry the
 # `workflow` scope.
 name: Sync upstream
@@ -84,16 +85,36 @@ jobs:
           git log --oneline FETCH_HEAD..origin/main >> "$GITHUB_STEP_SUMMARY" || true
           git push --force origin FETCH_HEAD:refs/heads/main
 
+      # Only to regenerate pnpm-lock.yaml on conflict, below.
+      - name: Install pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
       - name: Merge main and PRs into experimental
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email 'github-actions[bot]@users.noreply.github.com'
 
+          # pnpm-lock.yaml is generated from package.json, so a conflict in it
+          # is not a real conflict - resolving it by hand is never right, and
+          # the merged package.json already says what the tree should be. Any
+          # other conflicted path still needs a human, hence the sole-file
+          # check: without it this would commit a half-merged package.json.
+          resolve_lockfile() {
+            [ "$(git diff --name-only --diff-filter=U)" = pnpm-lock.yaml ] || return 1
+            git checkout --theirs -- pnpm-lock.yaml &&
+              pnpm install --lockfile-only --ignore-scripts &&
+              git add pnpm-lock.yaml &&
+              git commit --no-edit &&
+              echo "::notice::pnpm-lock.yaml conflicted and was regenerated"
+          }
+
           git fetch origin main
           if git merge-base --is-ancestor origin/main HEAD; then
             echo "experimental already contains main"
-          else
-            git merge --no-edit origin/main
+          elif ! git merge --no-edit origin/main; then
+            # Still loud when anything but the lockfile conflicts: experimental
+            # is broken until someone merges origin/main into it by hand.
+            resolve_lockfile || exit 1
           fi
 
           while read -r url; do
@@ -104,7 +125,7 @@ jobs:
             if ! git fetch --no-tags "https://github.com/$repo.git" "refs/pull/$number/head"; then
               echo "::warning::$url cannot be fetched (deleted?) - skipped"
               echo "- :warning: [$repo#$number]($url) - unreachable, skipped" >> "$GITHUB_STEP_SUMMARY"
-            elif git merge --no-edit -m "Merge $repo#$number into experimental" FETCH_HEAD; then
+            elif git merge --no-edit -m "Merge $repo#$number into experimental" FETCH_HEAD || resolve_lockfile; then
               echo "- :white_check_mark: [$repo#$number]($url)" >> "$GITHUB_STEP_SUMMARY"
             else
               git merge --abort
