@@ -28,10 +28,11 @@ function formatError(error) {
 async function sendNativeValidation() {
   const requestId = `${NATIVE_MESSAGE_TEST_LOG_TAG}-${Date.now()}`;
   console.log(`${NATIVE_MESSAGE_TEST_LOG_TAG} sending requestId=${requestId}`);
-  // Ask the background (sole owner of the native-messaging port) to validate,
-  // rather than opening a rival connection to the merged host from this page.
   return raceWithTimeout(
-    browser.runtime.sendMessage({ type: "validateNativeHost" }),
+    browser.runtime.sendNativeMessage("org.jabref.jabref", {
+      status: "validate",
+      requestId,
+    }),
     NATIVE_MESSAGE_TIMEOUT_MS,
     "Native messaging",
   );
