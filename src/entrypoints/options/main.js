@@ -24,10 +24,10 @@ async function connectToJabRef(port) {
 
 function checkConnections({ httpPort }) {
   let status = document.getElementById("connectionStatusNative");
-  // Ask the background (sole owner of the native-messaging port) to validate,
-  // rather than opening a rival connection to the merged host from this page.
   browser.runtime
-    .sendMessage({ type: "validateNativeHost" })
+    .sendNativeMessage("org.jabref.jabref", {
+      status: "validate",
+    })
     .then((response) => {
       if (response.message === "jarNotFound") {
         status.setAttribute("class", "alert-error");
