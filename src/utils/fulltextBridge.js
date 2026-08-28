@@ -1,9 +1,10 @@
 // fulltextBridge.js
 //
 // Implements the extension side of the JabRef Browser-Extension Fulltext
-// Protocol (req~bxf~). The Java bridge process (bridge/JabExtBridge.java)
-// exposes a loopback HTTP server for JabRef and forwards each request to
-// this module over native messaging.
+// Protocol (req~bxf~). JabRef's native-messaging host (browser-bridge/
+// jabext_host.py | jabext_host.ps1) exposes a loopback HTTP server for JabRef
+// and forwards each request to this module over the single native-messaging
+// connection owned by nativeBridge.js.
 //
 // Flow per request:
 //   1. Bridge sends `{ type: "fetchFulltext", requestId, doi, url }`.

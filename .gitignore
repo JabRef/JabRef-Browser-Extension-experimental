@@ -218,6 +218,3 @@ fabric.properties
 dist/
 test_cache/
 .env.submit
-
-# Fulltext bridge build output
-bridge/build/
