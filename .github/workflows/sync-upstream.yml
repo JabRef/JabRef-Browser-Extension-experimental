@@ -41,12 +41,6 @@ env:
   # Merged into experimental on top of main, in order. Entries are PR URLs,
   # resolved to refs/pull/<number>/head; blank and #-comment lines are ignored.
   PRS: |
-    # Merged upstream but not on upstream main, which was rewound to #679 - it
-    # would be lost from main otherwise. The vitest, vue and vue-tsc entries
-    # that stood here are gone: main has moved past them, so re-merging only
-    # conflicted.
-    # chore(deps): update dependency wxt to v0.20.27
-    https://github.com/JabRef/JabRef-Browser-Extension/pull/690
     # Add fulltext bridge for JabRef Browser-Extension Fulltext Protocol (was #81)
     https://github.com/JabRef/JabRef-Browser-Extension-experimental/pull/89
     # Extract shared native-messaging connection ownership - stacked on #89
@@ -57,8 +51,6 @@ env:
     https://github.com/JabRef/JabRef-Browser-Extension/pull/681
     # Add diagnostics UI and popup logging for native messaging flow
     https://github.com/JabRef/JabRef-Browser-Extension/pull/699
-    # Fix Chrome native messaging
-    https://github.com/JabRef/JabRef-Browser-Extension/pull/700
 
 jobs:
   sync:
