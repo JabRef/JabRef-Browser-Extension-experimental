@@ -37,14 +37,13 @@ To keep it installed across restarts, build a package with `pnpm zip:firefox` (`
 
 ### Talking to JabRef (fulltext bridge)
 
-The extension side-loads on its own, but reaching JabRef's fulltext fetcher also needs the native-messaging bridge built and installed. See [`bridge/README.md`](bridge/README.md); on Linux:
+The extension side-loads on its own, but reaching JabRef's fulltext fetcher also needs the native-messaging host registered. It lives in JabRef's repo at [`browser-bridge/`](https://github.com/JabRef/jabref/tree/main/browser-bridge) and ships as a script (no build step). From a JabRef checkout, on Linux:
 
 ```sh
-(cd bridge && ./build.sh)         # native bridge binary
-./bridge/install/install.sh       # register the native-messaging manifest
+./browser-bridge/install/install.sh   # register the native-messaging manifest
 ```
 
-The Firefox extension id (`@jabfox`) is pinned in `wxt.config.ts`, so the bridge's native-messaging manifest matches your side-loaded build too.
+The Firefox extension id (`@jabfox`) is pinned in `wxt.config.ts`, so the host's native-messaging manifest matches your side-loaded build too.
 
 ## Updating dependencies & Zotero translators
 
