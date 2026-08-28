@@ -9,9 +9,10 @@ export default defineBackground({
     var tabInfo = new Map();
 
     /*
-    Boot the fulltext native-messaging bridge. The Java bridge process
-    (bridge/JabExtBridge.java) hosts the loopback HTTP server JabRef talks to.
-    main() runs again whenever the service worker restarts, so the bridge
+    Boot the native-messaging host connection. JabRef's merged host
+    (browser-bridge/jabext_host.py | jabext_host.ps1) hosts the loopback HTTP
+    server JabRef talks to, and the same connection also carries import commands.
+    main() runs again whenever the service worker restarts, so the connection
     reconnects automatically; startFulltextBridge no-ops while the port is
     already alive.
 */
@@ -177,9 +178,9 @@ export default defineBackground({
     }
 
     async function sendBibEntryNative(bibtex) {
-      const response = await browser.runtime.sendNativeMessage("org.jabref.jabref", {
-        text: bibtex,
-      });
+      // Routed over the shared native-messaging connection to JabRef's merged
+      // host (was the separate `org.jabref.jabref` host).
+      const response = await sendImportToHost({ text: bibtex });
       if (response?.message === "ok") {
         return;
       }
@@ -379,6 +380,10 @@ export default defineBackground({
           }
 
           return { ok: true };
+        } else if (message.type === "validateNativeHost") {
+          // Options page asks the background (sole owner of the native port) to
+          // run the host's `validate` command, so no rival host instance spawns.
+          return await sendImportToHost({ status: "validate" });
         } else if (message.type === "COHTTP.request") {
           const { method, url, options } = message;
           console.debug(`JabRef: COHTTP request in background.js: ${method} ${url} %o`, options);
