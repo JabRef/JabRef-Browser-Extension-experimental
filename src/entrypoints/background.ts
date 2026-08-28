@@ -9,16 +9,19 @@ export default defineBackground({
     var tabInfo = new Map();
 
     /*
-    Boot the fulltext native-messaging bridge. JabRef's host
+    Boot the native-messaging bridge. JabRef's host
     (browser-bridge/jabext_host.py | jabext_host.ps1) runs the loopback HTTP
-    server JabRef talks to. main() runs again whenever the service worker
-    restarts, so the bridge reconnects automatically; startFulltextBridge
+    server JabRef talks to; register every feature handler against the single
+    shared connection before starting it, so no feature module races another
+    for the native messaging port. main() runs again whenever the service
+    worker restarts, so the bridge reconnects automatically; startNativeBridge
     no-ops while the port is already alive.
 */
     try {
       startFulltextBridge();
+      startNativeBridge();
     } catch (e) {
-      console.debug("[background] fulltext bridge unavailable:", e);
+      console.debug("[background] native bridge unavailable:", e);
     }
 
     /*
