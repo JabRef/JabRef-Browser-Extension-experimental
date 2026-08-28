@@ -14,7 +14,7 @@ Preparation:
    Opera: `pnpm dev:opera`
    Edge: `pnpm dev:edge`
 
-Now just follow the typical steps to [contribute code](https://guides.github.com/activities/contributing-to-open-source/#contributing):
+Then follow the usual steps to [contribute code](https://guides.github.com/activities/contributing-to-open-source/#contributing):
 
 1. Create your feature branch: `git checkout -b my-new-feature`
 2. Make your changes and test them by running the extension in the browser as described above.
@@ -22,28 +22,28 @@ Now just follow the typical steps to [contribute code](https://guides.github.com
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request.
 
-## Running in your regular Firefox (with your logins)
+## Side-loading into an existing Firefox profile
 
-`pnpm dev:firefox` launches Firefox with a fresh, throwaway profile — none of your logins or cookies. To test against sites where you are signed in (e.g. paywalled PDFs), side-load the build into your own Firefox profile instead:
+`pnpm dev:firefox` launches Firefox with a fresh, temporary profile, which carries no existing logins or cookies. Testing against sites that require an authenticated session (for example, paywalled PDFs) requires side-loading the build into an existing profile instead:
 
-1. Run `pnpm dev:firefox` and leave it running (ignore the throwaway window it opens). It builds to `.output/firefox-mv3-dev/` and rebuilds on save.
-2. In your normal Firefox, open `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…** → select `.output/firefox-mv3-dev/manifest.json`.
+1. Run `pnpm dev:firefox` and leave it running; the temporary-profile window it opens is not used for this. It builds to `.output/firefox-mv3-dev/` and rebuilds on save.
+2. In the target Firefox profile, open `about:debugging#/runtime/this-firefox` → **Load Temporary Add-on…** → select `.output/firefox-mv3-dev/manifest.json`.
 
-This loads into your running Firefox with your real profile, and WXT's auto-reload refreshes it on save. Temporary add-ons are removed when Firefox restarts.
+The add-on then runs in that profile, and WXT's auto-reload refreshes it on save. Temporary add-ons are removed when Firefox restarts.
 
-For a static build (no auto-reload), run `pnpm build:firefox` and load `.output/firefox-mv3/manifest.json` the same way, clicking **Reload** on the add-on card after each rebuild.
+For a static build without auto-reload, run `pnpm build:firefox`, load `.output/firefox-mv3/manifest.json` the same way, and click **Reload** on the add-on card after each rebuild.
 
-To keep it installed across restarts, build a package with `pnpm zip:firefox` (`.output/*-firefox.zip`) and install it in Firefox Developer Edition / Nightly / ESR after setting `xpinstall.signatures.required = false` in `about:config` (`about:addons` → gear → **Install Add-on From File…**). Release Firefox refuses unsigned add-ons.
+To persist the add-on across restarts, build a package with `pnpm zip:firefox` (`.output/*-firefox.zip`) and install it in Firefox Developer Edition, Nightly, or ESR after setting `xpinstall.signatures.required = false` in `about:config` (`about:addons` → gear → **Install Add-on From File…**). Release Firefox rejects unsigned add-ons.
 
-### Talking to JabRef (fulltext bridge)
+### Registering the fulltext native-messaging host
 
-The extension side-loads on its own, but reaching JabRef's fulltext fetcher also needs the native-messaging host registered. It lives in JabRef's repo at [`browser-bridge/`](https://github.com/JabRef/jabref/tree/main/browser-bridge) and ships as a script (no build step). From a JabRef checkout, on Linux:
+Side-loading the extension is sufficient for most development. Exercising JabRef's fulltext fetcher additionally requires the native-messaging host to be registered. The host is maintained in the JabRef repository under [`browser-bridge/`](https://github.com/JabRef/jabref/tree/main/browser-bridge) and ships as a script (no build step). From a JabRef checkout, on Linux:
 
 ```sh
 ./browser-bridge/install/install.sh   # register the native-messaging manifest
 ```
 
-The Firefox extension id (`@jabfox`) is pinned in `wxt.config.ts`, so the host's native-messaging manifest matches your side-loaded build too.
+The Firefox extension id (`@jabfox`) is pinned in `wxt.config.ts`, so the host's native-messaging manifest also matches a side-loaded build.
 
 ## Updating dependencies & Zotero translators
 
