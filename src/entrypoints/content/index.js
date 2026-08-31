@@ -1,3 +1,33 @@
+function buildTranslators(translatorsInfo) {
+  return (translatorsInfo || []).map((info) => {
+    const path = info.path;
+    if (!path) {
+      throw new Error(`Translator ${info.label} is missing a path`);
+    }
+    const translator = new Zotero.Translator(info);
+    // Zotero expects the path to be under `file`
+    translator.file = {
+      path: path,
+    };
+    return translator;
+  });
+}
+
+// Returns the URL of the first PDF attachment across the translated items, or null.
+function firstPdfAttachmentUrl(items) {
+  for (const item of items || []) {
+    for (const attachment of item.attachments || []) {
+      const url = attachment && attachment.url;
+      const isPdf =
+        attachment && (attachment.mimeType === "application/pdf" || /\.pdf(\?|$)/i.test(url || ""));
+      if (isPdf && url) {
+        return url;
+      }
+    }
+  }
+  return null;
+}
+
 export default defineContentScript({
   // Set "registration" to runtime so this file isn't listed in manifest
   registration: "runtime",
@@ -60,20 +90,19 @@ export default defineContentScript({
         };
       }
 
+      // Fulltext bridge: run the matched translator and return the first PDF
+      // attachment URL directly (unlike runTranslators, which posts items to the
+      // background via offscreenResult). saveItems is stubbed above, so this has
+      // no save side effect.
+      if (msg.type === "fulltextPdfUrl") {
+        const translators = buildTranslators(msg.translatorsInfo);
+        const result = await translateEngine.translate(document, translators);
+        return { pdfUrl: firstPdfAttachmentUrl(result.items), sourceUrl: url };
+      }
+
       if (msg.type !== "runTranslators") return;
 
-      const translators = msg.translatorsInfo.map((info) => {
-        const path = info.path;
-        if (!path) {
-          throw new Error(`Translator ${info.label} is missing a path`);
-        }
-        const translator = new Zotero.Translator(info);
-        // Zotero expects the path to be under `file`
-        translator.file = {
-          path: path,
-        };
-        return translator;
-      });
+      const translators = buildTranslators(msg.translatorsInfo);
       console.debug(
         "Content script received runTranslators message for url %o with translators %o",
         url,
