@@ -92,7 +92,14 @@ export default defineContentScript({
       if (msg.type === "fulltextPdfUrl") {
         const translators = buildTranslators(msg.translatorsInfo);
         const result = await translateEngine.translate(document, translators);
-        return { pdfUrl: firstPdfAttachmentUrl(result.items), sourceUrl: url };
+        const pdfUrl = firstPdfAttachmentUrl(result.items);
+        // Translators may emit a relative attachment URL (e.g. IEEE's
+        // /stampPDF/getPDF.jsp). Resolve against the page so downloads.download,
+        // which requires an absolute URL, can fetch it.
+        return {
+          pdfUrl: pdfUrl ? new URL(pdfUrl, document.baseURI).href : null,
+          sourceUrl: url,
+        };
       }
 
       if (msg.type !== "runTranslators") return;
