@@ -8,7 +8,8 @@
 // Flow per request:
 //   1. Bridge sends `{ type: "fetchFulltext", requestId, doi, url }`.
 //   2. We resolve the target page URL, open it in a background tab.
-//   3. Run a generic <a href="*.pdf"> scanner via scripting.executeScript.
+//   3. Locate the PDF: first via the bundled Zotero translators (run in the tab),
+//      then a generic <meta/link/anchor> scanner as fallback.
 //   4. Download the PDF via downloads.download into a per-request file.
 //   5. Reply `{ requestId, id, path, sourceUrl }` or
 //      `{ requestId, error, message }`.
@@ -77,22 +78,30 @@ async function handleFetch({ requestId, doi, url }) {
     tabId = tab.id;
     const finalUrl = await waitForComplete(tabId);
 
-    const scanResult = await runPdfScan(tabId);
-    if (!scanResult.pdfUrl) {
-      reply({
-        requestId,
-        error: scanResult.errorCode || "no-pdf-found",
-        message: scanResult.message || "no PDF link discovered on page",
-      });
-      return;
+    // Prefer the bundled Zotero translators: they know publisher-specific PDF
+    // locations the generic scanner misses (e.g. ACM's /doi/pdf/<doi>). They run
+    // in this live tab, so they use the user's session. Fall back to the generic
+    // scanner when no translator matches or it yields no PDF.
+    let pdfUrl = await findPdfViaTranslators(tabId, finalUrl);
+    if (!pdfUrl) {
+      const scanResult = await runPdfScan(tabId);
+      if (!scanResult.pdfUrl) {
+        reply({
+          requestId,
+          error: scanResult.errorCode || "no-pdf-found",
+          message: scanResult.message || "no PDF link discovered on page",
+        });
+        return;
+      }
+      pdfUrl = scanResult.pdfUrl;
     }
 
-    const download = await downloadPdf(scanResult.pdfUrl, requestId);
+    const download = await downloadPdf(pdfUrl, requestId);
     reply({
       requestId,
       id: requestId,
       path: download.path,
-      sourceUrl: scanResult.pdfUrl || finalUrl,
+      sourceUrl: pdfUrl || finalUrl,
     });
   } catch (e) {
     const code = e && e.code ? e.code : "internal-error";
@@ -125,11 +134,38 @@ function waitForComplete(tabId) {
   });
 }
 
+// Ask the bundled Zotero translators (run in the loaded tab) for a PDF attachment
+// URL. Returns the URL, or null when no translator matches, none yields a PDF, or
+// the content script cannot be reached (caller then falls back to runPdfScan).
+async function findPdfViaTranslators(tabId, url) {
+  try {
+    // The content script is registered at runtime (not auto-injected); inject it
+    // into this tab before messaging it (same as the import flow's content path).
+    await browser.scripting.executeScript({
+      target: { tabId },
+      files: ["/content-scripts/content.js"],
+    });
+    const detect = await browser.tabs.sendMessage(tabId, { type: "detectTranslators", url });
+    const translatorsInfo = (detect && detect.translatorsInfo) || [];
+    if (!translatorsInfo.length) {
+      return null;
+    }
+    const result = await browser.tabs.sendMessage(tabId, {
+      type: "fulltextPdfUrl",
+      url,
+      translatorsInfo,
+    });
+    return (result && result.pdfUrl) || null;
+  } catch (e) {
+    console.debug("[fulltext-bridge] translator extraction failed, using generic scan:", e);
+    return null;
+  }
+}
+
 async function runPdfScan(tabId) {
-  // Generic scanner: inspect <meta name="citation_pdf_url">, <link rel=alternate>,
-  // and any visible <a href="*.pdf"> on the page. Publisher-specific helpers
-  // (Elsevier, IEEE, ACM, ...) live in AnchorHub; experimental ships only this
-  // generic fallback.
+  // Generic fallback scanner, used when no translator finds a PDF: inspect
+  // <meta name="citation_pdf_url">, <link rel=alternate>, and any visible
+  // <a href="*.pdf"> on the page.
   const results = await browser.scripting.executeScript({
     target: { tabId },
     func: () => {
