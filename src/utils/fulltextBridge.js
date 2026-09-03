@@ -17,9 +17,23 @@
 // Failures are reported as protocol error codes (no-pdf-found, not-reachable,
 // no-adapter, timeout, internal-error) so the bridge can map them to HTTP.
 
+import { FetchConcurrencyGate } from "./fetchConcurrency.js";
+
 const HOST_NAME = "jabext_bridge";
 const TAB_TIMEOUT_MS = 60_000;
 const DOWNLOAD_SUBDIR = "jabref-fulltext";
+
+// req~bxf.concurrency-cap~1: cap concurrent fetch tabs (global 3, per publisher host 2) and
+// FIFO-queue the rest, so a publisher such as IEEE is not hit hard enough to return HTTP 420.
+const gate = new FetchConcurrencyGate(3, 2);
+
+function hostOf(target) {
+  try {
+    return new URL(target).host;
+  } catch {
+    return target;
+  }
+}
 
 let port = null;
 
@@ -72,6 +86,9 @@ async function handleFetch({ requestId, doi, url }) {
     return;
   }
 
+  // Wait for a slot before opening a tab, so we never hit a publisher harder than the caps allow.
+  const host = hostOf(target);
+  await gate.acquire(host);
   let tabId = null;
   try {
     const tab = await browser.tabs.create({ url: target, active: false });
@@ -110,6 +127,7 @@ async function handleFetch({ requestId, doi, url }) {
     if (tabId != null) {
       browser.tabs.remove(tabId).catch(() => {});
     }
+    gate.release(host);
   }
 }
 
