@@ -45,6 +45,8 @@ Side-loading the extension is sufficient for most development. Exercising JabRef
 
 The Firefox extension id (`@jabfox`) is pinned in `wxt.config.ts`, so the host's native-messaging manifest also matches a side-loaded build.
 
+The manifest stores an absolute path to the host script; after moving or re-cloning the JabRef checkout, re-run the installer. If JabRef does not list the extension under **External Fetchers**, see [Troubleshooting](README.md#troubleshooting-extension-missing-under-external-fetchers) in the README.
+
 ## Updating dependencies & Zotero translators
 
 - `python scripts/import_and_patch_translators.py` updates all Zotero submodules, post-processes the translators and applies the necessary patches for our extension

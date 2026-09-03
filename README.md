@@ -19,6 +19,24 @@ Normally, you simply install the extension from the browser store and are ready 
 
 Sometimes, a manual installation is necessary (e.g. if you use the portable version of JabRef). In this case, please follow the steps described [in the user manual](https://docs.jabref.org/import-export/import/jabref-browser-extension).
 
+### Troubleshooting: extension missing under "External Fetchers"
+
+JabRef lists the extension under **Preferences → Web search → External Fetchers** only while the fulltext bridge host is running.
+If the list stays empty (or shows other providers but not `jabext-bridge`), the browser could not start the host.
+Typical tell-tales:
+
+- `about:debugging` (Firefox) shows **Background script: Stopped** for the JabRef Browser Extension.
+- The extension's console (**Inspect** in `about:debugging` or `chrome://extensions`) logs `[native-bridge] connectNative failed` or `No such native application jabext_bridge`.
+- `%APPDATA%\JabRef\fulltext-providers` (Windows), `~/.config/JabRef/fulltext-providers` (Linux) or `~/Library/Application Support/JabRef/fulltext-providers` (macOS) contains no `jabext-bridge.*.json`.
+
+The usual cause is a stale `jabext_bridge` native-messaging manifest: it stores an absolute path to the host script, so the entry breaks silently once that checkout or installation moves.
+Re-register the host, then click **Reload** on the extension:
+
+- Released JabRef: reinstall JabRef; its installer registers the manifest.
+- Source checkout: run the bridge installer from the JabRef repository (`pwsh browser-bridge/install/install.ps1` on Windows, `./browser-bridge/install/install.sh` on Linux, `sh browser-bridge/install/install.command` on macOS).
+
+Reopen the JabRef preferences afterwards; the provider list is read when the dialog opens.
+
 ## Usage
 
 After the installation, you should be able to import bibliographic references into JabRef directly from your browser.
