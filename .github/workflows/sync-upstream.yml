@@ -1,11 +1,12 @@
 # This repo is a "semantic" fork of JabRef/JabRef-Browser-Extension, not a
 # GitHub fork, so there is no Sync-fork button. main is a pure mirror of
 # upstream main, force-reset to it on every run - never commit or merge
-# anything here, it will be discarded; experimental = main + the PRs below + one
-# commit that belongs to no PR and never goes upstream: 96939bb, which points
-# the push triggers at experimental and adds the experimental-latest rolling
-# prerelease. That commit is the whole exception - everything else here is
-# accounted for by an entry below, so upstream PRs can be filed from the list.
+# anything here, it will be discarded; experimental = main + the PRs below +
+# the fork-only commits that never go upstream: the experimental-latest rolling
+# prerelease (.github/workflows/build.yml) and the removal of release.yml's push
+# trigger, so no release is cut from this fork. Those are the whole exception -
+# everything else here is accounted for by an entry below, so upstream PRs can
+# be filed from the list.
 #
 # No listed PR may target experimental: merging a PR's head into its own base
 # branch makes GitHub close it as merged and delete its head branch. That is

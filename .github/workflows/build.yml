@@ -1,0 +1,44 @@
+# Rolling prerelease: every push to experimental refreshes the extension
+# zips on the experimental-latest prerelease, giving users a stable,
+# login-free download URL to try out unreleased builds.
+on:
+  push:
+    branches:
+      - experimental
+name: experimental build
+permissions:
+  contents: write
+jobs:
+  build:
+    name: Build extension zips
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          submodules: true
+
+      - name: Setup build environment
+        uses: ./.github/actions/setup-browser-extension
+
+      - name: Build
+        run: |
+          pnpm zip
+          pnpm zip:firefox
+
+      - name: Upload to experimental-latest prerelease
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Version-independent names so the download URLs stay stable and
+          # old-version assets do not pile up on the rolling release.
+          cp .output/*-chrome.zip jabref-experimental-chrome.zip
+          cp .output/*-firefox.zip jabref-experimental-firefox.zip
+          gh release view experimental-latest --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1 || \
+            gh release create experimental-latest --repo "$GITHUB_REPOSITORY" --prerelease \
+              --title "Experimental build (rolling)" \
+              --notes-file .github/experimental-release-notes.md
+          gh release upload experimental-latest \
+            jabref-experimental-chrome.zip \
+            jabref-experimental-firefox.zip \
+            --repo "$GITHUB_REPOSITORY" --clobber
