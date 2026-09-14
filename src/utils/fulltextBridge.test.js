@@ -42,6 +42,23 @@ describe("waitForComplete", () => {
     expect(await p).toBe("https://www.sciencedirect.com/science/article/pii/S0950584914000883");
   });
 
+  it("does not miss a forward that completes while the interstitial is inspected", async () => {
+    let inspections = 0;
+    globalThis.browser.scripting.executeScript = async () => {
+      inspections++;
+      if (inspections === 1) {
+        // The 0 s forward lands before this inspection of the interstitial returns.
+        fire(7, "https://www.sciencedirect.com/final");
+        return [{ result: true }];
+      }
+      return [{ result: false }];
+    };
+    const p = waitForComplete(7);
+    fire(7, "https://linkinghub.elsevier.com/interstitial");
+    expect(await p).toBe("https://www.sciencedirect.com/final");
+    expect(listeners.size).toBe(0);
+  });
+
   it("ignores other tabs", async () => {
     const p = waitForComplete(7);
     fire(8, "https://other/");

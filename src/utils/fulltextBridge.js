@@ -103,49 +103,65 @@ async function handleFetch({ requestId, doi, url }) {
 // Resolves with the tab's URL once it shows a page that does not forward again.
 // Some publishers resolve a DOI to an interstitial that forwards via
 // <meta http-equiv="refresh"> after a delay (Elsevier's linkinghub, 2 s). Its
-// load already reports "complete", so keep waiting through such pages.
+// load already reports "complete", so keep waiting through such pages. One
+// listener records every load for the whole wait, so a forward that completes
+// while the previous page is still being inspected is not missed.
 export async function waitForComplete(tabId) {
   const deadline = Date.now() + TAB_TIMEOUT_MS;
-  let url = await waitForLoad(tabId, deadline);
-  while (await hasMetaRefresh(tabId)) {
-    url = await waitForLoad(tabId, deadline);
+  const loads = [];
+  let notify = () => {};
+  const listener = (id, info, tab) => {
+    if (id === tabId && info.status === "complete") {
+      loads.push(tab.url);
+      notify();
+    }
+  };
+  browser.tabs.onUpdated.addListener(listener);
+  try {
+    let inspected = 0;
+    for (;;) {
+      if (loads.length <= inspected) {
+        await nextLoad(deadline, (resolve) => (notify = resolve));
+      }
+      const url = loads[inspected++];
+      const forwards = await hasMetaRefresh(tabId);
+      // A newer load arrived meanwhile: the inspected document may already be the next page.
+      if (!forwards && loads.length <= inspected) {
+        return url;
+      }
+    }
+  } finally {
+    browser.tabs.onUpdated.removeListener(listener);
   }
-  return url;
 }
 
-function waitForLoad(tabId, deadline) {
+function nextLoad(deadline, onWait) {
   return new Promise((resolve, reject) => {
     const timer = setTimeout(
       () => {
-        browser.tabs.onUpdated.removeListener(listener);
         const err = new Error("tab load timeout");
         err.code = "timeout";
         reject(err);
       },
       Math.max(0, deadline - Date.now()),
     );
-
-    const listener = (id, info, tab) => {
-      if (id !== tabId) return;
-      if (info.status === "complete") {
-        clearTimeout(timer);
-        browser.tabs.onUpdated.removeListener(listener);
-        resolve(tab.url);
-      }
-    };
-    browser.tabs.onUpdated.addListener(listener);
+    onWait(() => {
+      clearTimeout(timer);
+      resolve();
+    });
   });
 }
 
 // True when the page forwards elsewhere within a few seconds. Long refresh
-// intervals (session keep-alive) are not a forward.
+// intervals (session keep-alive) are not a forward. The target may follow the
+// delay directly or after "url=".
 async function hasMetaRefresh(tabId) {
   try {
     const results = await browser.scripting.executeScript({
       target: { tabId },
       func: () => {
         const meta = document.querySelector('meta[http-equiv="refresh" i]');
-        const match = meta && /^\s*(\d+)\s*[;,]\s*url\s*=/i.exec(meta.content || "");
+        const match = meta && /^\s*(\d+)\s*[;,]\s*(?:url\s*=)?\s*\S/i.exec(meta.content || "");
         return Boolean(match) && Number(match[1]) <= 10;
       },
     });
