@@ -100,14 +100,30 @@ async function handleFetch({ requestId, doi, url }) {
   }
 }
 
-function waitForComplete(tabId) {
+// Resolves with the tab's URL once it shows a page that does not forward again.
+// Some publishers resolve a DOI to an interstitial that forwards via
+// <meta http-equiv="refresh"> after a delay (Elsevier's linkinghub, 2 s). Its
+// load already reports "complete", so keep waiting through such pages.
+export async function waitForComplete(tabId) {
+  const deadline = Date.now() + TAB_TIMEOUT_MS;
+  let url = await waitForLoad(tabId, deadline);
+  while (await hasMetaRefresh(tabId)) {
+    url = await waitForLoad(tabId, deadline);
+  }
+  return url;
+}
+
+function waitForLoad(tabId, deadline) {
   return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      browser.tabs.onUpdated.removeListener(listener);
-      const err = new Error("tab load timeout");
-      err.code = "timeout";
-      reject(err);
-    }, TAB_TIMEOUT_MS);
+    const timer = setTimeout(
+      () => {
+        browser.tabs.onUpdated.removeListener(listener);
+        const err = new Error("tab load timeout");
+        err.code = "timeout";
+        reject(err);
+      },
+      Math.max(0, deadline - Date.now()),
+    );
 
     const listener = (id, info, tab) => {
       if (id !== tabId) return;
@@ -119,6 +135,24 @@ function waitForComplete(tabId) {
     };
     browser.tabs.onUpdated.addListener(listener);
   });
+}
+
+// True when the page forwards elsewhere within a few seconds. Long refresh
+// intervals (session keep-alive) are not a forward.
+async function hasMetaRefresh(tabId) {
+  try {
+    const results = await browser.scripting.executeScript({
+      target: { tabId },
+      func: () => {
+        const meta = document.querySelector('meta[http-equiv="refresh" i]');
+        const match = meta && /^\s*(\d+)\s*[;,]\s*url\s*=/i.exec(meta.content || "");
+        return Boolean(match) && Number(match[1]) <= 10;
+      },
+    });
+    return Boolean(results && results[0] && results[0].result);
+  } catch {
+    return false;
+  }
 }
 
 // Ask the bundled Zotero translators (run in the loaded tab) for a PDF attachment
