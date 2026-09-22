@@ -10,7 +10,8 @@
 //   2. We resolve the target page URL, open it in a background tab.
 //   3. Locate the PDF: first via the bundled Zotero translators (run in the tab),
 //      then a generic <meta/link/anchor> scanner as fallback.
-//   4. Download the PDF via downloads.download into a per-request file.
+//   4. Fetch the PDF inside the tab (the page's cookies and Referer) and save it via
+//      downloads.download into a per-request file; download the URL directly if that fails.
 //   5. Reply `{ requestId, id, path, sourceUrl }` or
 //      `{ requestId, error, message }`.
 //
@@ -117,7 +118,15 @@ async function handleFetch({ requestId, doi, url }) {
       pdfUrl = scanResult.pdfUrl;
     }
 
-    const download = await downloadPdf(pdfUrl, requestId);
+    const fetched = await fetchPdfInTab(tabId, pdfUrl);
+    let download;
+    try {
+      download = await downloadPdf(fetched || pdfUrl, requestId);
+    } finally {
+      if (fetched && fetched.startsWith("blob:")) {
+        URL.revokeObjectURL(fetched);
+      }
+    }
     reply({
       requestId,
       id: requestId,
@@ -305,6 +314,50 @@ export async function runPdfScan(tabId) {
     },
   });
   return (results && results[0] && results[0].result) || { pdfUrl: null };
+}
+
+// Fetches the PDF from inside the publisher's tab, as a click there would: with the page's
+// cookies and the page as Referer. IEEE's getPDF.jsp serves an empty body to a plain
+// downloads.download() but the PDF to this request. Returns a URL of the fetched bytes for
+// downloadPdf, or null when the page could not fetch a PDF (cross-origin, not a PDF, ...).
+export async function fetchPdfInTab(tabId, pdfUrl) {
+  let dataUrl = null;
+  try {
+    const results = await browser.scripting.executeScript({
+      target: { tabId },
+      world: "MAIN",
+      injectImmediately: true,
+      args: [pdfUrl],
+      func: async (url) => {
+        try {
+          const response = await fetch(url, { credentials: "include" });
+          const blob = await response.blob();
+          if (!response.ok || (await blob.slice(0, 5).text()) !== "%PDF-") {
+            return null;
+          }
+          return await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result);
+            reader.onerror = () => reject(reader.error);
+            reader.readAsDataURL(blob);
+          });
+        } catch {
+          return null;
+        }
+      },
+    });
+    dataUrl = results && results[0] && results[0].result;
+  } catch (e) {
+    console.debug("[fulltext-bridge] in-tab PDF fetch failed, downloading directly:", e);
+  }
+  if (!dataUrl) {
+    return null;
+  }
+  // Chrome's service worker has no URL.createObjectURL; its downloads API takes data: URLs.
+  if (typeof URL.createObjectURL !== "function") {
+    return dataUrl;
+  }
+  return URL.createObjectURL(await (await fetch(dataUrl)).blob());
 }
 
 async function downloadPdf(pdfUrl, requestId) {
