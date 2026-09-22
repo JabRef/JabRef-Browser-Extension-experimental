@@ -20,7 +20,11 @@
 import { FetchConcurrencyGate } from "./fetchConcurrency.js";
 import { registerHandler, reply } from "./nativeBridge.js";
 
-const TAB_TIMEOUT_MS = 60_000;
+// Matches the bridge's own fetch timeout (FetchTimeoutMs in jabext_host.ps1/.py): an SSO chain
+// or a slow publisher may take minutes.
+const TAB_TIMEOUT_MS = 300_000;
+// How often a tab that has not reported "complete" is checked for a parsed document.
+const STALL_POLL_MS = 10_000;
 const DOWNLOAD_SUBDIR = "jabref-fulltext";
 
 // req~bxf.concurrency-cap~1: cap concurrent fetch tabs (global 3, per publisher host 2) and
@@ -106,19 +110,35 @@ async function handleFetch({ requestId, doi, url }) {
 // load already reports "complete", so keep waiting through such pages. One
 // listener records every load for the whole wait, so a forward that completes
 // while the previous page is still being inspected is not missed.
+//
+// Firefox throttles background tabs, and some pages (IEEE Xplore) then do not fire
+// their load event until the tab is activated. So a tab that stays silent is polled:
+// a parsed document counts as a load, since PDF discovery only needs the DOM. The
+// poll also covers a load that completed before the listener was attached. All scripts
+// in this file are injected immediately: Firefox's default (document_idle) waits for
+// the very load event that does not come.
 export async function waitForComplete(tabId) {
   const deadline = Date.now() + TAB_TIMEOUT_MS;
   const loads = [];
+  let inspected = 0;
   let notify = () => {};
+  const record = (url) => {
+    loads.push(url);
+    notify();
+  };
   const listener = (id, info, tab) => {
     if (id === tabId && info.status === "complete") {
-      loads.push(tab.url);
-      notify();
+      record(tab.url);
     }
   };
   browser.tabs.onUpdated.addListener(listener);
+  const poller = setInterval(async () => {
+    const url = await parsedUrl(tabId);
+    if (url && loads.length <= inspected) {
+      record(url);
+    }
+  }, STALL_POLL_MS);
   try {
-    let inspected = 0;
     for (;;) {
       if (loads.length <= inspected) {
         await nextLoad(deadline, (resolve) => (notify = resolve));
@@ -131,7 +151,23 @@ export async function waitForComplete(tabId) {
       }
     }
   } finally {
+    clearInterval(poller);
     browser.tabs.onUpdated.removeListener(listener);
+  }
+}
+
+// The tab's URL once its document is parsed (readyState "interactive" or later), else null.
+async function parsedUrl(tabId) {
+  try {
+    const results = await browser.scripting.executeScript({
+      target: { tabId },
+      injectImmediately: true,
+      func: () => (document.readyState === "loading" ? null : location.href),
+    });
+    const url = results && results[0] && results[0].result;
+    return url && url !== "about:blank" ? url : null;
+  } catch {
+    return null;
   }
 }
 
@@ -159,6 +195,7 @@ async function hasMetaRefresh(tabId) {
   try {
     const results = await browser.scripting.executeScript({
       target: { tabId },
+      injectImmediately: true,
       func: () => {
         const meta = document.querySelector('meta[http-equiv="refresh" i]');
         const match = meta && /^\s*(\d+)\s*[;,]\s*(?:url\s*=)?\s*\S/i.exec(meta.content || "");
@@ -180,6 +217,7 @@ async function findPdfViaTranslators(tabId, url) {
     // into this tab before messaging it (same as the import flow's content path).
     await browser.scripting.executeScript({
       target: { tabId },
+      injectImmediately: true,
       files: ["/content-scripts/content.js"],
     });
     const detect = await browser.tabs.sendMessage(tabId, { type: "detectTranslators", url });
@@ -205,6 +243,7 @@ async function runPdfScan(tabId) {
   // <a href="*.pdf"> on the page.
   const results = await browser.scripting.executeScript({
     target: { tabId },
+    injectImmediately: true,
     func: () => {
       const meta = document.querySelector('meta[name="citation_pdf_url"]');
       if (meta && meta.content) {
