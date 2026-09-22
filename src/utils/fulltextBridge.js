@@ -268,10 +268,10 @@ async function findPdfViaTranslators(tabId, url) {
   }
 }
 
-async function runPdfScan(tabId) {
+export async function runPdfScan(tabId) {
   // Generic fallback scanner, used when no translator finds a PDF: inspect
-  // <meta name="citation_pdf_url">, <link rel=alternate>, and any visible
-  // <a href="*.pdf"> on the page.
+  // <meta name="citation_pdf_url">, <link rel=alternate>, any visible
+  // <a href="*.pdf"> on the page, and Atypon-style /doi/pdf/ and /doi/epdf/ links.
   const results = await browser.scripting.executeScript({
     target: { tabId },
     injectImmediately: true,
@@ -289,6 +289,17 @@ async function runPdfScan(tabId) {
       );
       if (anchor) {
         return { pdfUrl: anchor.href };
+      }
+      // Atypon platforms (ACM, Wiley, Taylor & Francis, SAGE) link the PDF as /doi/pdf/<doi> or
+      // only as the /doi/epdf/<doi> HTML reader, e.g. ACM's "PDF/eReader" button. The reader
+      // is not the PDF itself; /doi/pdf/ on the same host is.
+      const atypon = Array.from(document.querySelectorAll("a[href]")).find((a) =>
+        /\/doi\/e?pdf\//.test(new URL(a.href).pathname),
+      );
+      if (atypon) {
+        const url = new URL(atypon.href);
+        url.pathname = url.pathname.replace("/doi/epdf/", "/doi/pdf/");
+        return { pdfUrl: url.href };
       }
       return { pdfUrl: null, errorCode: "no-adapter", message: "no generic PDF link found" };
     },
