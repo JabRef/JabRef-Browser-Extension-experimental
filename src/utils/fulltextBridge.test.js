@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
 import { waitForComplete } from "./fulltextBridge.js";
 
@@ -64,5 +64,31 @@ describe("waitForComplete", () => {
     fire(8, "https://other/");
     fire(7, "https://mine/");
     expect(await p).toBe("https://mine/");
+  });
+
+  describe("tab that never reports complete", () => {
+    beforeEach(() => vi.useFakeTimers());
+    afterEach(() => vi.useRealTimers());
+
+    it("proceeds once the document is parsed", async () => {
+      let readyUrl = null;
+      globalThis.browser.scripting.executeScript = async ({ func }) =>
+        // parsedUrl's probe returns a URL or null; the meta-refresh probe returns false.
+        [{ result: func.toString().includes("readyState") ? readyUrl : false }];
+      const p = waitForComplete(7);
+      await vi.advanceTimersByTimeAsync(10_000);
+      readyUrl = "https://ieeexplore.ieee.org/document/771073";
+      await vi.advanceTimersByTimeAsync(10_000);
+      expect(await p).toBe("https://ieeexplore.ieee.org/document/771073");
+      expect(listeners.size).toBe(0);
+    });
+
+    it("times out when the document never gets parsed", async () => {
+      globalThis.browser.scripting.executeScript = async () => [{ result: null }];
+      const p = waitForComplete(7);
+      const outcome = expect(p).rejects.toMatchObject({ code: "timeout" });
+      await vi.advanceTimersByTimeAsync(300_000);
+      await outcome;
+    });
   });
 });
